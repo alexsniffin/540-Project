@@ -1,0 +1,64 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600);
+
+body{
+	background-color: #262728;
+	font-family: "Source Sans Pro", sans-serif;
+	letter-spacing: -0.1px;
+	color: #f2faff;
+}
+
+h2{
+	font-weight: 200;
+	font-size: 30px;
+}
+
+p{
+	font-weight: 200;
+	font-size: 18px;
+}
+
+.center{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	top: 50px;
+	text-align: center;
+	width: 70%;
+}
+
+.navbar-inverse {
+	background-color: #e04747;
+	border: none;
+}
+
+.navbar-inverse .navbar-brand {
+	font-size: 24px;
+	color: #f2faff;
+}
+
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+	color: #dde5e9;
+	background-color: transparent;
+}
+
+.navbar-inverse .navbar-text {
+	color: #f2faff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: #f2faff;
+}
+
+.navbar-inverse .navbar-toggle {
+	border-color: #f2faff;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+	background-color: 
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+	background-color: #f2faff;
+}
