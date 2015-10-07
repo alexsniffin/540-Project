@@ -1,6 +1,7 @@
 -- Tables for 540 Poll App Project, full database documentation at 
 -- https://docs.google.com/document/d/192YH8u7bxSb10Z9gxeHdSVb2I0XLxp4-DhEmbFiv3Rw/edit?usp=sharing
 
+-- Some user with attributes: email, password, name, ip, mac, points, created date, and total votes
 CREATE TABLE Users (
 	ID INT NOT NULL AUTO_INCREMENT,
 	email CHAR(64) NOT NULL,
@@ -17,54 +18,37 @@ CREATE TABLE Users (
 	UNIQUE(mac_address)
 );
 
+-- Some Poll created by a Users with some attributes: share_code (can be null; null approach), creation date, date to close poll, question
 CREATE TABLE Polls (
-	ID INT NOT NULL,
+	User_ID INT NOT NULL,
 	P_ID INT NOT NULL AUTO_INCREMENT,
 	share_code CHAR(8),
 	date_created DATE,
 	date_to_close DATE,
-	question CHAR(255) NOT NULL,
-	ans1 CHAR(128) NOT NULL,
-	ans2 CHAR(128) NOT NULL,
-	ans3 CHAR(128),
-	ans4 CHAR(128),
-	ans5 CHAR(128),
-	ans6 CHAR(128),
-	ans7 CHAR(128),
-	ans8 CHAR(128),
-	ans9 CHAR(128),
-	ans10 CHAR(128),
-	ans11 CHAR(128),
-	ans12 CHAR(128),
-	FOREIGN KEY (ID) REFERENCES Users(ID),
-	UNIQUE(P_ID),
-	UNIQUE(share_code),
-	CONSTRAINT unique_poll PRIMARY KEY (ID, P_ID)
+	question VARCHAR(255) NOT NULL,
+	PRIMARY KEY(P_ID),
+	FOREIGN KEY (User_ID) REFERENCES Users(ID),
+	UNIQUE(share_code)
 );
 
+-- Some Vote record where a Users has voted in a Polls, holds the result
 CREATE TABLE Voted (
-	ID INT NOT NULL,
+	Vote_ID INT NOT NULL AUTO INCREMENT,
+	User_ID INT NOT NULL,
 	P_ID INT NOT NULL,
 	result INT NOT NULL,
-	FOREIGN KEY (ID) REFERENCES Users(ID),
-	FOREIGN KEY (P_ID) REFERENCES Polls(P_ID),
-	CONSTRAINT unique_voted PRIMARY KEY (ID, P_ID)
+	PRIMARY KEY(Vote_ID),
+	FOREIGN KEY (User_ID) REFERENCES Users(ID),
+	FOREIGN KEY (P_ID) REFERENCES Polls(P_ID)
 );
 
-CREATE TABLE Results (
+-- Some Answers for a Polls
+CREATE TABLE Answers (
 	P_ID INT NOT NULL,
-	res1 INT,
-	res2 INT,
-	res3 INT,
-	res4 INT,
-	res5 INT,
-	res6 INT,
-	res7 INT,
-	res8 INT,
-	res9 INT,
-	res10 INT,
-	res11 INT,
-	res12 INT,
+	ANS_ID INT NOT NULL AUTO INCREMENT,
+	ans VARCHAR(128) NOT NULL,
+	res INT NOT NULL,
+	PRIMARY KEY(ANS_ID),
 	FOREIGN KEY (P_ID) REFERENCES Polls(P_ID)
 );
 
