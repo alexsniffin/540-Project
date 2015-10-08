@@ -1,78 +1,47 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600);
 
+/* Global Styles */
+
 body{
 	background-color: #262728;
 	font-family: "Source Sans Pro", sans-serif;
-	letter-spacing: -0.1px;
+	letter-spacing: -0.1pt;
 	color: #f2faff;
 }
 
 a{
 	color: #e04747;
+	font-weight: 200;
+	-webkit-transition: all .15s ease;
 }
 
 a:hover{
+	color: #fff;
 	text-decoration: none;
+	-webkit-transition: all .15s ease;
 }
 
 a:link{
 	text-decoration: none;
 }
 
+a:visited{
+	color: #e04747;
+	text-decoration: none;
+}
+
 h2{
+	font-size: 20pt;
+	line-height: 25pt;
 	font-weight: 200;
-	font-size: 28px;
-	line-height: 35px;
 }
 
 p{
+	font-size: 14pt;
 	font-weight: 200;
-	font-size: 18px;
 }
 
-.center{
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	top: 50px;
-	text-align: center;
-	width: 100%;
-}
-
-/* Vote Now Button */
-
-.round-button{
-	width: 230px;
-	height: 230px;
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	top: 80px;
-	border: 3px solid;
-	border-color: #f2faff;
-	border-radius: 50%;	
-	overflow: hidden;
-	text-align: center;
-	background: #393b3c;
-}
-
-.round-button a{
-	line-height: 60px;
-	padding-top: 50px;
-	display:block;
-	height:100%;
-	width:100%;
-	font-weight: 200;
-	font-size: 60px;
-	color: #f2faff;
-}
-
-.round-button:hover{
-	background: #303132;
-}
-
-
-/* Navigation Bar Styles */
+/* Navigation Bar (Overrides Bootstrap File) */
 
 .navbar {
     border-radius: 0px;
@@ -84,7 +53,8 @@ p{
 }
 
 .navbar-inverse .navbar-brand {
-	font-size: 24px;
+	font-weight: 400;
+	font-size: 18pt;
 	color: #f2faff;
 }
 
@@ -122,3 +92,130 @@ p{
 .navbar-inverse .navbar-toggle .icon-bar {
 	background-color: #f2faff;
 }
+
+/* User Bar */
+
+.userbar{
+	height: 30px;
+	width: 100%;
+	border-bottom: 1.5px solid;
+	border-color: #1c1c1d;
+}
+
+.userbar ul{
+	list-style-type: none;
+	text-align: center;
+}
+
+.userbar ul li{
+	display: inline;
+	margin-right: 30px;
+	color: #636568;
+	font-weight: 200;
+	font-size: 14pt;
+	line-height: 10pt;
+	position: relative;
+	bottom: 5px;
+}
+
+.userbar ul li > img{
+	height: 24px;
+	width: 24px;
+	margin: 5px;
+	position: relative;
+	bottom: 5px;
+}
+
+/* Top Text */
+
+.top{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	top: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+/* Vote Now Button */
+
+.round-button-container{
+	width: 240px;
+    height: 240px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: 40px;
+    overflow: hidden;
+    text-align: center;
+    background: #e04747;
+    border-radius: 50%;
+    -webkit-transition: all .15s ease;
+}
+
+.round-button-container:hover{
+	-webkit-transition: all .15s ease;
+	background: #e06363;
+}
+
+.round-button{
+	width: 230px;
+    height: 230px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: 5px;
+    border: 2.5px solid;
+    border-color: #f2faff;
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
+    background: #393b3c;
+    -webkit-transition: all .15s ease;
+}
+
+.round-button a{
+	padding-top: 55px;
+	display: block;
+	height: 100%;
+	width: 100%;
+	font-weight: 200;
+	font-size: 42pt;
+	line-height: 42pt;
+	color: #f2faff;
+	-webkit-transition: all .15s ease;
+}
+
+.round-button:hover{
+	background: #303132;
+	-webkit-transition: all .15s ease;
+}
+
+/* Bottom Text */
+
+.bottom{
+	position: relative;
+	top: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+	text-align: center;
+	width: 100%;
+}
+
+.bottom p{
+	margin-top: 20px;
+	margin-bottom: -5px;
+}
+
+.bottom a{
+	font-size: 20pt;
+}
+
+.bottom a:hover{
+	color: #e06363;
+}
+
+
+
+
