@@ -3,7 +3,7 @@
 <html lang = "en">
 
 	<head>
-		<title>Polling App</title>
+		<title>Categories</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -23,7 +23,7 @@
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span> 
       		</button>
-      	<a class="navbar-brand" href="#"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
+      	<a class="navbar-brand" href="/index.html"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
    		 </div>
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
@@ -48,25 +48,31 @@
 	
 		<!-- Top of page text -->
 		<div class="top">
-		<h2>Ready to share your<br/>opinions with the world?</h2>
+		<h2>Choose a category</h2>
+		</div>
+
+		<!-- Red divider -->
+		<div class="red-divider">
 		</div>
 	
-		<!-- Vote Now Button -->
-		<div class="round-button-container">
-			<div class="round-button">
-			<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Vote</br>Now</a>
-			</div>
-		</div>	
-		
-		<!-- Bottom of page text -->
-		<div class="bottom">
-		<p>or choose from<br/></p> <a href="/categories.html">Categories</a>
-		<p>you can even<br/></p> <a href="#">Create your own poll</a>
+		<!-- List of categories -->
+		<!-- This will need to be populated from the database, and clicking each category will filter the polls -->
+		<div class="category-container">
+			<ul>
+				<li><a href="#">Science</a></li>
+				<li><a href="#">Literature</a></li>
+				<li><a href="#">Technology</a></li>
+				<li><a href="#">Music</a></li>
+				<li><a href="#">Movies</a></li>
+				<li><a href="#">Current Events</a></li>
+				<li><a href="#">Gaming</a></li>
+				<li><a href="#">Food & Drink</a></li>
+				<li><a href="#">Politics</a></li>
+			</ul>	
 		</div>
-		
+	
 	</div>
-			
+		
 	</body>
-
 	
 </html>
