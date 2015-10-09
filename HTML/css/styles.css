@@ -16,6 +16,10 @@ body{
 	overflow: hidden;
 }
 
+ul{
+	list-style: none;
+}
+
 a{
 	color: #e04747;
 	font-weight: 200;
@@ -128,7 +132,6 @@ p{
 }
 
 .userbar ul{
-	list-style-type: none;
 	text-align: center;
 }
 
@@ -247,12 +250,75 @@ p{
 
 .category-container ul{
 	padding-left: 0px;
-	list-style-type: none;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 18pt;
 	line-height: 35pt;
+}
+
+/* Polls */
+.question{
+	background: #3d3e40;
+	height: 300px;
+	width: 100%;
+	border-bottom: 5px solid;
+	border-color: #e04747;
+	text-align: center;
+	position: relative;
+}
+
+.question-text{
+    margin: 0 auto;
+    vertical-align: middle;
+    font-size: 20pt;
+    position: absolute;
+    font-weight: 200;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.choices{
+	padding-top: 60px;
+    font-weight: 200;
+    font-size: 15pt;
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.choices ul{
+	padding-left: 0px;
+	text-align: left;
+	display: inline-block;
+}
+
+.choices ul li{
+	display: block;
+	padding-bottom: 30px;
+}
+
+.radio-button{
+	display: inline-block;
+	vertical-align: middle;
+	background-image: url('../imgs/radiobuttons_2x.png');
+	width: 30px;
+    height: 30px;
+    background-size: 60px 30px;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+}
+
+.radio-button.selected{
+	background-position: -30px 0px;
+}
+
+.choice-text{
+    margin: 10px;
+    margin-top: -10px;
+    display: inline;
 }
 
 /* Bottom Text */
@@ -275,12 +341,6 @@ p{
 .bottom a{
 	font-size: 20pt;
 }
-/* 
-
-.bottom a:hover{
-	color: #e06363;
-}
- */
 
 
 

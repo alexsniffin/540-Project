@@ -3,7 +3,7 @@
 <html lang = "en">
 
 	<head>
-		<title>Polling App</title>
+		<title>Vote</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -23,12 +23,12 @@
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span> 
       		</button>
-      	<a class="navbar-brand" href="#"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
+      	<a class="navbar-brand" href="/index.html"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
    		 </div>
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="#">Create</a></li>
-        			<li><a href="/votepublic.html">Vote</a></li>
+        			<li><a href="#">Vote</a></li>
        			    <li><a href="#">Private Polls</a></li> 
       			</ul>
     		</div>
@@ -46,22 +46,38 @@
 	<!-- Start main content -->
 	<div class="main-content">
 	
-		<!-- Top of page text -->
-		<div class="top">
-		<h2>Ready to share your<br/>opinions with the world?</h2>
+		<!-- Question -->
+		<!-- Will need to be populated from database -->
+		<div class="question">
+			<div class="question-text">
+				What is your favorite answer?
+			</div>
 		</div>
 	
-		<!-- Vote Now Button -->
-		<div class="round-button-container">
-			<div class="round-button">
-			<a href="/votepublic.html">Vote</br>Now</a>
-			</div>
-		</div>	
-		
-		<!-- Bottom of page text -->
-		<div class="bottom">
-		<p>or choose from<br/></p> <a href="/categories.html">Categories</a>
-		<p>you can even<br/></p> <a href="#">Create your own poll</a>
+	
+		<!-- Choices -->
+		<!-- Will need to be populated from database -->
+		<div class="choices">
+			<ul>
+				<li>
+					<div class="radio-button"></div>
+					<div class="choice-text">
+						Unselected answer
+					</div>
+				</li>
+				<li>
+					<div class="radio-button selected"></div>
+					<div class="choice-text">
+						Selected answer
+					</div>
+				</li>
+				<li>
+					<div class="radio-button"></div>
+					<div class="choice-text">
+						A longer unselected answer blah blah blah blah
+					</div>
+				</li>
+			</ul>	
 		</div>
 		
 	</div>
