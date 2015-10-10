@@ -60,28 +60,56 @@
 		<div class="choices">
 			<ul>
 				<li>
-					<div class="radio-button"></div>
+					<div class="radio-button" id="choice_1"></div>
 					<div class="choice-text">
 						Unselected answer
 					</div>
 				</li>
 				<li>
-					<div class="radio-button selected"></div>
+					<div class="radio-button" id="choice_2"></div>
 					<div class="choice-text">
 						Selected answer
 					</div>
 				</li>
 				<li>
-					<div class="radio-button"></div>
+					<div class="radio-button" id="choice_3"></div>
 					<div class="choice-text">
 						A longer unselected answer blah blah blah blah
 					</div>
 				</li>
 			</ul>	
 		</div>
+		</form>
 		
 	</div>
+						
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
 			
+			//declare click handler for choices
+			$(document).on('click', '.choices li', function(e){
+				var element;
+				if($(e.target).is('li')){
+					element = e.target;
+				}else{
+			    	element = $(e.target).parents('li');
+				}
+				//remove check from previously selected one
+				$('.choices li.selected').each(function(i, button){
+					$(button).removeClass('selected');
+				});
+				
+				//add check to the one we just clicked
+				$(element).addClass('selected');
+			});
+			
+			$(document).on('click', '#submit-button', function(e){
+				//get id of chioce selected, and save to DB
+			})
+		});
+		
+	</script>
 	</body>
 
 	
