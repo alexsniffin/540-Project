@@ -24,19 +24,19 @@ INSERT INTO Polls VALUES (
 	NULL, -- Is this a private poll? If not leave NULL
 	NOW(), -- Date created, use NOW() to get current time when inserted
 	NOW(), -- Date to close, just leaving it as NOW() for now...
-	'This App is pretty cool, but this question is even more cool, don''t you agree?', -- Some question
+	'This App is pretty cool, but this question is even more cool, "don''t" you agree?' -- Some question
 );
 
 -- Now we have to make the Answers inserts for our poll(s)
 INSERT INTO Answers VALUES (
-	1, -- What poll are we referring too?
 	NULL, -- ANS_ID = 1
+	1, -- What poll are we referring too?
 	'Hell YES, best question ever!', -- The anwser to display
 	9000 -- The total votes this answer has received
 );
-INSERT INTO Answers VALUES (1, NULL, 'It''s alright.', 100); -- ANS_ID = 2
-INSERT INTO Answers VALUES (1, NULL, 'I think you could''ve come up with something better..', 100); -- ANS_ID = 3
-INSERT INTO Answers VALUES (1, NULL, 'Simply horrible.', 100); -- ANS_ID = 4
+INSERT INTO Answers VALUES (NULL, 1, 'It''s alright.', 100); -- ANS_ID = 2
+INSERT INTO Answers VALUES (NULL, 1, 'I think you could''ve come up with something better..', 100); -- ANS_ID = 3
+INSERT INTO Answers VALUES (NULL, 1, 'Simply horrible.', 100); -- ANS_ID = 4
 
 -- Now we need to figure out who has voted on what
 INSERT INTO Voted VALUES (
