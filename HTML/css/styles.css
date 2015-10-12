@@ -260,7 +260,7 @@ p{
 /* Polls */
 .question{
 	background: #3d3e40;
-	height: 40%;
+	height: 35%;
 	width: 100%;
 	border-bottom: 5px solid;
 	border-color: #e04747;
@@ -281,28 +281,79 @@ p{
     transform: translate(-50%, -50%);
 }
 
+.left-arrow{
+    display: inline-block;
+    float: left;
+    background-image: url('../imgs/leftArrow_2x.png');
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 30%;
+    background-size: 70px 70px;
+    background-position: 30% 50%;
+}
+
+.left-arrow.inactive{
+	opacity: .2;
+} 
+
+.right-arrow{
+	display: inline-block;
+	float: right;
+	background-image: url('../imgs/rightArrow_2x.png');
+	background-repeat: no-repeat;
+    height: 100%;
+    width: 30%;
+    background-size: 70px 70px;
+    background-position: 70% 50%;
+}
+
+.right-arrow.inactive{
+	opacity: .2;
+}
+
+.right-arrow.submit{
+	background-image: url('../imgs/submitArrow_2x.png');
+	opacity: 1;
+}
+
 .choices{
-	padding-top: 60px;
+	padding-top: 25px;
+	padding-bottom: 25px;
     font-weight: 200;
     font-size: 15pt;
     margin: 0 auto;
-    max-width: 300px;
+    width: 100%;
 }
 
 .choices ul{
 	padding-left: 0px;
-	text-align: left;
-	display: inline-block;
+    text-align: left;
+    display: inline-block;
+    position: absolute;
+    width: 100%;
 }
 
 .choices ul li{
 	display: block;
-	padding-bottom: 30px;
+    height: 70px;
+    padding: 8px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+    max-width: 500px;
+    margin-bottom: 8px;
+}
+
+.choice-text{
+    margin: 5px;
+    display: inline;
+    padding: 10px;
+    
 }
 
 .choices ul li.selected{
-	color: red;
-	background-color: #555;
+	color: #e04747;
+	background-color: #323334;
 	font-weight: 400;
 }
 
@@ -321,12 +372,37 @@ p{
     background-position: 0px 0px;
 }
 
+/* Share Code Page */
+.share-code-container{
+	max-width: 500px;
+    height: 50%;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%);
+}
 
+.form-group{
+	margin: 0 auto;
+}
 
-.choice-text{
-    margin: 10px;
-    margin-top: -10px;
-    display: inline;
+.submit-button{
+	text-align: center;
+    background: #e04747;
+    width: 190px;
+    height: 45px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 50px;
+}
+
+.submit-button h2{
+	color: #f2faff;
+	position: relative;
+    margin: 0px;
+    margin-top: 5px;
 }
 
 /* Bottom Text */

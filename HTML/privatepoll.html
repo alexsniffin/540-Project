@@ -3,7 +3,7 @@
 <html lang = "en">
 
 	<head>
-		<title>Polling App</title>
+		<title>Private Polls</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -23,13 +23,13 @@
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span> 
       		</button>
-      	<a class="navbar-brand" href="#"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
+      	<a class="navbar-brand" href="index.html"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
    		 </div>
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="#">Create</a></li>
         			<li><a href="votepublic.html">Vote</a></li>
-       			    <li><a href="privatepoll.html">Private Polls</a></li> 
+       			    <li><a href="privatepoll">Private Polls</a></li> 
       			</ul>
     		</div>
   		</div>
@@ -46,27 +46,23 @@
 	<!-- Start main content -->
 	<div class="main-content">
 	
-		<!-- Top of page text -->
-		<div class="top">
-		<h2>Ready to share your<br/>opinions with the world?</h2>
-		</div>
-	
-		<!-- Vote Now Button -->
-		<div class="round-button-container">
-			<div class="round-button">
-			<a href="votepublic.html">Vote</br>Now</a>
-			</div>
-		</div>	
-		
-		<!-- Bottom of page text -->
-		<div class="bottom">
-		<p>or choose from<br/></p> <a href="categories.html">Categories</a>
-		<p>you can even<br/></p> <a href="#">Create your own poll</a>
-		</div>
-		
-	</div>
+		<!-- Share code form -->
+		<div class="share-code-container">
+			<h2>Please enter your share code in order to vote:</h2>
 			
+			<form role="form">
+  				<div class="form-group">
+    				<input type="sharecode" class="form-control" id="sharecode">
+  				</div>
+  			</form>	
+  			
+  			<a href="voteprivate.html"><div class="submit-button">
+  				<h2>Submit</h2>
+  			</div></a>
+  		</div>
+	
+	</div>
+		
 	</body>
-
 	
 </html>
