@@ -81,11 +81,22 @@
 				</li>
 			</ul>	
 		</div>
-		</form>
+		
+		<!-- TEMPORARY: Submit button to submit poll and take user to immediate result page -->
+		<!-- Button is inactive until a choice is selected -->
+		<!-- Needs to also actually submit the answer to database -->
+<!-- 
+		<a href="immedresults.html"><div class="submit-button temp inactive">
+		<h2>Submit</h2>
+		</div>
+		</a>
+ -->
 		
 	</div>
+	
+
 			
-	<!-- Radio button functionality -->			
+	<!-- Radio button and poll submission functionality-->			
 	<script type="text/javascript">
 		
 		$(document).ready(function(){
@@ -115,6 +126,15 @@
 				
 				//turn right arrow into submit button
 				$('.right-arrow').addClass('submit');
+				
+				//turn submit button into active submit button
+				$('.submit-button.temp').removeClass('inactive');
+			});
+			
+			//declare click handler for submit button
+			$(document).on('click', '.right-arrow.submit', function()
+			{
+				window.location.href = 'immedresults.html';
 			});
 		});
 		

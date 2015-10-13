@@ -291,10 +291,12 @@ p{
     width: 30%;
     background-size: 70px 70px;
     background-position: 30% 50%;
+    cursor: pointer;
 }
 
 .left-arrow.inactive{
 	opacity: .2;
+	cursor: default;
 } 
 
 .right-arrow{
@@ -306,15 +308,18 @@ p{
     width: 30%;
     background-size: 70px 70px;
     background-position: 70% 50%;
+    cursor: pointer;
 }
 
 .right-arrow.inactive{
 	opacity: .2;
+	cursor: default;
 }
 
 .right-arrow.submit{
 	background-image: url('../imgs/submitArrow_2x.png');
 	opacity: 1;
+	cursor: pointer;
 }
 
 .choices{
@@ -371,6 +376,51 @@ p{
     background-size: 60px 30px;
     background-repeat: no-repeat;
     background-position: 0px 0px;
+    cursor: pointer;
+}
+
+.submit-button.temp{
+    margin-top: 250px;
+}
+
+.submit-button.temp.inactive{
+	background: #e06363;
+	cursor: default;
+}
+
+.submit-button.temp.inactive h2{
+	color: #e09595;
+}
+
+/* Immediate Results Page */
+.choices ul.results li{
+	background-color: #323334;
+	max-width: 100%;
+	padding: 0px;
+}
+
+.result-text{
+    margin: 0px;
+    display: inline;
+    padding-top: 5px;
+    max-width: 70%;
+    position: absolute;
+    left: 5%;
+}
+
+.result-percentage{
+	display: inline;
+    float: right;
+    font-size: 30px;
+    margin-right: 5%;
+    padding-top: 12px;
+} 
+
+.result-bar{
+	display: block;
+    height: 100%;
+    width: 25%;
+    background-color: #e04747;
 }
 
 /* Share Code Page */

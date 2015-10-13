@@ -3,7 +3,7 @@
 <html lang = "en">
 
 	<head>
-		<title>Private Polls</title>
+		<title>Vote</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -29,7 +29,7 @@
      		    <ul class="nav navbar-nav">
         			<li><a href="#">Create</a></li>
         			<li><a href="votepublic.html">Vote</a></li>
-       			    <li><a href="privatepoll">Private Polls</a></li> 
+       			    <li><a href="privatepoll.html">Private Polls</a></li> 
       			</ul>
     		</div>
   		</div>
@@ -46,26 +46,57 @@
 	<!-- Start main content -->
 	<div class="main-content">
 	
-		<!-- Share code form -->
-		<div class="share-code-container">
-			<h2>Please enter your share code in order to vote:</h2>
-			
-			<form role="form">
-  				<div class="form-group">
-    				<input type="sharecode" class="form-control" id="sharecode">
-  				</div>
-  			</form>	
-  			
-  			<a href="voteprivate.html">
-  			<div class="submit-button">
-  				<h2>Submit</h2>
-  			</div>
-  			</a>
-  			
-  		</div>
+		<!-- Question -->
+		<!-- Will need to be populated from database -->
+		<div class="question">
+			<div class="left-arrow"></div>
+			<div class="question-text">
+				What is your favorite answer?
+			</div>
+			<div class="right-arrow"></div>
+		</div>
 	
-	</div>
+	
+		<!-- Results -->
+		<!-- Will need to be populated from database -->
+		<div class="choices">
+			<ul class="results">
+				<li>
+					<div class="result-text">
+						The first answer
+					</div>
+					<div class="result-percentage">
+						25%
+					</div>
+					<!-- Hopefully this width value can be populated from database as well -->
+					<div class="result-bar" style="width:25%;"></div>
+				</li>
+				<li>
+					<div class="result-text">
+						The second answer
+					</div>
+					<div class="result-percentage">
+						50%
+					</div>
+					<div class="result-bar" style="width:50%;"></div>
+				</li>
+				<li>
+					<div class="result-text">
+						A longer answer that takes up multiple lines blah blah blah blah
+					</div>
+					<div class="result-percentage">
+						25%
+					</div>
+					<div class="result-bar" style="width:25%;"></div>
+				</li>
+			</ul>	
+		</div>
+		</form>
 		
+	</div>
+			
+	
 	</body>
+
 	
 </html>

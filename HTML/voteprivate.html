@@ -84,7 +84,7 @@
 		
 	</div>
 			
-	<!-- Radio button functionality -->			
+	<!-- Radio button and poll submission functionality -->			
 	<script type="text/javascript">
 		
 		$(document).ready(function(){
@@ -115,7 +115,15 @@
 				//turn right arrow into submit button
 				$('.right-arrow').addClass('submit');
 			});
+		
+			//declare click handler for submit button
+			$(document).on('click', '.right-arrow.submit', function()
+			{
+				window.location.href = 'index.html';
+			});
 		});
+		
+	</script>
 		
 	</script>
 	
