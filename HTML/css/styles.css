@@ -493,3 +493,16 @@ p{
 
 
 
+/* style for google sign in button */
+.signIn{
+		
+}
+
+.gButton {
+	height: 10%;
+	width: 50%;
+	max-width: 250px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;	
+}
