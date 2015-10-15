@@ -3,7 +3,7 @@
 <html lang = "en">
 
 	<head>
-		<title>Categories</title>
+		<title>Polling App</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -12,8 +12,12 @@
   		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	</head>
 	
-	<body>
-	
+<body>
+
+<!-- basic poll creation page
+The first line below, where action = "xxxx" is the page that will
+load when submit is pressed. -->
+
 	<!-- Navbar -->
 	<nav class="navbar navbar-inverse">
   		<div class="container-fluid">
@@ -48,31 +52,27 @@
 	
 		<!-- Top of page text -->
 		<div class="top">
-		<h2>Choose a category</h2>
+		<h2>Create a Poll</h2>
 		</div>
 
 		<!-- Red divider -->
 		<div class="red-divider">
 		</div>
 	
-		<!-- List of categories -->
-		<!-- This will need to be populated from the database, and clicking each category will filter the polls -->
-		<div class="category-container">
-			<ul>
-				<li><a href="#">Science</a></li>
-				<li><a href="#">Literature</a></li>
-				<li><a href="#">Technology</a></li>
-				<li><a href="#">Music</a></li>
-				<li><a href="#">Movies</a></li>
-				<li><a href="#">Current Events</a></li>
-				<li><a href="#">Gaming</a></li>
-				<li><a href="#">Food & Drink</a></li>
-				<li><a href="#">Politics</a></li>
-			</ul>	
-		</div>
-	
+		<!-- Create poll form -->
+		<form action="createPollBackend.php" method="post" class="create-form">
+			Enter in a question: <input type="text" name="quest"><br>
+			Answer One:  <input type="text" name="ans1"><br>
+			Answer Two:  <input type="text" name="ans2"><br>
+			Answer Three:  <input type="text" name="ans3"><br>
+			Answer Four:  <input type="text" name="ans4"><br>
+			Answer Five:  <input type="text" name="ans5"><br>
+			Answer Six:  <input type="text" name="ans6"><br>
+			
+			<input type="submit" class="submit-button">
+		</form>
+
 	</div>
-		
-	</body>
-	
+
+</body>
 </html>

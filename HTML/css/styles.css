@@ -379,19 +379,6 @@ p{
     cursor: pointer;
 }
 
-.submit-button.temp{
-    margin-top: 250px;
-}
-
-.submit-button.temp.inactive{
-	background: #e06363;
-	cursor: default;
-}
-
-.submit-button.temp.inactive h2{
-	color: #e09595;
-}
-
 /* Immediate Results Page */
 .choices ul.results li{
 	background-color: #323334;
@@ -447,13 +434,21 @@ p{
     left: 50%;
     transform: translate(-50%);
     margin-top: 50px;
+    font-size: 20pt;
+	line-height: 25pt;
+	font-weight: 200;
+	color: #f2faff;
+	padding-top: 5px;
+	border: none;
 }
 
-.submit-button h2{
-	color: #f2faff;
-	position: relative;
-    margin: 0px;
-    margin-top: 5px;
+.submit-button.inactive{
+	background: #e06363;
+	cursor: default;
+}
+
+.submit-button.inactive h2{
+	color: #e09595;
 }
 
 /* Bottom Text */
@@ -477,7 +472,24 @@ p{
 	font-size: 20pt;
 }
 
+/* Create Poll Page */
+.create-form{
+    font-size: 18pt;
+    font-weight: 200;
+    line-height: 40pt;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding-top: 50px;
+}
 
+.create-form input{
+	height: 40px;
+	width: 50%;
+    vertical-align: middle;
+    border: none;
+}
 
 
 
