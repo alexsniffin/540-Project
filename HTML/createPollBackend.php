@@ -95,16 +95,16 @@ function printArray($tempArray)
 function buildSQLString($tempArray)
 {
 	
-	$builtString = "INSERT INTO Polls VALUES(99, NULL, NULL, NOW(), NOW(),";
+	$builtString = "CALL create_poll(1," . "'" . $tempArray[0][0] . "'," . "NULL," . "30,";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
-		for ($j = 0; $j < count($tempArray[$i]); $j++)
+		for ($j = 1; $j < count($tempArray[$i]); $j++)
 		{
 				$builtString .= "'" . $tempArray[$i][$j] . "',";
 		}
 	
-	$builtString .= "NULL, NULL, NULL, NULL, NULL, NULL)";
+	$builtString .= "NULL, NULL, NULL, NULL, NULL, NULL);";
 	
 		
 	}
@@ -113,7 +113,6 @@ function buildSQLString($tempArray)
 
 //utilization of functions for debugging and insertion purposes
 
-printArray($testArr);
 
 $buffInArr = loadArray($incr1);
 
@@ -124,14 +123,20 @@ $incr1++;
 //build SQL string statement
 $sqlInsertString = buildSQLString($buffInArr);
 
+$conn->close();
 
+//$conn = new mysqli($servername, $username, $password, $dbname);
 //Display SQL string statement
 echo $sqlInsertString . "<br><br>";
+//$conn->close();
 
+$conn = new mysqli($servername, $username, $password, $dbname);
 //Attempt to insert data into database
-$sql = $sqlInsertString;
+$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
+$conn->close();
 
-if ($conn->query($sql) === TRUE)
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->query($insert) === TRUE)
 {
     echo "New record created successfully";
 }

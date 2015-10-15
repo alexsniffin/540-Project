@@ -491,18 +491,41 @@ p{
     border: none;
 }
 
-
+/* Login Page */
 
 /* style for google sign in button */
 .signIn{
 		
 }
 
+.logo{
+    position: relative;
+    left: 50%;
+    top: 50px;
+    width: auto;
+    height: 30%;
+    min-height: 200px;
+    background-repeat: no-repeat;
+    transform: translate(-50%, 0);
+}
+
+.login-text{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	top: 120px;
+	text-align: center;
+	width: 80%;
+	font-size: 15pt;
+	font-weight: 200;
+}
+
 .gButton {
-	height: 10%;
-	width: 50%;
-	max-width: 250px;
+	height: 50px;
+	width: 250px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;	
+	position: relative;
+	top: 130px;
 }
