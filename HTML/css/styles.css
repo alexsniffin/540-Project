@@ -51,6 +51,11 @@ p{
 	font-weight: 200;
 }
 
+strong{
+	font-weight: 400;
+	color: #e04747;
+}
+
 .main-content{
 	height: calc(100% - 100px);
 	overflow: auto;
@@ -272,14 +277,19 @@ p{
 .question-text{
     margin: 0 auto;
     vertical-align: middle;
-    font-size: 20pt;
+    font-size: 18pt;
     position: absolute;
     font-weight: 200;
     margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+	height: 100%;
+    overflow: scroll;
+
 }
 
 .left-arrow{
@@ -434,6 +444,7 @@ p{
     left: 50%;
     transform: translate(-50%);
     margin-top: 50px;
+    margin-bottom: 50px;
     font-size: 20pt;
 	line-height: 25pt;
 	font-weight: 200;
@@ -473,23 +484,49 @@ p{
 }
 
 /* Create Poll Page */
+.create-container{
+	width: 75%;
+    height: 200px;
+    margin: 0 auto;
+    top: 20px;
+    position: relative;
+    padding-top: 50px;
+}
+
+.create-container label{
+	font-size: 16pt;
+	font-weight: 200;
+	font-size: 18pt;
+    position: relative;
+}
+
 .create-form{
     font-size: 18pt;
     font-weight: 200;
-    line-height: 40pt;
+    line-height: 35pt;
     margin: 0 auto;
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
-    padding-top: 50px;
+    top: 310px;
+    width: 75%;
 }
 
-.create-form input{
+.create-form input[type="text"]{
 	height: 40px;
-	width: 50%;
+	width: 100%;
     vertical-align: middle;
     border: none;
-	color: #000;
+	font-size: 14pt;
+    color: #000;
+}
+
+.form-control{
+	margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 14pt;
+    height: 40px;
+    font-weight: 300;
 }
 
 /* Login Page */
@@ -502,7 +539,7 @@ p{
 .logo{
     position: relative;
     left: 50%;
-    top: 150px;
+    top: 100px;
     width: auto;
     height: 30%;
     min-height: 200px;
@@ -514,7 +551,7 @@ p{
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	top: 220px;
+	top: 160px;
 	text-align: center;
 	width: 80%;
 	font-size: 15pt;
@@ -528,5 +565,5 @@ p{
 	margin-left: auto;
 	margin-right: auto;	
 	position: relative;
-	top: 230px;
+	top: 175px;
 }

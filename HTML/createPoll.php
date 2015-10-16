@@ -59,15 +59,37 @@ load when submit is pressed. -->
 		<div class="red-divider">
 		</div>
 	
+		<!-- Private Poll Checkbox -->
+		<div class="create-container">
+			<div class="form-group">
+  				<label for="categoryselection"><strong>Choose a category:</strong> </label>
+  				<select class="form-control" id="categoryselection">
+  				  	<option>Science</option>
+					<option>Literature</option>
+					<option>Technology</option>
+					<option>Music</option>
+					<option>Movies</option>
+					<option>Current Events</option>
+					<option>Gaming</option>
+					<option>Food & Drink</option>
+					<option>Politics</option>
+  				</select>
+			</div>
+		
+			<div class="checkbox">
+  			<label><input type="checkbox" value="">This is a private poll</label>
+			</div>
+		</div>
+		
 		<!-- Create poll form -->
 		<form action="createPollBackend.php" method="post" class="create-form">
-			Enter in a question: <input type="text" name="quest"><br>
-			Answer One:  <input type="text" name="ans1"><br>
-			Answer Two:  <input type="text" name="ans2"><br>
-			Answer Three:  <input type="text" name="ans3"><br>
-			Answer Four:  <input type="text" name="ans4"><br>
-			Answer Five:  <input type="text" name="ans5"><br>
-			Answer Six:  <input type="text" name="ans6"><br>
+			<strong>Enter a question:</strong> <input type="text" name="quest"><br>
+			Choice One:  <input type="text" name="ans1"><br>
+			Choice Two:  <input type="text" name="ans2"><br>
+			Choice Three:  <input type="text" name="ans3"><br>
+			Choice Four:  <input type="text" name="ans4"><br>
+			Choice Five:  <input type="text" name="ans5"><br>
+			Choice Six:  <input type="text" name="ans6"><br>
 			
 			<input type="submit" class="submit-button">
 		</form>
