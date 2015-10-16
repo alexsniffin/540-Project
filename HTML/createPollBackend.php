@@ -33,19 +33,20 @@ if ($conn->connect_error)
 // this statement can be removed later
 echo "Connected successfully";
 
+//Variable that will hold string to send to SQL server for poll input
+$sqlInsert;
 
-
-// Main Buffer Array for sending polls to database
-$buffInArr = array(array());
-
-// String built to be inserted into SQL table
-$sqlInsertString;
+//User ID initialized to 1 for debugging purposes
+$userID = 1;
 
 //Vistigial incrementer for now
 $incr1 = 0;
 
+//winning
 $winning = true;
 
+//Loads in user input in order to create SQL call function string
+//Currently uses 2D Array 
 function loadArray()
 {
 	$buff;
@@ -92,10 +93,10 @@ function printArray($tempArray)
 }
 
 // Takes in user input and concatenates into a string to send to SQL for insertion
-function buildSQLString($tempArray)
+function buildSQLString($tempArray, $ID)
 {
 	
-	$builtString = "CALL create_poll(1," . "'" . $tempArray[0][0] . "'," . "NULL," . "30,";
+	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."',"."NULL,"."30,";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
@@ -104,53 +105,25 @@ function buildSQLString($tempArray)
 				$builtString .= "'" . $tempArray[$i][$j] . "',";
 		}
 	
-	$builtString .= "NULL, NULL, NULL, NULL, NULL, NULL);";
+	$builtString .= "NULL,NULL,NULL,NULL,NULL,NULL)";
 	
 		
 	}
 	return $builtString;
 }
 
-//utilization of functions for debugging and insertion purposes
+//utilization of functions for insertion purposes
 
-
-$buffInArr = loadArray($incr1);
-
-printArray($buffInArr);
-
-$incr1++;
+$sqlInsert = loadArray($incr1);
 
 //build SQL string statement
-$sqlInsertString = buildSQLString($buffInArr);
+$sqlInsertString = buildSQLString($sqlInsert,$userID);
 
-$conn->close();
-
-//$conn = new mysqli($servername, $username, $password, $dbname);
-//Display SQL string statement
-echo $sqlInsertString . "<br><br>";
-//$conn->close();
-
-$conn = new mysqli($servername, $username, $password, $dbname);
 //Attempt to insert data into database
 $insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
 $conn->close();
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->query($insert) === TRUE)
-{
-    echo "New record created successfully";
-}
-else
-{
-	echo "Database Insertion error occurred:<br><br>";
-    echo "Error: " . $sql . "<br><br>" . $conn->error;
-}
-
-
-//End connection with database
-$conn->close();
-
-echo "<br><br>";
+echo "<br>";
 
 ?>
 

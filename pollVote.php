@@ -5,16 +5,6 @@
 <!-- IMPORTANT!!! Code is unoptimized so far -->
 
 
-<!-- For debugging purposes. -->>
-	<?php echo $_POST["quest"]; ?><br>
-	<?php echo $_POST["ans1"]; ?><br>
-	<?php echo $_POST["ans2"]; ?><br>
-	<?php echo $_POST["ans3"]; ?><br>
-	<?php echo $_POST["ans4"]; ?><br>
-	<?php echo $_POST["ans5"]; ?><br>
-	<?php echo $_POST["ans6"]; ?><br>
-
-
 <?php
 //Connect to database
 $servername = "24.197.117.117";
@@ -25,94 +15,25 @@ $dbname = "pollApp";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+
 // Check connection
 if ($conn->connect_error)
 {
     die("Connection failed: " . $conn->connect_error);
 }
 // this statement can be removed later
-echo "Connected successfully";
+echo "Connected successfully<br><br>";
 
-
-// Main Buffer Array for sending polls to database
-$buffInArr = array(array());
-
-$buffInSArr = array();
-
+//winning
 $winning = true;
 
-// String built to be inserted into SQL table
-$sqlInsertString;
+$randSQLQuery = "CALL random_public_poll(3);";
+$randIDTransfer = mysqli_query($conn,$randSQLQuery) or die("Query fail: " . mysqli_error());
 
-//Vistigial incrementer for now
-$incr1 = 0;
+$randID = mysqli_fetch_array($randIDTransfer);
 
-$winning = true;
-
-function loadArray()
-{
-	$buff;
-	
-	$buff[0][0] = $_POST['quest'];
-	$buff[0][1] = $_POST['ans1'];
-	$buff[0][2] = $_POST['ans2'];
-	$buff[0][3] = $_POST['ans3'];
-	$buff[0][4] = $_POST['ans4'];
-	$buff[0][5] = $_POST['ans5'];
-	$buff[0][6] = $_POST['ans6'];
-	
-	// $GLOBALS['incr1']++;
-	
-	return $buff;
-}
-
-//"Why do I need this?" Incrementer
-// Disregard this function for now
-function ydintIncr($incr)
-{
-	return $incr+1;
-}
-
-// printArray -- Use this to test out arrays.
-// Could be useful for printing to main vote screen.
-function printArray($tempArray)
-{
-	for ($i = 0; $i < count($tempArray); $i++)
-	{
-		for ($j = 0; $j < count($tempArray[$i]); $j++)
-		{
-			if ($tempArray[$i][$j] == $tempArray[$i]["0"])
-			{
-				echo "<h2>" . "----=" .  $tempArray[$i][$j] . "=----<br>" . "</h2>" ;
-			}
-			else
-			{
-				echo $j . ". " . $tempArray[$i][$j]. "<br>";
-			}
-		}
-		echo "<br>";
-	}
-}
-
-// Takes in user input and concatenates into a string to send to SQL for insertion
-function buildSQLString($tempArray)
-{
-	
-	$builtString = "INSERT INTO Polls VALUES(99, NULL, NULL, NOW(), NOW(),";
-	
-	for ($i = 0; $i < count($tempArray); $i++)
-	{
-		for ($j = 0; $j < count($tempArray[$i]); $j++)
-		{
-				$builtString .= "'" . $tempArray[$i][$j] . "',";
-		}
-	
-	$builtString .= "NULL, NULL, NULL, NULL, NULL, NULL)";
-	
-		
-	}
-	return $builtString;
-}
+echo $randID[0] . " random test <br><br>";
+$conn->close();
 
 function callQuestion($temp, $connection)
 {
@@ -121,12 +42,14 @@ function callQuestion($temp, $connection)
 
 	$question = mysqli_query($connection, $sqlLine) or die("Query fail: " . mysqli_error());
 
+	
 	// print out Question answers.
 	while ($row = mysqli_fetch_array($question))
 	{
 		echo $row[0] . " - " . $row[1] . " - " . $row[2];
 	}
 	echo "<br>";
+	
 	
 }
 
@@ -136,27 +59,39 @@ function callAnswers($temp, $connection)
 	$sqlLine = "CALL getPollAnswers(" . $temp . ");";
 
 	$question = mysqli_query($connection, $sqlLine) or die("Query fail: " . mysqli_error());
-
+	
+	
+	$incr = 0;
+	
+	$arrReturn = array();
 	// print out Question answers.
 	while ($row = mysqli_fetch_array($question))
 	{
-		echo $row[0] . "<br>";
+		$arrReturn[$incr] = $row[0];
+		$incr++;
 	}
+	
+	return $arrReturn;
 	
 }
 
-echo "========================TEST==============================<br><br>";
+echo "========================TEST==============================<br>";
 
 
-callQuestion(1, $conn);
-$conn->close();
-
-
-//Call 
+//Call question and print it out.
 $conn = new mysqli($servername, $username, $password, $dbname);
-callAnswers(1, $conn);
+$quest = callQuestion($randID[0], $conn);
 $conn->close();
 
+//Call Answers and print them out
+$conn = new mysqli($servername, $username, $password, $dbname);
+$answerArray = callAnswers($randID[0], $conn);
+$conn->close();
+
+for($i = 0; $i < count($answerArray); $i++)
+{
+	echo $answerArray[$i]."<br>";
+}
 
 //Open connection for debugging purposes.
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -164,17 +99,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 
 echo "========================TEST==============================<br><br>";
-
-
-//utilization of functions for debugging and insertion purposes
-
-
-$buffInArr = loadArray($incr1);
-
-printArray($buffInArr);
-
-$incr1++;
-
 
 //End connection with database
 $conn->close();
@@ -185,7 +109,7 @@ echo "<br><br>";
 
 <!-- Test out the poll creation again -->
 
-	<form action="createPoll.php" method="post">
+	<form action="pollVote.php" method="post">
 	
 	Try again?
 	<input type="submit">
