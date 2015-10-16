@@ -82,7 +82,7 @@ BEGIN
 END;
 DELIMITER;
 -- Use
-SELECT getPrivateoll(<share_code>); -- returns a single value
+SELECT getPrivatePoll(<share_code>); -- returns a single value
 --TODO Check if user voted on private poll, or owns private poll
 
 -- #3

@@ -3,18 +3,17 @@
 
 -- #1 Some user with attributes: email, password, name, ip, mac, points, created date, and total votes
 CREATE TABLE Users (
-	ID INT NOT NULL AUTO_INCREMENT,
+	User_ID INT NOT NULL AUTO_INCREMENT,
 	email CHAR(64) NOT NULL,
 	password CHAR(32) NOT NULL,
 	display_name CHAR(16) NOT NULL,
-	ip_address INT UNSIGNED,
-	mac_address char(32) DEFAULT 'Unknown',
+	last_ip_address INT UNSIGNED,
+	last_mac_address char(32) DEFAULT 'Unknown',
 	points INT DEFAULT 100,
 	time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	total_votes INT DEFAULT 0,
 	PRIMARY KEY(ID),
-	UNIQUE(email),
-	UNIQUE(mac_address)
+	UNIQUE(email)
 );
 
 -- #2 Some Poll created by a Users with some attributes: share_code (can be null; null approach), creation date, date to close poll, question

@@ -23,7 +23,7 @@ INSERT INTO Polls VALUES (
 	1, -- User_ID who created this poll
 	NULL, -- Is this a private poll? If not leave NULL
 	NOW(), -- Date created, use NOW() to get current time when inserted
-	NOW(), -- Date to close, just leaving it as NOW() for now...
+	DATE_ADD(NOW(), INTERVAL 30 DAY), -- Date to close, will be in 30 days!
 	'This App is pretty cool, but this question is even more cool, "don''t" you agree?' -- Some question
 );
 

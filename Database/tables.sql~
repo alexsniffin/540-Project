@@ -7,8 +7,8 @@ CREATE TABLE Users (
 	email CHAR(64) NOT NULL,
 	password CHAR(32) NOT NULL,
 	display_name CHAR(16) NOT NULL,
-	ip_address INT UNSIGNED,
-	mac_address char(32) DEFAULT 'Unknown',
+	last_ip_address INT UNSIGNED,
+	last_mac_address char(32) DEFAULT 'Unknown',
 	points INT DEFAULT 100,
 	time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	total_votes INT DEFAULT 0,
@@ -44,11 +44,9 @@ CREATE TABLE Answers (
 CREATE TABLE Voted (
 	Vote_ID INT NOT NULL AUTO_INCREMENT,
 	User_ID INT,
-	P_ID INT,
 	ANS_ID INT,
 	PRIMARY KEY(Vote_ID),
 	FOREIGN KEY (User_ID) REFERENCES Users(ID),
-	FOREIGN KEY (P_ID) REFERENCES Polls(P_ID),
 	FOREIGN KEY (ANS_ID) REFERENCES Answers(ANS_ID)
 );
 
