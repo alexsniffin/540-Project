@@ -437,7 +437,7 @@ p{
     font-size: 20pt;
 	line-height: 25pt;
 	font-weight: 200;
-	color: #f2faff;
+	color: #f2faff !important;
 	padding-top: 5px;
 	border: none;
 }
@@ -502,7 +502,7 @@ p{
 .logo{
     position: relative;
     left: 50%;
-    top: 50px;
+    top: 150px;
     width: auto;
     height: 30%;
     min-height: 200px;
@@ -514,7 +514,7 @@ p{
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	top: 120px;
+	top: 220px;
 	text-align: center;
 	width: 80%;
 	font-size: 15pt;
@@ -528,5 +528,5 @@ p{
 	margin-left: auto;
 	margin-right: auto;	
 	position: relative;
-	top: 130px;
+	top: 230px;
 }

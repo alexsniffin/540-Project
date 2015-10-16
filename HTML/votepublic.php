@@ -57,8 +57,6 @@
 	$answerArray = callAnswers($randID[0], $conn);
 	$conn->close();
 	
-	echo "<br><br>";
-	
 //=============================END PHP CODE=================================//
 ?>
 	<head>
@@ -87,7 +85,7 @@
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
-        			<li><a href="votepublic.html">Vote</a></li>
+        			<li><a href="votepublic.php">Vote</a></li>
        			    <li><a href="privatepoll.html">Private Polls</a></li> 
       			</ul>
     		</div>
