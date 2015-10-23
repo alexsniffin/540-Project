@@ -24,8 +24,9 @@ CREATE TABLE Polls (
 	date_created DATE,
 	date_to_close DATE,
 	question VARCHAR(255) NOT NULL,
+	category CHAR(32) DEFAULT 'Other',
 	PRIMARY KEY(P_ID),
-	FOREIGN KEY (User_ID) REFERENCES Users(ID),
+	FOREIGN KEY (User_ID) REFERENCES Users(User_ID),
 	UNIQUE(share_code)
 );
 
@@ -45,7 +46,7 @@ CREATE TABLE Voted (
 	User_ID INT,
 	ANS_ID INT,
 	PRIMARY KEY(Vote_ID),
-	FOREIGN KEY (User_ID) REFERENCES Users(ID),
+	FOREIGN KEY (User_ID) REFERENCES Users(User_ID),
 	FOREIGN KEY (ANS_ID) REFERENCES Answers(ANS_ID)
 );
 

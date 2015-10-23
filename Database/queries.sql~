@@ -23,7 +23,7 @@ BEGIN
 	)
 	ORDER BY RAND() LIMIT 1;
 END //
-DELIMITER;
+DELIMITER ;
 -- Use
 CALL random_public_poll(<id>); -- returns a result set
 
@@ -50,7 +50,7 @@ BEGIN
 
 	RETURN (poll_id);
 END;
-DELIMITER;
+DELIMITER ;
 -- Use
 SELECT getRandomPublicPoll(<id>); -- returns a single value
 
@@ -64,7 +64,7 @@ BEGIN
 	FROM Polls p
 	WHERE p.share_code = share_code;
 END //
-DELIMITER;
+DELIMITER ;
 
 -- OR Try using the same, but as a function. It should only return a single value.
 DELIMITER //
@@ -80,7 +80,7 @@ BEGIN
 
 	RETURN (poll_id);
 END;
-DELIMITER;
+DELIMITER ;
 -- Use
 SELECT getPrivatePoll(<share_code>); -- returns a single value
 --TODO Check if user voted on private poll, or owns private poll
@@ -159,7 +159,7 @@ BEGIN
 		INSERT INTO Answers VALUES (NULL, poll_id, ans12, 0);
 	END IF;
 END //
-DELIMITER;
+DELIMITER ;
 
 -- Use
 CALL create_poll(1, 'Some question using procedure', NULL, 30, 'Some answer using procedure', 'Another answer using procedure', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -177,7 +177,7 @@ BEGIN
 	FROM Polls p, Users u
 	WHERE p.P_ID = poll_id AND u.ID = user;
 END //
-DELIMITER;
+DELIMITER ;
 
 -- #5 getPollAnswers, returns a result set of all answers for the given poll
 DELIMITER //
@@ -188,4 +188,4 @@ BEGIN
 	FROM Answers a
 	WHERE a.P_ID = poll_id;
 END //
-DELIMITER;
+DELIMITER ;
