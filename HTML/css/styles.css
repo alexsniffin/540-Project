@@ -20,6 +20,11 @@ ul{
 	list-style: none;
 }
 
+strong{
+	font-weight: 400;
+	color: #e04747;
+}	
+
 a{
 	color: #e04747;
 	font-weight: 200;
@@ -49,11 +54,6 @@ h2{
 p{
 	font-size: 14pt;
 	font-weight: 200;
-}
-
-strong{
-	font-weight: 400;
-	color: #e04747;
 }
 
 .main-content{
@@ -264,6 +264,7 @@ strong{
 }
 
 /* Polls */
+
 .question{
 	background: #3d3e40;
 	height: 35%;
@@ -389,6 +390,7 @@ strong{
 }
 
 /* Immediate Results Page */
+
 .choices ul.results li{
 	background-color: #323334;
 	max-width: 100%;
@@ -485,7 +487,6 @@ strong{
 /* Create Poll Page */
 .create-container{
 	width: 75%;
-    height: 200px;
     margin: 0 auto;
     top: 20px;
     position: relative;
@@ -508,7 +509,7 @@ strong{
     left: 50%;
     transform: translate(-50%, 0);
     top: 310px;
-    width: 75%;
+    width: 100%;
 }
 
 .create-form input[type="text"]{
@@ -526,6 +527,20 @@ strong{
     font-size: 14pt;
     height: 40px;
     font-weight: 300;
+}
+
+.calendar-input{
+	height: 40px;
+    width: 100px;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    color: #000;
+    font-size: 13pt;
+    font-weight: 200;
+    text-align: center;
+    margin-left: 10px;
 }
 
 /* Login Page */
