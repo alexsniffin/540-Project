@@ -110,11 +110,11 @@
 	</div>
 	
 	<!-- Calendar input -->
-	<script>
-	$(document).ready(function()
+	<script> $(document).ready(function()
 	{
-		$("#datepicker").datepicker({minDate: 1, changeMonth: true, changeYear: true});
+		$("#datepicker").datepicker();
 	});
+	
 	</script>
 
 </body>
