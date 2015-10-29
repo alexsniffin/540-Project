@@ -505,10 +505,9 @@ p{
     font-weight: 200;
     line-height: 35pt;
     margin: 0 auto;
-    position: absolute;
+    position: relative;
     left: 50%;
     transform: translate(-50%, 0);
-    top: 310px;
     width: 100%;
 }
 
@@ -527,6 +526,16 @@ p{
     font-size: 14pt;
     height: 40px;
     font-weight: 300;
+}
+
+.exp-date-container{
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+.checkbox input[type="checkbox"]
+{
+	margin-top: 13px;
 }
 
 .calendar-input{
