@@ -63,10 +63,14 @@
 		<title>Vote</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
-  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 	</head>
 	
 	<body>
@@ -108,12 +112,15 @@
 		<div class="question">
 			<div class="left-arrow"></div>
 			<div class="question-text">
-				<?php
+				<!-- 
+<?php
 				//Call question and print it out.
 				$conn = new mysqli($servername, $username, $password, $dbname);
 				$quest = callQuestion($randID[0], $conn);
 				$conn->close();
 				?>
+ -->
+
 			</div>
 			<div class="right-arrow"></div>
 		</div>
@@ -159,7 +166,7 @@
 					<div class="radio-button" id="choice_5"></div>
 					<div class="choice-text">
 						<?php
-							echo $answerArray[5];
+							echo $answerArray[4];
 						?>
 					</div>
 				</li>
@@ -229,6 +236,36 @@
 			{
 				window.location.href = 'immedresults.html';
 			});
+			
+			//on click of right arrow, make ajax call
+			//then from left swipe, trigger click event for right arrow
+			$('.question').on('swipeleft', function()
+			{
+  				$('.question-text').text("You just swiped!");
+			});
+			
+ 			//make ajax call to get question
+			$.ajax({
+				function()
+				{
+					var question = "This is the first question";
+					$('.question-text').text(question);
+					console.log('this is being fired');
+				}
+			
+			});
+
+
+
+// 			$.ajax({
+// 				url: '/getRandomQuestion.php',	// getRandomQuestion will be an endpoint (php file) which will return json
+// 				success: function(response)
+// 				{
+// 					var question = response.question;
+// 					var answers = response.answers;
+// // 					$('.question-text').text(question);
+// 				}
+// 			});
 		});
 		
 	</script>
