@@ -5,14 +5,17 @@
 -- Get new random public poll for some <USER_ID>
 -- Projects all of the polls that the <USER_ID> doesn't own, and also checks
 -- all of the polls in which the user has voted in. Will check the date to close attribute too.
+-- Input: User_ID(Int), Category type(String)
+-- Output: Poll_ID(Result set)
 DELIMITER //
 CREATE PROCEDURE random_public_poll 
 	(IN user INT,
+	IN category CHAR(32),
 	OUT poll_id INT)
 BEGIN
 	SELECT P_ID INTO poll_id
 	FROM Polls p
-	WHERE p.User_ID <> user AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
+	WHERE p.User_ID <> user AND p.category = category AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
 		SELECT User_ID
 		FROM Voted v
 		WHERE v.User_ID = user AND v.ANS_ID IN (
@@ -28,8 +31,10 @@ DELIMITER ;
 CALL random_public_poll(<id>); -- returns a result set
 
 -- OR Try using the same, but as a function. It should only return a single value.
+-- Input: User_ID(Int), Category type(String)
+-- Output: Poll_ID(Int)
 DELIMITER //
-CREATE FUNCTION getRandomPublicPoll(user INT) 
+CREATE FUNCTION getRandomPublicPoll(user INT, category CHAR(32)) 
 	RETURNS INT
 	DETERMINISTIC
 BEGIN
@@ -37,7 +42,7 @@ BEGIN
 
 	SELECT P_ID INTO poll_id
 	FROM Polls p
-	WHERE p.User_ID <> user AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
+	WHERE p.User_ID <> user AND p.category = category AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
 		SELECT User_ID
 		FROM Voted v
 		WHERE v.User_ID = user AND v.ANS_ID IN (
@@ -56,6 +61,8 @@ SELECT getRandomPublicPoll(<id>); -- returns a single value
 
 -- #2
 -- Get a Private Poll using a <share_code>
+-- Input: Share_code(String)
+-- Output: Poll_ID(Result set)
 DELIMITER //
 CREATE PROCEDURE private_poll
 	(IN share_code CHAR(8))
@@ -67,6 +74,8 @@ END //
 DELIMITER ;
 
 -- OR Try using the same, but as a function. It should only return a single value.
+-- Input: Share_code(String)
+-- Output: Poll_ID(Int)
 DELIMITER //
 CREATE FUNCTION getPrivatePoll(share_code CHAR(8)) 
 	RETURNS INT
@@ -88,11 +97,14 @@ SELECT getPrivatePoll(<share_code>); -- returns a single value
 -- #3
 -- Create a poll and the corresponding answers
 -- It's kind of ugly because I couldn't get a loop to work, but it works!
+-- Input: Question(String), Share code(String), Days to close(Date), Ans1 - Ans12(Strings)
+-- Output: Null
 DELIMITER //
 CREATE PROCEDURE create_poll
 	(IN user INT,
 	IN question VARCHAR(255),
 	IN share_code CHAR(8),
+	-- TODO: Category
 	IN days_to_close INT,
 	IN ans1 VARCHAR(128),
 	IN ans2 VARCHAR(128),
@@ -111,6 +123,7 @@ BEGIN
 		INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question);
 	SET poll_id = LAST_INSERT_ID();
 
+	--Not sure how to do this in a loop with SQL
 	IF ans1 IS NOT NULL THEN
 		INSERT INTO Answers VALUES (NULL, poll_id, ans1, 0);
 	END IF;
@@ -165,6 +178,8 @@ DELIMITER ;
 CALL create_poll(1, 'Some question using procedure', NULL, 30, 'Some answer using procedure', 'Another answer using procedure', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- #4 getPollQuestion, returns a single tuple with the question, name of person who made poll, and date created
+-- Input: Poll_ID(Int), Share Code(String)
+-- Output: Question, Name, Date Created(Result set)
 DELIMITER //
 CREATE PROCEDURE getPollQuestion
 	(IN poll_id INT,
@@ -180,6 +195,8 @@ END //
 DELIMITER ;
 
 -- #5 getPollAnswers, returns a result set of all answers for the given poll
+-- Input: Poll_ID(Int)
+-- Output: Answers(Result set)
 DELIMITER //
 CREATE PROCEDURE getPollAnswers
 	(IN poll_id INT)
@@ -189,3 +206,10 @@ BEGIN
 	WHERE a.P_ID = poll_id;
 END //
 DELIMITER ;
+
+-- TODO Voting: Increment Answers total_votes after user votes on poll and add in voted table 
+-- TODO After voting: Get results for a polls answers
+-- TODO After random vote: Coin increment for random poll
+
+-- TODO Profile: Get profile information
+	-- TODO: Get all owned polls

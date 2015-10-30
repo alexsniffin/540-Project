@@ -104,6 +104,7 @@ CREATE PROCEDURE create_poll
 	(IN user INT,
 	IN question VARCHAR(255),
 	IN share_code CHAR(8),
+	-- TODO: Category
 	IN days_to_close INT,
 	IN ans1 VARCHAR(128),
 	IN ans2 VARCHAR(128),
@@ -200,8 +201,28 @@ DELIMITER //
 CREATE PROCEDURE getPollAnswers
 	(IN poll_id INT)
 BEGIN
-	SELECT ans
+	SELECT ANS_ID, ans
 	FROM Answers a
 	WHERE a.P_ID = poll_id;
 END //
 DELIMITER ;
+
+-- Increment Answers total_votes after user votes on poll and adds the user in voted table
+DELIMITER //
+CREATE PROCEDURE userVote
+	(IN User_ID INT,
+	IN Ans_ID INT)
+BEGIN
+	INSERT INTO Voted VALUES(NULL, User_ID, Ans_ID);
+
+	UPDATE Answers a
+	SET total_votes = total_votes + 1
+	WHERE a.ANS_ID = Ans_ID;
+END //
+DELIMITER ;
+
+-- TODO After voting: Get results for a polls answers
+-- TODO After random vote: Coin increment for random poll
+
+-- TODO Profile: Get profile information
+	-- TODO: Get all owned polls
