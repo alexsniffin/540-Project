@@ -112,15 +112,12 @@
 		<div class="question">
 			<div class="left-arrow"></div>
 			<div class="question-text">
-				<!-- 
-<?php
+			<?php
 				//Call question and print it out.
 				$conn = new mysqli($servername, $username, $password, $dbname);
 				$quest = callQuestion($randID[0], $conn);
 				$conn->close();
-				?>
- -->
-
+			?>
 			</div>
 			<div class="right-arrow"></div>
 		</div>
@@ -237,35 +234,28 @@
 				window.location.href = 'immedresults.html';
 			});
 			
-			//on click of right arrow, make ajax call
-			//then from left swipe, trigger click event for right arrow
+			//on click, load question
+			$('.right-arrow').on('click', function()
+			{
+  				$('.question-text').text("<?php
+				//Call question and print it out.
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				$quest = callQuestion($randID[0] + 1, $conn);
+				$conn->close();
+				?>");
+			});
+			
+			//on left swipe, load question
 			$('.question').on('swipeleft', function()
 			{
-  				$('.question-text').text("You just swiped!");
+  				$('.question-text').text("<?php
+				//Call question and print it out.
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				$quest = callQuestion($randID[0] + 1, $conn);
+				$conn->close();
+				?>");
 			});
 			
- 			//make ajax call to get question
-			$.ajax({
-				function()
-				{
-					var question = "This is the first question";
-					$('.question-text').text(question);
-					console.log('this is being fired');
-				}
-			
-			});
-
-
-
-// 			$.ajax({
-// 				url: '/getRandomQuestion.php',	// getRandomQuestion will be an endpoint (php file) which will return json
-// 				success: function(response)
-// 				{
-// 					var question = response.question;
-// 					var answers = response.answers;
-// // 					$('.question-text').text(question);
-// 				}
-// 			});
 		});
 		
 	</script>
