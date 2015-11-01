@@ -9,7 +9,7 @@ CREATE TABLE Users (
 	display_name CHAR(16) NOT NULL,
 	last_ip_address INT UNSIGNED,
 	last_mac_address char(32) DEFAULT 'Unknown',
-	points INT DEFAULT 100,
+	coins INT DEFAULT 100,
 	time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	total_votes INT DEFAULT 0,
 	PRIMARY KEY(ID),
@@ -24,6 +24,7 @@ CREATE TABLE Polls (
 	date_created DATE,
 	date_to_close DATE,
 	question VARCHAR(255) NOT NULL,
+	category CHAR(32) DEFAULT 'Other',
 	PRIMARY KEY(P_ID),
 	FOREIGN KEY (User_ID) REFERENCES Users(User_ID),
 	UNIQUE(share_code)

@@ -104,7 +104,7 @@ CREATE PROCEDURE create_poll
 	(IN user INT,
 	IN question VARCHAR(255),
 	IN share_code CHAR(8),
-	-- TODO: Category
+	IN category CHAR(32),
 	IN days_to_close INT,
 	IN ans1 VARCHAR(128),
 	IN ans2 VARCHAR(128),
@@ -120,7 +120,7 @@ CREATE PROCEDURE create_poll
 	IN ans12 VARCHAR(128))
 BEGIN
 	DECLARE poll_id INT;
-		INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question);
+		INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question, category);
 	SET poll_id = LAST_INSERT_ID();
 
 	--Not sure how to do this in a loop with SQL
@@ -194,14 +194,14 @@ BEGIN
 END //
 DELIMITER ;
 
--- #5 getPollAnswers, returns a result set of all answers for the given poll
+-- #5 getPollAnswers, returns a result set of all answers for the given poll, their ANS_ID and the total votes which will be used for displaying results
 -- Input: Poll_ID(Int)
--- Output: Answers(Result set)
+-- Output: (Result set) ANS_ID, Answers, Total Votes
 DELIMITER //
 CREATE PROCEDURE getPollAnswers
 	(IN poll_id INT)
 BEGIN
-	SELECT ANS_ID, ans
+	SELECT ANS_ID, ans, total_votes
 	FROM Answers a
 	WHERE a.P_ID = poll_id;
 END //
@@ -221,8 +221,21 @@ BEGIN
 END //
 DELIMITER ;
 
--- TODO After voting: Get results for a polls answers
--- TODO After random vote: Coin increment for random poll
+-- Coin increment for random poll, updates the voters coins by 10 and the poll creater by 1
+DELIMITER //
+CREATE PROCEDURE addCoins
+	(IN User_ID INT,
+	IN P_ID INT)
+BEGIN
+	UPDATE Users u
+	SET u.coins = u.coins + 10
+	WHERE u.User_ID = User_ID;
+
+	UPDATE Users u, Polls p
+	SET u.coins = u.coins + 1
+	WHERE p.P_ID = P_ID AND p.User_ID = u.User_ID;
+END //
+DELIMITER ;
 
 -- TODO Profile: Get profile information
 	-- TODO: Get all owned polls

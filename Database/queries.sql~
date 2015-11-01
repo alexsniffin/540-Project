@@ -194,22 +194,48 @@ BEGIN
 END //
 DELIMITER ;
 
--- #5 getPollAnswers, returns a result set of all answers for the given poll
+-- #5 getPollAnswers, returns a result set of all answers for the given poll, their ANS_ID and the total votes which will be used for displaying results
 -- Input: Poll_ID(Int)
--- Output: Answers(Result set)
+-- Output: (Result set) ANS_ID, Answers, Total Votes
 DELIMITER //
 CREATE PROCEDURE getPollAnswers
 	(IN poll_id INT)
 BEGIN
-	SELECT ans
+	SELECT ANS_ID, ans, total_votes
 	FROM Answers a
 	WHERE a.P_ID = poll_id;
 END //
 DELIMITER ;
 
--- TODO Voting: Increment Answers total_votes after user votes on poll and add in voted table 
--- TODO After voting: Get results for a polls answers
--- TODO After random vote: Coin increment for random poll
+-- Increment Answers total_votes after user votes on poll and adds the user in voted table
+DELIMITER //
+CREATE PROCEDURE userVote
+	(IN User_ID INT,
+	IN Ans_ID INT)
+BEGIN
+	INSERT INTO Voted VALUES(NULL, User_ID, Ans_ID);
+
+	UPDATE Answers a
+	SET total_votes = total_votes + 1
+	WHERE a.ANS_ID = Ans_ID;
+END //
+DELIMITER ;
+
+-- Coin increment for random poll, updates the voters coins by 10 and the poll creater by 1
+DELIMITER //
+CREATE PROCEDURE addCoins
+	(IN User_ID INT,
+	IN P_ID INT)
+BEGIN
+	UPDATE Users u
+	SET u.coins = u.coins + 10
+	WHERE u.User_ID = User_ID;
+
+	UPDATE Users u, Polls p
+	SET u.coins = u.coins + 1
+	WHERE p.P_ID = P_ID AND p.User_ID = u.User_ID;
+END //
+DELIMITER ;
 
 -- TODO Profile: Get profile information
 	-- TODO: Get all owned polls

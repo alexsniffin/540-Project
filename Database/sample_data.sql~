@@ -24,7 +24,7 @@ INSERT INTO Polls VALUES (
 	NULL, -- Is this a private poll? If not leave NULL
 	NOW(), -- Date created, use NOW() to get current time when inserted
 	DATE_ADD(NOW(), INTERVAL 30 DAY), -- Date to close, will be in 30 days!
-	'This App is pretty cool, but this question is even more cool, "don''t" you agree?' -- Some question
+	'This App is pretty cool, but this question is even more cool, don''t you agree?' -- Some question
 );
 
 -- Now we have to make the Answers inserts for our poll(s)
@@ -42,6 +42,5 @@ INSERT INTO Answers VALUES (NULL, 1, 'Simply horrible.', 100); -- ANS_ID = 4
 INSERT INTO Voted VALUES (
 	NULL, -- Vote_ID = 1
 	2, -- User who has voted
-	1, -- Poll they voted in
 	1 -- Answer they voted on
 );
