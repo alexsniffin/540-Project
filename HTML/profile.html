@@ -3,17 +3,18 @@
 <html lang = "en">
 
 	<head>
-		<title>Polling App</title>
+		<title>pollshark567 | Polling App</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
   		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+  		
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	
-	<body>
-	
+<body>
+
 	<!-- Navbar -->
 	<nav class="navbar navbar-inverse">
   		<div class="container-fluid">
@@ -38,7 +39,7 @@
 	<!-- User Bar -->
 	<div class="userbar">
 		<ul>
-			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png">pollshark567</a></li>
+			<li><a href="#"><img src ="imgs/user_icon_2x.png">pollshark567</a></li>
 			<li><img src ="imgs/coin_icon_2x.png">12</li>
 		<ul>
 	</div>
@@ -46,27 +47,46 @@
 	<!-- Start main content -->
 	<div class="main-content">
 	
-		<!-- Top of page text -->
-		<div class="top">
-		<h2>Ready to share your<br/>opinions with the world?</h2>
+		<!-- Username and info -->
+		<div class="user-header">
+		<h2>pollshark567</h2>
+		<ul>
+			<li><strong>12</strong> Votes</li>
+			<li><strong>4</strong> Polls Created</li>
+		</ul>
 		</div>
-	
-		<!-- Vote Now Button -->
-		<div class="round-button-container">
-			<div class="round-button">
-			<a href="votepublic.php">Vote</br>Now</a>
-			</div>
-		</div>	
-		
-		<!-- Bottom of page text -->
-		<div class="bottom">
-		<p>or choose from<br/></p> <a href="categories.html">Categories</a>
-		<p>you can even<br/></p> <a href="createPoll.php">Create your own poll</a>
-		</div>
-		
-	</div>
-			
-	</body>
 
-	
+		<!-- Red divider -->
+		<div class="red-divider">
+		</div>
+		
+		<!-- Poll Info -->
+		<div class="container">
+  		<ul class="nav nav-pills">
+			<li class="active"><a data-toggle="pill" href="#menu1">Polls</a></li>
+			<li><a data-toggle="pill" href="#menu2">Votes</a></li>
+			<li><a data-toggle="pill" href="#menu3">Private Polls</a></li>
+  		</ul>
+  
+		<div class="tab-content">
+			<div id="menu1" class="tab-pane fade in active">
+			  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+			<div id="menu2" class="tab-pane fade">
+			  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+			</div>
+			<div id="menu3" class="tab-pane fade">
+			  <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			</div>
+		  </div>
+		</div>
+			
+			
+		</div>	
+
+	</div>
+
+</body>
+
+
 </html>

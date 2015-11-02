@@ -595,3 +595,37 @@ p{
 	position: relative;
 	top: 175px;
 }
+
+/* Profile Page */
+.user-header{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	top: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.user-header h2{
+	font-size: 25pt;
+	font-weight: 300;
+	padding-bottom: 8px;
+}
+
+.user-header ul{
+	padding-left: 0;
+    font-size: 13pt;
+    font-weight: 200;
+}
+
+.user-header ul strong{
+	font-size: 17pt;
+    font-weight: 300;
+    margin: 5px;
+    color: inherit;
+}
+
+.user-header ul li{
+	display: inline;
+    margin: 10px;
+}
