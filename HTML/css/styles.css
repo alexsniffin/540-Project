@@ -23,7 +23,7 @@ ul{
 strong{
 	font-weight: 400;
 	color: #e04747;
-}	
+}
 
 a{
 	color: #e04747;
@@ -77,7 +77,7 @@ p{
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #f2faff;
     border: 2px;
-} 
+}
 
 .nav > li {
     margin-left: 10px;
@@ -96,11 +96,11 @@ p{
 
 .navbar-inverse .navbar-brand > img {
 	display: inline-block;
-	width: 25px; 
+	width: 25px;
 	height: 25px;
 	margin-top: -2px;
 	margin-right: 5px;
-} 
+}
 
 .navbar-inverse .navbar-text {
 	color: #f2faff;
@@ -118,7 +118,7 @@ p{
 
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
     background-color: transparent;
-} 
+}
 
 .navbar-inverse .navbar-toggle {
 	border-color: #f2faff;
@@ -307,7 +307,7 @@ p{
 .left-arrow.inactive{
 	opacity: .2;
 	cursor: default;
-} 
+}
 
 .right-arrow{
 	display: inline-block;
@@ -364,7 +364,7 @@ p{
     margin: 5px;
     display: inline;
     padding: 10px;
-    
+
 }
 
 .choices ul li.selected{
@@ -412,7 +412,7 @@ p{
     font-size: 30px;
     margin-right: 5%;
     padding-top: 12px;
-} 
+}
 
 .result-bar{
 	display: block;
@@ -546,8 +546,34 @@ p{
 /* Login Page */
 
 /* style for google sign in button */
+
+.create-signIn input[type="text"]{
+	height: 40px;
+	width: 20%;
+    vertical-align: middle;
+    border: solid;
+	font-size: 14pt;
+    color: #000;
+}
+
+.create-signIn input[type="password"]{
+	height: 40px;
+	width: 20%;
+    vertical-align: middle;
+    border: solid;
+	font-size: 14pt;
+    color: #000;
+}
+
 .signIn{
-		
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	top: 160px;
+	text-align: center;
+	width: 80%;
+	font-size: 15pt;
+	font-weight: 200;
 }
 
 .logo{
@@ -570,14 +596,4 @@ p{
 	width: 80%;
 	font-size: 15pt;
 	font-weight: 200;
-}
-
-.gButton {
-	height: 50px;
-	width: 250px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;	
-	position: relative;
-	top: 175px;
 }

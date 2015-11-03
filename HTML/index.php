@@ -11,23 +11,31 @@
   		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	</head>
-	
+
 	<body>
-	
+
 		<!-- Logo -->
 		<img class="logo" src="imgs/logo_2x.png"></img>
-	
+
 		<!-- Top of page text -->
 		<div class="login-text">
-		Sign in using your google account
+		Sign in using your username and password or create a new account
 		</div>
-			
-		<!-- Google Sign in Button place image place holder for working model -->
+
+					<!-- Sign in  -->
         <div class="signIn">
-        	<a href="home.html"><img class="gButton" src="imgs/sign-in-button.png"/></a>
+					<form action="login.php" class="create-signIn">
+						<label for="userName"><strong>Username: </strong></label><input type="text" name="user" id="userName" >
+						<br>
+						<label for="passWord"><strong>Password: </strong></label><input type="password" name="pwrd" id="passWord">
+						<br>
+						<input class="submit-button" type="submit" value="Submit">
+					</form>
+
+					<p>Don't have an account? <a href="createAccount.html">Create One</a></p>
         </div>
-			
+
 	</body>
 
-	
+
 </html>
