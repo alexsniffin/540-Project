@@ -58,8 +58,13 @@ p{
 
 .main-content{
 	height: calc(100% - 100px);
+	/* height: 800px; */
 	overflow: auto;
 	position: relative;
+}
+
+.ui-page.ui-page-theme-a.ui-page-active{
+	height: 100%;
 }
 
 /* Navigation Bar (Overrides Bootstrap File) */
@@ -505,10 +510,9 @@ p{
     font-weight: 200;
     line-height: 35pt;
     margin: 0 auto;
-    position: absolute;
+    position: relative;
     left: 50%;
     transform: translate(-50%, 0);
-    top: 310px;
     width: 100%;
 }
 
@@ -527,6 +531,16 @@ p{
     font-size: 14pt;
     height: 40px;
     font-weight: 300;
+}
+
+.exp-date-container{
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+.checkbox input[type="checkbox"]
+{
+	margin-top: 13px;
 }
 
 .calendar-input{
@@ -597,3 +611,50 @@ p{
 	font-size: 15pt;
 	font-weight: 200;
 }
+<<<<<<< HEAD
+=======
+
+.gButton {
+	height: 50px;
+	width: 250px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;	
+	position: relative;
+	top: 175px;
+}
+
+/* Profile Page */
+.user-header{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	top: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.user-header h2{
+	font-size: 25pt;
+	font-weight: 300;
+	padding-bottom: 8px;
+}
+
+.user-header ul{
+	padding-left: 0;
+    font-size: 13pt;
+    font-weight: 200;
+}
+
+.user-header ul strong{
+	font-size: 17pt;
+    font-weight: 300;
+    margin: 5px;
+    color: inherit;
+}
+
+.user-header ul li{
+	display: inline;
+    margin: 10px;
+}
+>>>>>>> origin/master
