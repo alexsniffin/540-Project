@@ -63,10 +63,14 @@
 		<title>Vote</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
-  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 	</head>
 	
 	<body>
@@ -227,6 +231,29 @@
 			{
 				window.location.href = 'immedresults.html';
 			});
+			
+			//on click, load question
+			$('.right-arrow').on('click', function()
+			{
+  				$('.question-text').text("<?php
+				//Call question and print it out.
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				$quest = callQuestion($randID[0] + 1, $conn);
+				$conn->close();
+				?>");
+			});
+			
+			//on left swipe, load question
+			$('.question').on('swipeleft', function()
+			{
+  				$('.question-text').text("<?php
+				//Call question and print it out.
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				$quest = callQuestion($randID[0] + 1, $conn);
+				$conn->close();
+				?>");
+			});
+
 		});
 		
 	</script>
