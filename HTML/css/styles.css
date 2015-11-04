@@ -611,8 +611,6 @@ p{
 	font-size: 15pt;
 	font-weight: 200;
 }
-<<<<<<< HEAD
-=======
 
 .gButton {
 	height: 50px;
@@ -684,4 +682,21 @@ p{
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     color: #f2faff;
     background-color: #e06363;
+}
+
+.table.table.table-hover{
+	font-size: 13pt;
+    color: #f2faff;
+}
+
+.table.table.table-hover tbody{
+	font-weight: 200;
+}
+
+.table.table.table-hover th{
+	font-weight: 400;
+}
+
+.table.table.table-hover tr:hover{
+	background: #3d3e40;
 }
