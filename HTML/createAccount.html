@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+
+	<head>
+		<title>Polling App</title>
+		<meta charset = "utf-8">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+
+		<!-- Logo -->
+		<img class="logo" src="imgs/logo_2x.png"></img>
+
+		<!-- Top of page text -->
+		<div class="login-text">
+		Fill out all the information below:
+		</div>
+
+					<!-- Sign in  -->
+        <div class="signIn">
+					<form action="createAccount.php" class="create-signIn">
+						<label for="userName"><strong>Username: </strong></label><input type="text" name="user" id="userName" >
+						<br>
+						<label for="passWord"><strong>Password: </strong></label><input type="password" name="pwrd1" id="passWord">
+						<br>
+						<label for="passWord"><strong>Confirm Password: </strong></label><input type="password" name="pwrd2" id="passWord">
+						<br>
+						<label for="email"><strong>E-mail:</strong></label><input type="email" name="emadd" id="email">
+						<br>
+						<label for="gender"<Strong>Gender:</strong></label><input type="radio" name"gender" value="female" class="radio-button">Female<input type="radio" name="gender" value="male" class="radio-button">Male
+						<input class="submit-button" type="submit" value="Submit">
+					</form>
+        </div>
+
+	</body>
+
+
+</html>

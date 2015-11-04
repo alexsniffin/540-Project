@@ -1,64 +1,7 @@
 <!DOCTYPE html>
 
 <html lang = "en">
-<?php
-//====================================BEGIN PHP CODE============================================//
-	//Connect to database
-	$servername = "24.197.117.117";
-	$username = "darth";
-	$password = "ineedhelp";
-	$dbname = "pollApp";
 
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-
-	//winning
-	$winning = true;
-
-	//This sequence of instructions fetches a random poll id from
-	//other users every time the page is loaded
-	$randSQLQuery = "CALL random_public_poll(3);";
-	$randIDTransfer = mysqli_query($conn,$randSQLQuery) or die("Query fail: " . mysqli_error());
-	$randID = mysqli_fetch_array($randIDTransfer);
-	$conn->close();
-
-	//Print Poll question
-	function callQuestion($temp, $connection)
-	{
-		$sqlLine = "CALL getPollQuestion(" . $temp . ", NULL);";
-		$question = mysqli_query($connection, $sqlLine) or die("Query fail: " . mysqli_error());
-
-		// print out Question answers.
-		while ($row = mysqli_fetch_array($question))
-		{
-			echo $row[0] . " - " . $row[1] . " - " . $row[2];
-		}
-	}
-	
-	// Return poll answers from database into array
-	function callAnswers($temp, $connection)
-	{
-		$sqlLine = "CALL getPollAnswers(" . $temp . ");";
-		$question = mysqli_query($connection, $sqlLine) or die("Query fail: " . mysqli_error());
-		$incr = 0;
-		$arrReturn = array();
-	
-		// print out Question answers.
-		while ($row = mysqli_fetch_array($question))
-		{
-			$arrReturn[$incr] = $row[0];
-			$incr++;
-		}
-		return $arrReturn;
-	}
-
-	//Call Answers and store them into answerArray to print on radio buttons
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	$answerArray = callAnswers($randID[0], $conn);
-	$conn->close();
-	
-//=============================END PHP CODE=================================//
-?>
 	<head>
 		<title>Vote</title>
 		<meta charset = "utf-8">
@@ -104,72 +47,38 @@
 	<div class="main-content">
 	
 		<!-- Question -->
+		<!-- Will need to be populated from database -->
 		<div class="question">
 			<div class="left-arrow"></div>
 			<div class="question-text">
-				<?php
-				//Call question and print it out.
-				$conn = new mysqli($servername, $username, $password, $dbname);
-				$quest = callQuestion($randID[0], $conn);
-				$conn->close();
-				?>
+				What is your favorite answer?
 			</div>
 			<div class="right-arrow"></div>
 		</div>
 	
 	
 		<!-- Choices -->
+		<!-- Will need to be populated from database -->
 		<div class="choices">
 			<ul>
 				<li>
 					<div class="radio-button" id="choice_1"></div>
 					<div class="choice-text">
-						<?php
-							echo $answerArray[0];
-						?>
+						The first answer
 					</div>
 				</li>
 				<li>
 					<div class="radio-button" id="choice_2"></div>
 					<div class="choice-text">
-						<?php
-							echo $answerArray[1];
-						?>
+						The second answer
 					</div>
 				</li>
 				<li>
 					<div class="radio-button" id="choice_3"></div>
 					<div class="choice-text">
-						<?php
-							echo $answerArray[2];
-						?>
+						A longer answer that takes up multiple lines blah blah blah blah
 					</div>
 				</li>
-				<li>
-					<div class="radio-button" id="choice_4"></div>
-					<div class="choice-text">
-						<?php
-							echo $answerArray[3];
-						?>
-					</div>
-				</li>
-				<li>
-					<div class="radio-button" id="choice_5"></div>
-					<div class="choice-text">
-						<?php
-							echo $answerArray[5];
-						?>
-					</div>
-				</li>
-				<li>
-					<div class="radio-button" id="choice_6"></div>
-					<div class="choice-text">
-						<?php
-							echo $answerArray[5];
-						?>
-					</div>
-				</li>
-				
 			</ul>	
 		</div>
 		

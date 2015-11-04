@@ -79,6 +79,18 @@
 					<option>Politics</option>
   				</select>
 			</div>
+			
+			<!-- Date selection -->
+			<div class="form-group">
+				<label for="exp_date"><strong>Expiration Date:</strong> </label>
+				<!-- Need to somehow get result of this and give to database -->
+				<input id="datepicker" class="calendar-input"/>
+			</div>
+			
+			<!-- Private Poll Checkbox -->
+			<div class="checkbox">
+  				<label><input type="checkbox" value="">This is a private poll</label>
+			</div>
 		
 			<!-- Create poll form -->
 			<form action="createPollBackend.php" method="post" class="create-form">
@@ -89,33 +101,20 @@
 				Choice Four:  <input type="text" name="ans4"><br>
 				Choice Five:  <input type="text" name="ans5"><br>
 				Choice Six:  <input type="text" name="ans6"><br>
-				
-				<!-- Date selection -->
-				<div class="exp-date-container">
-					<label for="exp_date"><strong>Expiration Date</strong> (Optional) </label>
-					<!-- Need to get result of this and give to database, may need to be done in script section? -->
-					<input id="datepicker" class="calendar-input"/>
-				</div>
 			
-				<!-- Private Poll Checkbox -->
-				<div class="checkbox">
-					<label><input type="checkbox" value="">This is a private poll</label>
-				</div>
-			
-				<input type="submit" class="submit-button" value="Submit">
+				<input type="submit" class="submit-button">
 			</form>
-			
 			
 		</div>	
 
 	</div>
 	
 	<!-- Calendar input -->
-	<script>
-	$(document).ready(function()
+	<script> $(document).ready(function()
 	{
-		$("#datepicker").datepicker({minDate: 1, changeMonth: true, changeYear: true});
+		$("#datepicker").datepicker();
 	});
+	
 	</script>
 
 </body>

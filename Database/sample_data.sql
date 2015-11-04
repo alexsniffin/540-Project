@@ -24,8 +24,7 @@ INSERT INTO Polls VALUES (
 	NULL, -- Is this a private poll? If not leave NULL
 	NOW(), -- Date created, use NOW() to get current time when inserted
 	DATE_ADD(NOW(), INTERVAL 30 DAY), -- Date to close, will be in 30 days!
-	'This App is pretty cool, but this question is even more cool, don''t you agree?', -- Some question
-	NULL -- Category, default is Other
+	'This App is pretty cool, but this question is even more cool, don''t you agree?' -- Some question
 );
 
 -- Now we have to make the Answers inserts for our poll(s)
