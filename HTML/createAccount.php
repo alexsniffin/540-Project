@@ -14,24 +14,24 @@ if($conn->connect_error)
   die("Connection failed: " . $conn->conect_error);
 }
 
-$sqlInsert
+//take in user info from form
+$usrName = $_POST["user"];
+$pass1 = $_POST["pwrd1"];
+$pass2 = $_POST["pwrd2"];
+$eAdd = $_POST["emadd"];
+$gender = $_POST["gender"];
 
-$userID = 1;
+// Compare passwords and make sure they are the servername
 
-$incr1 = 0;
-
-//loads in user input in order to create SQL call function string
-function loadArray()
+if($pass1 != $pass2)
 {
-$buff;
-
-$buff[0][0] = $_POST['user'];
-$buff[0][1] = $_POST['pwrd1'];
-$buff[0][2] = $_POST['emadd'];
-$buff[0][3] = $_POST['gender'];
-
-// $GLOBALS['incr1']++;
-
-return $buff;
+  die("Passwords do not match!");
 }
+
+//check for username uniqueness
+
+//check for email uniqueness
+
+//create account
+
 ?>
