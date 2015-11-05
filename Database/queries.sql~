@@ -104,7 +104,7 @@ CREATE PROCEDURE create_poll
 	(IN user INT,
 	IN question VARCHAR(255),
 	IN share_code CHAR(8),
-	-- TODO: Category
+	IN category CHAR(32),
 	IN days_to_close INT,
 	IN ans1 VARCHAR(128),
 	IN ans2 VARCHAR(128),
@@ -120,7 +120,7 @@ CREATE PROCEDURE create_poll
 	IN ans12 VARCHAR(128))
 BEGIN
 	DECLARE poll_id INT;
-		INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question);
+		INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question, category);
 	SET poll_id = LAST_INSERT_ID();
 
 	--Not sure how to do this in a loop with SQL
@@ -239,3 +239,36 @@ DELIMITER ;
 
 -- TODO Profile: Get profile information
 	-- TODO: Get all owned polls
+
+-- TODO Create user
+DELIMITER //
+CREATE PROCEDURE createUser
+	(IN email CHAR(64),
+	IN password CHAR(32),
+	IN displayName CHAR(16),
+	IN IP INT UNSIGNED,
+	IN mac CHAR(32),
+	IN timeCreated TIMESTAMP)
+BEGIN
+	DECLARE EXIT HANDLER FOR 1062 SELECT 'Email is already in use';
+	INSERT INTO Users VALUES(NULL, email, password, displayName, ip, mac, 100, timeCreated, 0);
+END //
+DELIMITER ;
+-- TODO Login
+
+DELIMITER //
+CREATE FUNCTION createUser(IN email CHAR(64), IN password CHAR(32))
+	RETURNS INT
+	DETERMINISTIC
+BEGIN
+	DECLARE id INT;
+
+	IF (SELECT COUNT(email), User_ID INTO id
+		FROM Users u
+		WHERE u.email = email AND u.password = password; NOT NULL)
+		RETURN id;
+	ELSE
+		RETURN -1;
+	END IF;
+END //
+DELIMITER ;

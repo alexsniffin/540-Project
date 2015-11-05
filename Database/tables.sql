@@ -8,11 +8,11 @@ CREATE TABLE Users (
 	password CHAR(32) NOT NULL,
 	display_name CHAR(16) NOT NULL,
 	last_ip_address INT UNSIGNED,
-	last_mac_address char(32) DEFAULT 'Unknown',
-	points INT DEFAULT 100,
+	last_mac_address CHAR(32) DEFAULT 'Unknown',
+	coins INT DEFAULT 100,
 	time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	total_votes INT DEFAULT 0,
-	PRIMARY KEY(ID),
+	PRIMARY KEY(User_ID),
 	UNIQUE(email)
 );
 

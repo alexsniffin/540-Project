@@ -207,7 +207,9 @@ BEGIN
 END //
 DELIMITER ;
 
--- Increment Answers total_votes after user votes on poll and adds the user in voted table
+-- #6 Increment Answers total_votes after user votes on poll and adds the user in voted table
+-- Input: User_ID(Int), Ans_ID(Int)
+-- Output: Void
 DELIMITER //
 CREATE PROCEDURE userVote
 	(IN User_ID INT,
@@ -222,6 +224,8 @@ END //
 DELIMITER ;
 
 -- Coin increment for random poll, updates the voters coins by 10 and the poll creater by 1
+-- Input: User_ID(Int), P_ID(Int)
+-- Output: Void
 DELIMITER //
 CREATE PROCEDURE addCoins
 	(IN User_ID INT,
@@ -234,6 +238,45 @@ BEGIN
 	UPDATE Users u, Polls p
 	SET u.coins = u.coins + 1
 	WHERE p.P_ID = P_ID AND p.User_ID = u.User_ID;
+END //
+DELIMITER ;
+
+-- Creates a new user
+-- Input: email, password, displayName, IP address, Mac Address, Date
+-- Output: Void, can return an error if email already in use
+DELIMITER //
+CREATE PROCEDURE createUser
+	(IN email CHAR(64),
+	IN password CHAR(32),
+	IN displayName CHAR(16),
+	IN IP INT UNSIGNED,
+	IN mac CHAR(32),
+	IN timeCreated TIMESTAMP)
+BEGIN
+	DECLARE EXIT HANDLER FOR 1062 SELECT 'Email is already in use';
+	INSERT INTO Users VALUES(NULL, email, password, displayName, ip, mac, 100, timeCreated, 0);
+END //
+DELIMITER ;
+
+-- Logins in to an email and password
+-- Input: email, password
+-- Output: User_ID, if wrong email or pass, it'll be -1
+DELIMITER //
+CREATE FUNCTION login(email CHAR(64), password CHAR(32))
+	RETURNS INT
+	DETERMINISTIC
+BEGIN
+	DECLARE id INT;
+
+	SELECT User_ID INTO id
+	FROM Users u
+	WHERE u.email = email AND u.password = password;
+
+	IF id IS NULL THEN
+		SET id = -1;
+	END IF;
+
+	RETURN ID;
 END //
 DELIMITER ;
 

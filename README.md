@@ -1,37 +1,45 @@
------------ APP INFO
-Polling Application
+## APP INFO
+Software Engineering CSCI 540 Polling App Project
 
------------ WEB INFO
-TO-DO
+Members:
 
------------ DATABASE INFO
-To access the MySQL database on Michael's computer, use: 
-mysql -u darth -p -h 24.197.117.117
+*Lee, Alexander, Michael, Julian*
 
-The password is: ineedhelp
+## WEB INFO
+TO-DO ...
+
+## DATABASE INFO
+To access the MySQL database on Michael's computer, use:
+
+**mysql -u darth -p -h 24.197.117.117**
+
+The password is: *[Send an email or text to get the pass]*
 
 Use the following command to access our database used for this project, or make a seperate one for personal debugging/use.
 
-use pollApp;
+**use pollApp;**
 
 Then you can use this command to show the current tables.
 
-show tables;
+**show tables;**
 
-If you want to see the tuples in a table use:
+Current *procedures/functions* that can be used:
 
-SELECT * FROM <table_name>;
+Procedures -
+- **random_public_poll**(User_ID: INT, category: CHAR(32)) *returns Poll_ID: INT (ResultSet)*
+- **private_poll**(share_code: CHAR(8)) *returns Poll_ID: INT (ResultSet)*
+- **create_poll**(User_ID: INT, Question: VARCHAR(255), share_code: CHAR(8), days_to_close: INT, ans1 ... ans12: VARCHAR(128)) *returns void*
+- **getPollQuestion**(Poll_ID: INT, share_code: CHAR(8)) *returns Question: VARCHAR(255), DisplayName: CHAR(16), DateCreated: DATE (ResultSet)*
+- **getPollAnswers**(Poll_ID: INT) *returns ANS_ID: INT, Answer: VARCHAR(128), TotalVotes: INT (ResultSet)*
+- **userVote**(User_ID: INT, ANS_ID: INT) *returns void*
+- **addCoins**(User_ID: INT, Poll_ID: INT) *returns void*
+- **createUser**(email: CHAR(64), pass CHAR(32), displayName CHAR(16), IP INT UNSIGNED, MAC CHAR(32), timeCreated: TIMESTAMP) *returns void* (will throw an error 'Email is already in use' if email is already in the db)
 
-What this does is project all of the tuples (rows) of a table with all of the attributes. If you want to specify only a select attribute you could use something like this:
+Functions - 
+- **login**(email: CHAR(64), pass CHAR(32)) *returns User_ID (Single value)* (if -1, then wrong email or pass)
+- **getRandomPublicPoll**(User_ID: INT, category: CHAR(32)) *returns Poll_ID: INT (Single value)*
+- **getPrivatePoll**(share_code: CHAR(8)) *returns Poll_ID: INT (Single value)*
 
-SELECT name FROM <table_name>;
+Triggers:
+- **VoteCheck** - Checks if you've voted in a poll already
 
-or specify conditions
-
-SELECT name FROM <table_name> WHERE name = 'User1';
-
-These are just a couple examples of very basic SQL querys, if you want to learn more just go to W3Schools or ask me and I can help.
-
-To insert data use: (View Database/sample_data.sql for more)
-
-INSERT INTO <table_name> VALUES (<some_value>, ..., <some_value>);
