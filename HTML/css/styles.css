@@ -446,7 +446,7 @@ p{
     background: #e04747;
     width: 190px;
     height: 45px;
-    position: absolute;
+    position: relative;
     left: 50%;
     transform: translate(-50%);
     margin-top: 50px;
@@ -490,6 +490,7 @@ p{
 }
 
 /* Create Poll Page */
+
 .create-container{
 	width: 75%;
     margin: 0 auto;
@@ -522,7 +523,48 @@ p{
     vertical-align: middle;
     border: none;
 	font-size: 14pt;
+	line-height: 0pt;
     color: #000;
+    margin-bottom: 10px;
+    padding-left: 8px;
+}
+
+.top-choice{
+	height: 50px;
+	margin-left: 40px;
+}
+
+.create-form input[type="text"].choice{
+    float: right;
+}
+
+.plus-button{
+	position: absolute;
+	left: -40px;
+	display: inline-block;
+    vertical-align: middle;
+    background-image: url('../imgs/plusButton_2x.png');
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+
+.minus-button{
+	position: relative;
+	top: 50px;
+	left: -40px;
+    vertical-align: middle;
+    background-image: url('../imgs/minusButton_2x.png');
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-left: 40px;
 }
 
 .form-control{
@@ -558,8 +600,6 @@ p{
 }
 
 /* Login Page */
-
-/* style for google sign in button */
 
 .create-signIn input[type="text"]{
 	height: 40px;
@@ -612,6 +652,10 @@ p{
 	font-weight: 200;
 }
 
+.submit-button.login{
+	position: absolute;
+}
+
 .gButton {
 	height: 50px;
 	width: 250px;
@@ -623,6 +667,7 @@ p{
 }
 
 /* Profile Page */
+
 .user-header{
 	position: relative;
 	margin-left: auto;

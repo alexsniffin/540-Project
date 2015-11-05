@@ -29,7 +29,7 @@
 						<br>
 						<label for="passWord"><strong>Password: </strong></label><input type="password" name="pwrd" id="passWord">
 						<br>
-						<input class="submit-button" type="submit" value="Submit">
+						<input class="submit-button login" type="submit" value="Submit">
 					</form>
 
 					<p>Don't have an account? <a href="createAccount.html">Create One</a></p>

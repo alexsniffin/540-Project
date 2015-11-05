@@ -94,13 +94,23 @@
 		
 			<!-- Create poll form -->
 			<form action="createPollBackend.php" method="post" class="create-form">
-				<strong>Enter a question:</strong> <input type="text" name="quest"><br>
-				Choice One:  <input type="text" name="ans1"><br>
-				Choice Two:  <input type="text" name="ans2"><br>
-				Choice Three:  <input type="text" name="ans3"><br>
-				Choice Four:  <input type="text" name="ans4"><br>
-				Choice Five:  <input type="text" name="ans5"><br>
-				Choice Six:  <input type="text" name="ans6"><br>
+				<strong>Enter a question:</strong> <input type="text" name="quest" maxlength="255"><br>
+				<strong>Choices:</strong><br>
+				
+				<div class="top-choice">
+				<input type="text" class="choice" name="ans1" maxlength="255">
+				</div>
+				
+				<div class="plus-button"></div>
+				<input type="text" class="choice" name="ans2" maxlength="255">
+				<div class="minus-button"></div>
+				<input type="text" class="choice" name="ans3" maxlength="255">
+				<div class="minus-button"></div>
+				<input type="text" class="choice" name="ans4" maxlength="255">
+				<div class="minus-button"></div>
+				<input type="text" class="choice" name="ans5" maxlength="255">
+				<div class="minus-button"></div>
+				<input type="text" class="choice" name="ans6" maxlength="255">
 			
 				<input type="submit" class="submit-button">
 			</form>
