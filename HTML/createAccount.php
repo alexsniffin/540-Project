@@ -19,7 +19,6 @@ $usrName = $_POST["user"];
 $pass1 = $_POST["pwrd1"];
 $pass2 = $_POST["pwrd2"];
 $eAdd = $_POST["emadd"];
-$gender = $_POST["gender"];
 
 // Compare passwords and make sure they are the servername
 
@@ -29,15 +28,37 @@ if($pass1 != $pass2)
 }
 
 // sql call to create account
-if(!$res = $conn->query(CALL createUser($eAdd, $pass1, $usrName, $servername, NULL, NOW()))
-{
-  echo "Fetch failed: (" . $conn->errno . ") " . $conn->error;
-}
+$crtUserACC = "CALL createUser($eAdd, $pass1, $usrName, $servername, NULL, NOW())";
 
-echo $res;
-
-
-
-
+$res = mysqli_query($conn, $crtUserACC);
 
 ?>
+<html lang = "en">
+
+	<head>
+		<title>Polling App</title>
+		<meta charset = "utf-8">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+
+		<!-- Logo -->
+		<img class="logo" src="imgs/logo_2x.png"></img>
+
+		<!-- Top of page text -->
+		<div>
+      <?php
+      if($res == true)
+      {
+        echo "You Succsefully created an account. Click <a href="login.html">here to login</a>";
+      }
+       else
+       {
+        echo "An error occurred please <a href="createAccount.html">try</a>";
+       }
+</html>
