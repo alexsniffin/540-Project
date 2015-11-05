@@ -28,10 +28,16 @@ if($pass1 != $pass2)
   die("Passwords do not match!");
 }
 
-//check for username uniqueness
+// sql call to create account
+if(!$res = $conn->query(CALL createUser($eAdd, $pass1, $usrName, $servername, NULL, NOW()))
+{
+  echo "Fetch failed: (" . $conn->errno . ") " . $conn->error;
+}
 
-//check for email uniqueness
+echo $res;
 
-//create account
+
+
+
 
 ?>
