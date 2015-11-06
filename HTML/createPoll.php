@@ -7,7 +7,7 @@
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  		<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
   		<script type="text/javascript" src="js/bootstrap.min.js"></script>
   		
   		<!-- For calendar input -->
@@ -97,20 +97,16 @@
 				<strong>Enter a question:</strong> <input type="text" name="quest" maxlength="255"><br>
 				<strong>Choices:</strong><br>
 				
-				<div class="top-choice">
-				<input type="text" class="choice" name="ans1" maxlength="255">
+				<div class = "choices">
+					<div class="choice-row top-choice" id="choice-row-1">
+						<input id="row1" type="text" class="choice" name="ans1" maxlength="255">
+					</div>
+					
+					<div class="choice-row" id="choice-row-2">
+						<div class="plus-button"></div>
+						<input id="row2" type="text" class="choice" name="ans2" maxlength="255">
+					</div>
 				</div>
-				
-				<div class="plus-button"></div>
-				<input type="text" class="choice" name="ans2" maxlength="255">
-				<div class="minus-button"></div>
-				<input type="text" class="choice" name="ans3" maxlength="255">
-				<div class="minus-button"></div>
-				<input type="text" class="choice" name="ans4" maxlength="255">
-				<div class="minus-button"></div>
-				<input type="text" class="choice" name="ans5" maxlength="255">
-				<div class="minus-button"></div>
-				<input type="text" class="choice" name="ans6" maxlength="255">
 			
 				<input type="submit" class="submit-button">
 			</form>
@@ -119,12 +115,38 @@
 
 	</div>
 	
-	<!-- Calendar input -->
-	<script> $(document).ready(function()
-	{
-		$("#datepicker").datepicker();
-	});
+	<script type="text/javascript">
+	$(document).ready(function()
+ 	{
+		// Calendar input
+		$("#datepicker").datepicker({minDate: 1, changeMonth: true, changeYear: true});
+		
+		// Variable to keep track of number of rows -- will always be at least 2
+		var rowNum = 2;
+		
+		// Add row function
+		$(document).click('.plus-button', function(){
+			if(rowNum < 12){
+				rowNum++;
+				var row = '<div class="choice-row" id="choice-row-' + rowNum 
+							+'"><div class="minus-button" onClick="removeRow(' + rowNum + ');"></div><input id="row'
+							+ rowNum + '" type="text" class="choice" name="ans' + rowNum + '" maxlength="255"></div>';
+				$('.choices').append(row);
+			}
+		}) 
 	
+		// Remove row function
+		function removeRow(rnum){
+			
+			console.log('fire');
+			if(rowNum > 2){
+				$('#choice-row-' + rnum).remove();
+				rowNum--;
+			}
+		}  
+		
+
+ 	});
 	</script>
 
 </body>
