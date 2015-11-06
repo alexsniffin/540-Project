@@ -97,7 +97,7 @@ SELECT getPrivatePoll(<share_code>); -- returns a single value
 -- #3
 -- Create a poll and the corresponding answers
 -- It's kind of ugly because I couldn't get a loop to work, but it works!
--- Input: Question(String), Share code(String), Days to close(Date), Ans1 - Ans12(Strings)
+-- Input: Question(String), Share code(String), category(String), Days to close(Date), Ans1 - Ans12(Strings)
 -- Output: Null
 DELIMITER //
 CREATE PROCEDURE create_poll
@@ -249,12 +249,14 @@ CREATE PROCEDURE createUser
 	(IN email CHAR(64),
 	IN password CHAR(32),
 	IN displayName CHAR(16),
+	IN gender CHAR(6),
+	IN age INT,
 	IN IP INT UNSIGNED,
 	IN mac CHAR(32),
 	IN timeCreated TIMESTAMP)
 BEGIN
 	DECLARE EXIT HANDLER FOR 1062 SELECT 'Email is already in use';
-	INSERT INTO Users VALUES(NULL, email, password, displayName, ip, mac, 100, timeCreated, 0);
+	INSERT INTO Users VALUES(NULL, email, password, displayName, ip, mac, 100, gender, age, timeCreated, 0);
 END //
 DELIMITER ;
 
@@ -280,5 +282,29 @@ BEGIN
 END //
 DELIMITER ;
 
--- TODO Profile: Get profile information
-	-- TODO: Get all owned polls
+-- Get profile information
+-- Input: User_ID
+-- Output: email, display name, coins, gender, age, time created, total votes
+DELIMITER //
+CREATE PROCEDURE getProfile
+	(IN User_ID INT)
+BEGIN
+	SELECT u.email, u.display_name, u.coins, u.gender, u.age, u.time_created, u.total_votes
+	FROM Users u
+	WHERE u.User_ID = User_ID
+	LIMIT 1;
+END //
+DELIMITER ;
+
+-- Get all user polls
+-- Input: User_ID
+-- Output: P_ID, question, category, share_code, date_created, date_to_close
+DELIMITER //
+CREATE PROCEDURE getUserPolls
+	(IN User_ID INT)
+BEGIN
+	SELECT P_ID, question, category, share_code, date_created, date_to_close
+	FROM Polls p
+	WHERE p.User_ID = User_ID;
+END //
+DELIMITER ;

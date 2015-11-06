@@ -10,6 +10,8 @@ CREATE TABLE Users (
 	last_ip_address INT UNSIGNED,
 	last_mac_address CHAR(32) DEFAULT 'Unknown',
 	coins INT DEFAULT 100,
+	gender CHAR(6),
+	age INT,
 	time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	total_votes INT DEFAULT 0,
 	PRIMARY KEY(User_ID),

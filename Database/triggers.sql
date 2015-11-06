@@ -26,3 +26,23 @@ END //
 DELIMITER ;
 -- Test with:
 INSERT INTO Voted VALUES(NULL, 2, 1); -- Should throw the error message
+
+DELIMITER //
+DROP TRIGGER IF EXISTS ProfileCheck //
+CREATE TRIGGER ProfileCheck BEFORE INSERT ON Users
+FOR EACH ROW
+BEGIN
+	DECLARE errMsg VARCHAR(128);
+
+	IF (NEW.display_name NOT REGEXP '[^.\w]') THEN --Why does this not work...
+		SET errMsg = "Only characters and numbers are allowed for display names.";
+        	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+	ELSEIF (NEW.age >= 150) THEN
+		SET errMsg = "Age must be less than 150, sorry old people.";
+        	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+	ELSEIF (NEW.email NOT REGEXP '^[^@]+@[^@]+\.[^@]{2,}$') THEN
+		SET errMsg = "Email must not include any special symbols.";
+        	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+	END IF;
+END //
+DELIMITER ;
