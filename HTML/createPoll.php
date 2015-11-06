@@ -12,8 +12,8 @@
   		
   		<!-- For calendar input -->
   		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-  		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-  		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  		<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+
   		
   		
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -108,14 +108,14 @@
 					</div>
 				</div>
 			
-				<input type="submit" class="submit-button">
+				<input type="submit" class="submit-button" value="Submit">
 			</form>
 			
 		</div>	
 
 	</div>
 	
-	<script type="text/javascript">
+	<script>
 	$(document).ready(function()
  	{
 		// Calendar input
@@ -125,27 +125,28 @@
 		var rowNum = 2;
 		
 		// Add row function
-		$(document).click('.plus-button', function(){
-			if(rowNum < 12){
+		$(document).on('click', '.plus-button', function(){
+			if(rowNum < 12)
+			{
 				rowNum++;
 				var row = '<div class="choice-row" id="choice-row-' + rowNum 
-							+'"><div class="minus-button" onClick="removeRow(' + rowNum + ');"></div><input id="row'
+							+'"><div class="minus-button"></div><input id="row'
 							+ rowNum + '" type="text" class="choice" name="ans' + rowNum + '" maxlength="255"></div>';
 				$('.choices').append(row);
 			}
-		}) 
-	
+		})  
+		
 		// Remove row function
-		function removeRow(rnum){
-			
+		$(document).on('click', '.minus-button', function(e){
 			console.log('fire');
-			if(rowNum > 2){
-				$('#choice-row-' + rnum).remove();
+		
+			var target = e.target;
+			if(rowNum > 2)
+			{
+				$(target).parents('.choice-row').remove();
 				rowNum--;
 			}
-		}  
-		
-
+		}) 
  	});
 	</script>
 

@@ -529,13 +529,18 @@ p{
     padding-left: 8px;
 }
 
+.create-form input[type="text"].choice{
+    float: right;
+    padding-left: 50px;
+}
+
 .top-choice{
 	height: 50px;
 	margin-left: 40px;
 }
 
-.create-form input[type="text"].choice{
-    float: right;
+.top-choice > input[type="text"].choice{
+	padding-left: 10px;
 }
 
 .plus-button{
