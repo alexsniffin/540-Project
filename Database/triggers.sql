@@ -24,9 +24,10 @@ BEGIN
 	END IF;
 END //
 DELIMITER ;
--- Test with:
 INSERT INTO Voted VALUES(NULL, 2, 1); -- Should throw the error message
 
+-- http://www.regextester.com/
+-- Check if a new user has a valid name, pass, and email and limit age to 150
 DELIMITER //
 DROP TRIGGER IF EXISTS ProfileCheck //
 CREATE TRIGGER ProfileCheck BEFORE INSERT ON Users
@@ -34,15 +35,18 @@ FOR EACH ROW
 BEGIN
 	DECLARE errMsg VARCHAR(128);
 
-	IF (NEW.display_name NOT REGEXP '[^.\w]') THEN --Why does this not work...
-		SET errMsg = "Only characters and numbers are allowed for display names.";
-        	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+	IF NOT NEW.display_name REGEXP '^[A-Za-z0-9\s]+$' THEN
+		SET errMsg = "Only characters and numbers are allowed for display name and passwords.";
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+	ELSEIF NOT NEW.password REGEXP '^[A-Za-z0-9\s]+$' THEN
+		SET errMsg = "Only characters and numbers are allowed for display name and passwords.";
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
 	ELSEIF (NEW.age >= 150) THEN
 		SET errMsg = "Age must be less than 150, sorry old people.";
-        	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
-	ELSEIF (NEW.email NOT REGEXP '^[^@]+@[^@]+\.[^@]{2,}$') THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+	ELSEIF NOT NEW.email REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$' THEN
 		SET errMsg = "Email must not include any special symbols.";
-        	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
 	END IF;
 END //
 DELIMITER ;

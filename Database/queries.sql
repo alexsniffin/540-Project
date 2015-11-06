@@ -242,7 +242,7 @@ END //
 DELIMITER ;
 
 -- Creates a new user
--- Input: email, password, displayName, IP address, Mac Address, Date
+-- Input: email, password, displayName, gender, age, IP address, Mac Address, Date
 -- Output: Void, can return an error if email already in use
 DELIMITER //
 CREATE PROCEDURE createUser

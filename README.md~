@@ -33,7 +33,9 @@ Procedures -
 - **getPollAnswers**(Poll_ID: INT) *returns ANS_ID: INT, Answer: VARCHAR(128), TotalVotes: INT (ResultSet)*
 - **userVote**(User_ID: INT, ANS_ID: INT) *returns void*
 - **addCoins**(User_ID: INT, Poll_ID: INT) *returns void*
-- **createUser**(email: CHAR(64), pass CHAR(32), displayName CHAR(16), IP INT UNSIGNED, MAC CHAR(32), timeCreated: TIMESTAMP) *returns void* (will throw an error 'Email is already in use' if email is already in the db)
+- **createUser**(email: CHAR(64), pass CHAR(32), displayName CHAR(16), gender CHAR(6), age INT, IP INT UNSIGNED, MAC CHAR(32), timeCreated: TIMESTAMP) *returns void* (will throw an error 'Email is already in use' if email is already in the db)
+- **getProfile**(User_ID: INT) *returns Email: CHAR(64), DisplayName: CHAR(16), Coins: INT, Gender: CHAR(6), Age: INT, Time created: DATE, Total votes: INT (ResultSet)*
+- **getUserPolls**(User_ID) *returns P_ID: INT, Question: CHAR(255), Category: CHAR(32), Share code: CHAR(8), Date created: DATE, Date to close: DATE (ResultSet)*
 
 Functions - 
 - **login**(email: CHAR(64), pass CHAR(32)) *returns User_ID (Single value)* (if -1, then wrong email or pass)
@@ -42,4 +44,5 @@ Functions -
 
 Triggers:
 - **VoteCheck** - Checks if you've voted in a poll already
+- **ProfileCheck** - Check if a new user has a valid name, pass, and email using Regex
 
