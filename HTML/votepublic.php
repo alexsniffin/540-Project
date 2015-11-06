@@ -99,7 +99,7 @@
 	<!-- User Bar -->
 	<div class="userbar">
 		<ul>
-			<li><a href="#"><img src ="imgs/user_icon_2x.png">pollshark567</a></li>
+			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png">pollshark567</a></li>
 			<li><img src ="imgs/coin_icon_2x.png">12</li>
 		<ul>
 	</div>
