@@ -51,10 +51,7 @@ $res = mysqli_query($conn, $crtUserACC);
 		<img class="logo" src="imgs/logo_2x.png"></img>
 
 		<!-- Top of page text -->
-		<div>
-      <?php if($res == true): ?>
-        <p> You Succsefully created an account. Click <a href="login.html">here</a> to login </p>
-      <? else: ?>
-        <p> An error occurred please <a href="createAccount.html">try</a> </p>
-      <? endif; ?>
-</html>
+		<div class="signin">
+      <p> You Succsefully created an account. Click <a href="index.php">here</a> to login </p>
+    </div>
+  </html>
