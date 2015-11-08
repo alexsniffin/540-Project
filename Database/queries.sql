@@ -182,15 +182,14 @@ CALL create_poll(1, 'Some question using procedure', NULL, 30, 'Some answer usin
 -- Output: Question, Name, Date Created(Result set)
 DELIMITER //
 CREATE PROCEDURE getPollQuestion
-	(IN poll_id INT,
-	IN share_code CHAR(8))
+	(IN poll_id INT)
 BEGIN
 	DECLARE user INT;
 	SET user = (SELECT User_ID FROM Polls p1 WHERE p1.P_ID = poll_id LIMIT 1);
 
 	SELECT p.question, u.display_name, p.date_created
 	FROM Polls p, Users u
-	WHERE p.P_ID = poll_id AND u.ID = user;
+	WHERE p.P_ID = poll_id AND u.User_ID = user;
 END //
 DELIMITER ;
 

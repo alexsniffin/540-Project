@@ -29,7 +29,7 @@ Procedures -
 - **random_public_poll**(User_ID: INT, category: CHAR(32)) *returns Poll_ID: INT (ResultSet)*
 - **private_poll**(share_code: CHAR(8)) *returns Poll_ID: INT (ResultSet)*
 - **create_poll**(User_ID: INT, Question: VARCHAR(255), share_code: CHAR(8), category: CHAR(32), days_to_close: INT, ans1 ... ans12: VARCHAR(128)) *returns void*
-- **getPollQuestion**(Poll_ID: INT, share_code: CHAR(8)) *returns Question: VARCHAR(255), DisplayName: CHAR(16), DateCreated: DATE (ResultSet)*
+- **getPollQuestion**(Poll_ID: INT) *returns Question: VARCHAR(255), DisplayName: CHAR(16), DateCreated: DATE (ResultSet)*
 - **getPollAnswers**(Poll_ID: INT) *returns ANS_ID: INT, Answer: VARCHAR(128), TotalVotes: INT (ResultSet)*
 - **userVote**(User_ID: INT, ANS_ID: INT) *returns void*
 - **addCoins**(User_ID: INT, Poll_ID: INT) *returns void*

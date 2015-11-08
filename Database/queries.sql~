@@ -182,8 +182,7 @@ CALL create_poll(1, 'Some question using procedure', NULL, 30, 'Some answer usin
 -- Output: Question, Name, Date Created(Result set)
 DELIMITER //
 CREATE PROCEDURE getPollQuestion
-	(IN poll_id INT,
-	IN share_code CHAR(8))
+	(IN poll_id INT)
 BEGIN
 	DECLARE user INT;
 	SET user = (SELECT User_ID FROM Polls p1 WHERE p1.P_ID = poll_id LIMIT 1);
@@ -242,7 +241,7 @@ END //
 DELIMITER ;
 
 -- Creates a new user
--- Input: email, password, displayName, IP address, Mac Address, Date
+-- Input: email, password, displayName, gender, age, IP address, Mac Address, Date
 -- Output: Void, can return an error if email already in use
 DELIMITER //
 CREATE PROCEDURE createUser
