@@ -13,6 +13,7 @@
 	<?php echo $_POST["ans4"]; ?><br>
 	<?php echo $_POST["ans5"]; ?><br>
 	<?php echo $_POST["ans6"]; ?><br>
+	
 
 
 <?php
@@ -21,6 +22,7 @@ $servername = "24.197.117.117";
 $username = "darth";
 $password = "ineedhelp";
 $dbname = "pollApp";
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -42,6 +44,17 @@ $userID = 1;
 //Vistigial incrementer for now
 $incr1 = 0;
 
+$isPrivate;
+
+if(isset($_POST["pubOpriv"]))
+{
+	$isPrivate = "yes";
+}
+else
+{
+	$isPrivate = "no";
+}
+
 //winning
 $winning = true;
 
@@ -58,10 +71,34 @@ function loadArray()
 	$buff[0][4] = $_POST['ans4'];
 	$buff[0][5] = $_POST['ans5'];
 	$buff[0][6] = $_POST['ans6'];
+	$buff[0][1] = $_POST['ans7'];
+	$buff[0][2] = $_POST['ans8'];
+	$buff[0][3] = $_POST['ans9'];
+	$buff[0][4] = $_POST['ans10'];
+	$buff[0][5] = $_POST['ans11'];
+	$buff[0][6] = $_POST['ans12'];
+	
 	
 	// $GLOBALS['incr1']++;
 	
 	return $buff;
+}
+
+//Generate a pseudo-random 8 digit share key for unique id purposes
+//Needs to be optimized and strengthened, as well as adding
+//a check function to see if it exists already in the database.
+function buildShareKey()
+{
+	$shareKey;
+	
+	$alphnums = array_merge(range(0,9), range('a','z'));
+	
+	for($i = 0; $i < 8; $i++)
+	{
+		$shareKey .= $alphnums[array_rand($alphnums)];
+	}
+	
+	return $shareKey;
 }
 
 //"Why do I need this?" Incrementer
@@ -93,7 +130,27 @@ function printArray($tempArray)
 }
 
 // Takes in user input and concatenates into a string to send to SQL for insertion
-function buildSQLString($tempArray, $ID)
+function publicPoll($tempArray, $ID)
+{
+	
+	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."',"."NULL,"."30,";
+	
+	for ($i = 0; $i < count($tempArray); $i++)
+	{
+		for ($j = 1; $j < count($tempArray[$i]); $j++)
+		{
+				$builtString .= "'" . $tempArray[$i][$j] . "',";
+		}
+	
+	$builtString .= "NULL,NULL,NULL,NULL,NULL,NULL)";
+	
+		
+	}
+	return $builtString;
+}
+
+// Takes in user input and concatenates with a unique key into a string to send to SQL for insertion
+function privatePoll($tempArray, $ID, $shareKey)
 {
 	
 	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."',"."NULL,"."30,";
@@ -114,14 +171,32 @@ function buildSQLString($tempArray, $ID)
 
 //utilization of functions for insertion purposes
 
+$key = buildShareKey();
+
+
 $sqlInsert = loadArray($incr1);
-
+if(isset($_POST["pubOpriv"]))
+{
 //build SQL string statement
-$sqlInsertString = buildSQLString($sqlInsert,$userID);
-
-//Attempt to insert data into database
+$sqlInsertString = publicPoll($sqlInsert,$userID);
 $insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
 $conn->close();
+echo "sent to private<br>";
+echo "<br> Share Key is: " . $key;
+}
+else
+{
+//$conn = new mysqli($servername, $username, $password, $dbname);
+//$sqlInsertString = privatePoll($sqlInsert,$userID, $shareKey)
+//Attempt to insert data into database
+//$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
+//$conn->close();
+
+
+
+echo "sent to public<br>";
+
+}
 
 echo "<br>";
 

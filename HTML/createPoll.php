@@ -87,13 +87,17 @@
 				<input id="datepicker" class="calendar-input"/>
 			</div>
 			
-			<!-- Private Poll Checkbox -->
-			<div class="checkbox">
-  				<label><input type="checkbox" value="">This is a private poll</label>
-			</div>
 		
 			<!-- Create poll form -->
+			
 			<form action="createPollBackend.php" method="post" class="create-form">
+			
+				<!-- Checkbox moved into form block so that the value gets passed to backend -->
+				<div class="checkbox">
+					<input type="checkbox" id="pubOpriv" name="pubOpriv">
+					<label for="pubOpriv">This is a private poll</label>
+				</div>
+			
 				<strong>Enter a question:</strong> <input type="text" name="quest" maxlength="255"><br>
 				<strong>Choices:</strong><br>
 				
@@ -107,7 +111,16 @@
 						<input id="row2" type="text" class="choice" name="ans2" maxlength="255">
 					</div>
 				</div>
-			
+				
+				<!--- Check to see if there is a "w1" value passed from the URL --->
+				<?php 
+					if(isset($_GET["w1"]))
+					{
+						$rowNumP = $_GET["w1"];
+						echo $rowNumP;
+					}
+				?>
+				
 				<input type="submit" class="submit-button" value="Submit">
 			</form>
 			
@@ -121,8 +134,17 @@
 		// Calendar input
 		$("#datepicker").datepicker({minDate: 1, changeMonth: true, changeYear: true});
 		
+		
+		
 		// Variable to keep track of number of rows -- will always be at least 2
-		var rowNum = 2;
+		
+			var myvar = <?php echo json_encode($myVarValue); ?>;
+			if(myvar)
+			var rowNum = 2;
+			
+	
+			
+		
 		
 		// Add row function
 		$(document).on('click', '.plus-button', function(){
@@ -133,6 +155,7 @@
 							+'"><div class="minus-button"></div><input id="row'
 							+ rowNum + '" type="text" class="choice" name="ans' + rowNum + '" maxlength="255"></div>';
 				$('.choices').append(row);
+				window.location.href = "createPoll.php?w1=" + rowNum;
 			}
 		})  
 		
@@ -145,9 +168,13 @@
 			{
 				$(target).parents('.choice-row').remove();
 				rowNum--;
+				window.location.href = "createPoll.php?w1=" + rowNum;
 			}
 		}) 
+		
+		
  	});
+	
 	</script>
 
 </body>
