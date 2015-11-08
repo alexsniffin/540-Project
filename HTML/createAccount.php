@@ -52,13 +52,9 @@ $res = mysqli_query($conn, $crtUserACC);
 
 		<!-- Top of page text -->
 		<div>
-      <?php
-      if($res == true)
-      {
-        echo "You Succsefully created an account. Click <a href="login.html">here to login</a>";
-      }
-       else
-       {
-        echo "An error occurred please <a href="createAccount.html">try</a>";
-       }
+      <?php if($res == true): ?>
+        <p> You Succsefully created an account. Click <a href="login.html">here</a> to login </p>
+      <? else: ?>
+        <p> An error occurred please <a href="createAccount.html">try</a> </p>
+      <? endif; ?>
 </html>
