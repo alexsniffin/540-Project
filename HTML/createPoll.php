@@ -67,7 +67,7 @@
 			<!-- Category selection -->
 			<div class="form-group">
   				<label for="categoryselection"><strong>Choose a category:</strong> </label>
-  				<select class="form-control" id="categoryselection">
+  				<select class="form-control" id="categoryselection" name="categoryselection">
   				  	<option>Science</option>
 					<option>Literature</option>
 					<option>Technology</option>
@@ -84,7 +84,7 @@
 			<div class="form-group">
 				<label for="exp_date"><strong>Expiration Date:</strong> </label>
 				<!-- Need to somehow get result of this and give to database -->
-				<input id="datepicker" class="calendar-input"/>
+				<input id="datepicker" name="datepicker" class="calendar-input"/>
 			</div>
 			
 		
@@ -121,12 +121,21 @@
 					}
 				?>
 				
+				
+				
 				<input type="submit" class="submit-button" value="Submit">
 			</form>
 			
 		</div>	
 
 	</div>
+	<script>
+	function _vals(target, value);
+		form1.all("target").value=target;
+		form1.all("value").value=value;
+		form1.submit();
+	</script>
+	
 	
 	<script>
 	$(document).ready(function()
@@ -134,17 +143,8 @@
 		// Calendar input
 		$("#datepicker").datepicker({minDate: 1, changeMonth: true, changeYear: true});
 		
-		
-		
 		// Variable to keep track of number of rows -- will always be at least 2
-		
-			var myvar = <?php echo json_encode($myVarValue); ?>;
-			if(myvar)
-			var rowNum = 2;
-			
-	
-			
-		
+		var rowNum = 2;
 		
 		// Add row function
 		$(document).on('click', '.plus-button', function(){
@@ -155,7 +155,7 @@
 							+'"><div class="minus-button"></div><input id="row'
 							+ rowNum + '" type="text" class="choice" name="ans' + rowNum + '" maxlength="255"></div>';
 				$('.choices').append(row);
-				window.location.href = "createPoll.php?w1=" + rowNum;
+				//window.location.href = "createPoll.php?w1=" + rowNum;
 			}
 		})  
 		
@@ -168,7 +168,7 @@
 			{
 				$(target).parents('.choice-row').remove();
 				rowNum--;
-				window.location.href = "createPoll.php?w1=" + rowNum;
+				//window.location.href = "createPoll.php?w1=" + rowNum;
 			}
 		}) 
 		

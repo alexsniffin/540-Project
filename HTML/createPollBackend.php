@@ -7,12 +7,28 @@
 
 <!-- For debugging purposes. -->>
 	<?php echo $_POST["quest"]; ?><br>
+	
+	<?php echo $_POST["categoryselection"]; ?><br>
+	<?php echo $_POST["datepicker"]; ?><br>
+	
+	
+	
+	
+	
+	
 	<?php echo $_POST["ans1"]; ?><br>
 	<?php echo $_POST["ans2"]; ?><br>
 	<?php echo $_POST["ans3"]; ?><br>
 	<?php echo $_POST["ans4"]; ?><br>
 	<?php echo $_POST["ans5"]; ?><br>
 	<?php echo $_POST["ans6"]; ?><br>
+	<?php echo $_POST["ans7"]; ?><br>
+	<?php echo $_POST["ans8"]; ?><br>
+	<?php echo $_POST["ans9"]; ?><br>
+	<?php echo $_POST["ans10"]; ?><br>
+	<?php echo $_POST["ans11"]; ?><br>
+	<?php echo $_POST["ans12"]; ?><br>
+	<?php echo "end debug printout"; ?><br>
 	
 
 
@@ -63,22 +79,26 @@ $winning = true;
 function loadArray()
 {
 	$buff;
+	$increment;
 	
 	$buff[0][0] = $_POST['quest'];
-	$buff[0][1] = $_POST['ans1'];
-	$buff[0][2] = $_POST['ans2'];
-	$buff[0][3] = $_POST['ans3'];
-	$buff[0][4] = $_POST['ans4'];
-	$buff[0][5] = $_POST['ans5'];
-	$buff[0][6] = $_POST['ans6'];
-	$buff[0][1] = $_POST['ans7'];
-	$buff[0][2] = $_POST['ans8'];
-	$buff[0][3] = $_POST['ans9'];
-	$buff[0][4] = $_POST['ans10'];
-	$buff[0][5] = $_POST['ans11'];
-	$buff[0][6] = $_POST['ans12'];
 	
+	for($i = 1; $i <= 12; $i++)
+	{
+		$increment = 'ans' . $i;
 	
+		echo $increment . '<br>';
+	
+		if(isset($_POST["$increment"]) && !empty($_POST["$increment"]))
+		{
+			$buff[0][$i] = $_POST["$increment"];
+		}
+		else
+		{
+			$buff[0][$i] = 'NULL';
+		}
+	
+	}
 	// $GLOBALS['incr1']++;
 	
 	return $buff;
@@ -89,7 +109,7 @@ function loadArray()
 //a check function to see if it exists already in the database.
 function buildShareKey()
 {
-	$shareKey;
+	$shareKey = '';
 	
 	$alphnums = array_merge(range(0,9), range('a','z'));
 	
@@ -133,19 +153,26 @@ function printArray($tempArray)
 function publicPoll($tempArray, $ID)
 {
 	
-	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."',"."NULL,"."30,";
+	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."',"."NULL,"."'NULL',"."30,";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
 		for ($j = 1; $j < count($tempArray[$i]); $j++)
 		{
-				$builtString .= "'" . $tempArray[$i][$j] . "',";
+				if($j < count($tempArray[$i]) - 1)
+				{
+					$builtString .= "'" . $tempArray[$i][$j] . "',";
+				}
+				else
+				{
+					$builtString .= "'" . $tempArray[$i][$j] . "');";
+				}
 		}
-	
-	$builtString .= "NULL,NULL,NULL,NULL,NULL,NULL)";
-	
 		
 	}
+	
+	//$buildString .= "'" . $tempArray[0][12] . "');";
+	
 	return $builtString;
 }
 
@@ -153,19 +180,27 @@ function publicPoll($tempArray, $ID)
 function privatePoll($tempArray, $ID, $shareKey)
 {
 	
-	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."',"."NULL,"."30,";
+	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."','".$shareKey."',NULL," . "30,";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
 		for ($j = 1; $j < count($tempArray[$i]); $j++)
 		{
-				$builtString .= "'" . $tempArray[$i][$j] . "',";
+				if($j < count($tempArray[$i]) - 1)
+				{
+					$builtString .= "'" . $tempArray[$i][$j] . "',";
+				}
+				else
+				{
+					$builtString .= "'" . $tempArray[$i][$j] . "');";
+				}
+				
 		}
-	
-	$builtString .= "NULL,NULL,NULL,NULL,NULL,NULL)";
-	
 		
 	}
+	
+	//$buildString .= "'" . $tempArray[0][12] . "');";
+	
 	return $builtString;
 }
 
@@ -174,29 +209,41 @@ function privatePoll($tempArray, $ID, $shareKey)
 $key = buildShareKey();
 
 
-$sqlInsert = loadArray($incr1);
+$sqlInsert = loadArray();
 if(isset($_POST["pubOpriv"]))
 {
-//build SQL string statement
-$sqlInsertString = publicPoll($sqlInsert,$userID);
-$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
-$conn->close();
-echo "sent to private<br>";
-echo "<br> Share Key is: " . $key;
+	//build SQL string statement
+	$sqlInsertString = privatePoll($sqlInsert,$userID, $key);
+
+	echo '<br>' . $sqlInsertString . '<br>';
+
+	$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
+	$conn->close();
+	echo "sent to private<br>";
+	echo "<br> Share Key is: " . $key;
+	
+	
 }
 else
 {
-//$conn = new mysqli($servername, $username, $password, $dbname);
-//$sqlInsertString = privatePoll($sqlInsert,$userID, $shareKey)
-//Attempt to insert data into database
-//$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
-//$conn->close();
-
-
-
-echo "sent to public<br>";
-
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	$sqlInsertString = publicPoll($sqlInsert,$userID);
+	
+	echo '<br>' . $sqlInsertString . '<br>';
+	
+	//Attempt to insert data into database
+	$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
+	$conn->close();
+	
+	echo "sent to public<br>";
+	
+	
 }
+
+
+
+
+
 
 echo "<br>";
 

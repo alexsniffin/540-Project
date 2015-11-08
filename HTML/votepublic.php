@@ -22,10 +22,12 @@
 	$randID = mysqli_fetch_array($randIDTransfer);
 	$conn->close();
 
+	echo $randID[0];
+	
 	//Print Poll question
 	function callQuestion($temp, $connection)
 	{
-		$sqlLine = "CALL getPollQuestion(" . $temp . ", NULL);";
+		$sqlLine = "CALL getPollQuestion(" . $temp . ");";
 		$question = mysqli_query($connection, $sqlLine) or die("Query fail: " . mysqli_error());
 
 		// print out Question answers.
