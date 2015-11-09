@@ -189,7 +189,7 @@ BEGIN
 
 	SELECT p.question, u.display_name, p.date_created
 	FROM Polls p, Users u
-	WHERE p.P_ID = poll_id AND u.ID = user;
+	WHERE p.P_ID = poll_id AND u.User_ID = user;
 END //
 DELIMITER ;
 

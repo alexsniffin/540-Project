@@ -120,7 +120,12 @@ CREATE PROCEDURE create_poll
 	IN ans12 VARCHAR(128))
 BEGIN
 	DECLARE poll_id INT;
-		INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question, category);
+
+	IF days_to_close IS NULL THEN
+		SET days_to_close = 30;
+	END IF;
+
+	INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question, category);
 	SET poll_id = LAST_INSERT_ID();
 
 	--Not sure how to do this in a loop with SQL

@@ -1,5 +1,4 @@
 -- TRIGGERS
--- TODO: ...
 
 -- Check if a user has already voted on a poll before inserting
 DELIMITER //

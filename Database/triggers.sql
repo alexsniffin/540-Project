@@ -40,8 +40,11 @@ BEGIN
 	ELSEIF NOT NEW.password REGEXP '^[A-Za-z0-9\s]+$' THEN
 		SET errMsg = "Only characters and numbers are allowed for display name and passwords.";
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+	ELSEIF (NEW.age <= 12) THEN
+		SET errMsg = "Age must be 13 or greater.";
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
 	ELSEIF (NEW.age >= 150) THEN
-		SET errMsg = "Age must be less than 150, sorry old people.";
+		SET errMsg = "Age must be less than 150.";
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
 	ELSEIF NOT NEW.email REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$' THEN
 		SET errMsg = "Email must not include any special symbols and must follow the format email@website.com.";
