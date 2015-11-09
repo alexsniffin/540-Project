@@ -63,34 +63,34 @@
 		</div>
 	
 		<div class="create-container">
-		
-			<!-- Category selection -->
-			<div class="form-group">
-  				<label for="categoryselection"><strong>Choose a category:</strong> </label>
-  				<select class="form-control" id="categoryselection" name="categoryselection">
-  				  	<option>Science</option>
-					<option>Literature</option>
-					<option>Technology</option>
-					<option>Music</option>
-					<option>Movies</option>
-					<option>Current Events</option>
-					<option>Gaming</option>
-					<option>Food & Drink</option>
-					<option>Politics</option>
-  				</select>
-			</div>
-			
-			<!-- Date selection -->
-			<div class="form-group">
-				<label for="exp_date"><strong>Expiration Date:</strong> </label>
-				<!-- Need to somehow get result of this and give to database -->
-				<input id="datepicker" name="datepicker" class="calendar-input"/>
-			</div>
 			
 		
 			<!-- Create poll form -->
 			
 			<form action="createPollBackend.php" method="post" class="create-form">
+			
+				<!-- Category selection -->
+				<div class="form-group">
+					<label for="categoryselection"><strong>Choose a category:</strong> </label>
+					<select class="form-control" id="categoryselection" name="categoryselection">
+						<option>Science</option>
+						<option>Literature</option>
+						<option>Technology</option>
+						<option>Music</option>
+						<option>Movies</option>
+						<option>Current Events</option>
+						<option>Gaming</option>
+						<option>Food & Drink</option>
+						<option>Politics</option>
+					</select>
+				</div>
+			
+				<!-- Date selection -->
+				<div class="form-group">
+					<label for="exp_date"><strong>Expiration Date:</strong> </label>
+					<!-- Need to somehow get result of this and give to database -->
+					<input id="datepicker" name="datepicker" class="calendar-input"/>
+				</div>
 			
 				<!-- Checkbox moved into form block so that the value gets passed to backend -->
 				<div class="checkbox">

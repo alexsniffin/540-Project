@@ -48,7 +48,9 @@
 		// print out Question answers.
 		while ($row = mysqli_fetch_array($question))
 		{
-			$arrReturn[$incr] = $row[0];
+			$arrReturn[$incr][0] = $row[0];
+			$arrReturn[$incr][1] = $row[1];
+			$arrReturn[$incr][2] = $row[2];
 			$incr++;
 		}
 		return $arrReturn;
@@ -56,8 +58,16 @@
 
 	//Call Answers and store them into answerArray to print on radio buttons
 	$conn = new mysqli($servername, $username, $password, $dbname);
-	$answerArray = callAnswers($randID[0], $conn);
+	$answerArray = callAnswers($randID[0],$conn) or die("Query fail: " . mysqli_error());
+	
+
+	
+	
+	
+	
 	$conn->close();
+	
+	
 	
 //=============================END PHP CODE=================================//
 ?>
@@ -131,7 +141,8 @@
 					<div class="radio-button" id="choice_1"></div>
 					<div class="choice-text">
 						<?php
-							echo $answerArray[0];
+							echo $answerArray[0][1];
+							
 						?>
 					</div>
 				</li>
@@ -139,7 +150,7 @@
 					<div class="radio-button" id="choice_2"></div>
 					<div class="choice-text">
 						<?php
-							echo $answerArray[1];
+							echo $answerArray[1][1];
 						?>
 					</div>
 				</li>
@@ -147,7 +158,7 @@
 					<div class="radio-button" id="choice_3"></div>
 					<div class="choice-text">
 						<?php
-							echo $answerArray[2];
+							echo $answerArray[2][1];
 						?>
 					</div>
 				</li>
@@ -155,7 +166,7 @@
 					<div class="radio-button" id="choice_4"></div>
 					<div class="choice-text">
 						<?php
-							echo $answerArray[3];
+							echo $answerArray[3][1];
 						?>
 					</div>
 				</li>
@@ -163,7 +174,7 @@
 					<div class="radio-button" id="choice_5"></div>
 					<div class="choice-text">
 						<?php
-							echo $answerArray[5];
+							echo $answerArray[5][1];
 						?>
 					</div>
 				</li>
@@ -171,7 +182,47 @@
 					<div class="radio-button" id="choice_6"></div>
 					<div class="choice-text">
 						<?php
-							echo $answerArray[5];
+							echo $answerArray[6][1];
+						?>
+					</div>
+				</li>
+				<li>
+					<div class="radio-button" id="choice_6"></div>
+					<div class="choice-text">
+						<?php
+							echo $answerArray[7][1];
+						?>
+					</div>
+				</li>
+				<li>
+					<div class="radio-button" id="choice_6"></div>
+					<div class="choice-text">
+						<?php
+							echo $answerArray[8][1];
+						?>
+					</div>
+				</li>
+				<li>
+					<div class="radio-button" id="choice_6"></div>
+					<div class="choice-text">
+						<?php
+							echo $answerArray[9][1];
+						?>
+					</div>
+				</li>
+				<li>
+					<div class="radio-button" id="choice_6"></div>
+					<div class="choice-text">
+						<?php
+							echo $answerArray[10][1];
+						?>
+					</div>
+				</li>
+				<li>
+					<div class="radio-button" id="choice_6"></div>
+					<div class="choice-text">
+						<?php
+							echo $answerArray[11][1];
 						?>
 					</div>
 				</li>
@@ -239,10 +290,11 @@
 			{
   				$('.question-text').text("<?php
 				//Call question and print it out.
-				$conn = new mysqli($servername, $username, $password, $dbname);
-				$quest = callQuestion($randID[0] + 1, $conn);
-				$conn->close();
+				//$conn = new mysqli($servername, $username, $password, $dbname);
+				//$quest = callQuestion($randID[0] + 1, $conn);
+				//$conn->close();
 				?>");
+				window.location.href = "votepublic.php";
 			});
 			
 			//on left swipe, load question
@@ -250,10 +302,12 @@
 			{
   				$('.question-text').text("<?php
 				//Call question and print it out.
-				$conn = new mysqli($servername, $username, $password, $dbname);
-				$quest = callQuestion($randID[0] + 1, $conn);
-				$conn->close();
+				//$conn = new mysqli($servername, $username, $password, $dbname);
+				//$quest = callQuestion($randID[0] + 1, $conn);
+				//$conn->close();
+				
 				?>");
+				window.location.href = "votepublic.php";
 			});
 
 		});
