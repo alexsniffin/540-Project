@@ -1,5 +1,4 @@
 -- TRIGGERS
--- TODO: ...
 
 -- Check if a user has already voted on a poll before inserting
 DELIMITER //
@@ -45,7 +44,7 @@ BEGIN
 		SET errMsg = "Age must be less than 150, sorry old people.";
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
 	ELSEIF NOT NEW.email REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$' THEN
-		SET errMsg = "Email must not include any special symbols.";
+		SET errMsg = "Email must not include any special symbols and must follow the format email@website.com.";
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
 	END IF;
 END //

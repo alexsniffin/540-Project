@@ -27,7 +27,7 @@ DELIMITER ;
 INSERT INTO Voted VALUES(NULL, 2, 1); -- Should throw the error message
 
 -- http://www.regextester.com/
--- Check if a new user has a valid name, pass, and email
+-- Check if a new user has a valid name, pass, and email and limit age to 150
 DELIMITER //
 DROP TRIGGER IF EXISTS ProfileCheck //
 CREATE TRIGGER ProfileCheck BEFORE INSERT ON Users
@@ -45,7 +45,7 @@ BEGIN
 		SET errMsg = "Age must be less than 150, sorry old people.";
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
 	ELSEIF NOT NEW.email REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$' THEN
-		SET errMsg = "Email must not include any special symbols.";
+		SET errMsg = "Email must not include any special symbols and must follow the format email@website.com.";
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
 	END IF;
 END //

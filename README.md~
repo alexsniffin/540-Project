@@ -44,5 +44,5 @@ Functions -
 
 Triggers:
 - **VoteCheck** - Checks if you've voted in a poll already
-- **ProfileCheck** - Check if a new user has a valid name, pass, and email using Regex
+- **ProfileCheck** - Check if a new user has a valid name, pass, and email using Regex and limit age to 150
 
