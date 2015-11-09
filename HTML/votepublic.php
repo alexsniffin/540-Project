@@ -135,101 +135,123 @@
 	
 	
 		<!-- Choices -->
+		<form action="immedresults.php" method="post">
 		<div class="choices">
 			<ul>
 				<li>
-					<div class="radio-button" id="choice_1"></div>
+					<div class="radio-button" id="choice_1" name="choice" value="choice1"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[0][1];
+							$result = $answerArray[0];
+						
+						?>
+					</div>
+				</li>
+				<li>
+					<div class="radio-button" id="choice_2" name="choice" value="choice2"></div>
+					<div class="choice-text">
+						<?php
+							echo $answerArray[1][1];
 							
 						?>
 					</div>
 				</li>
 				<li>
-					<div class="radio-button" id="choice_2"></div>
-					<div class="choice-text">
-						<?php
-							echo $answerArray[1][1];
-						?>
-					</div>
-				</li>
-				<li>
-					<div class="radio-button" id="choice_3"></div>
+					<div class="radio-button" id="choice_3" name="choice" value="choice3"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[2][1];
+							
 						?>
 					</div>
 				</li>
 				<li>
-					<div class="radio-button" id="choice_4"></div>
+					<div class="radio-button" id="choice_4" name="choice" value="choice4"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[3][1];
+							
 						?>
 					</div>
 				</li>
 				<li>
-					<div class="radio-button" id="choice_5"></div>
+					<div class="radio-button" id="choice_5" name="choice" value="choice5"></div>
+					<div class="choice-text">
+						<?php
+							echo $answerArray[4][1];
+							
+						?>
+					</div>
+				</li>
+				<li>
+					<div class="radio-button" id="choice_6" name="choice" value="choice6"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[5][1];
+							
 						?>
 					</div>
 				</li>
 				<li>
-					<div class="radio-button" id="choice_6"></div>
+					<div class="radio-button" id="choice_7" name="choice" value="choice7"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[6][1];
+							
 						?>
 					</div>
 				</li>
 				<li>
-					<div class="radio-button" id="choice_6"></div>
+					<div class="radio-button" id="choice_8" name="choice" value="choice8"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[7][1];
+							
 						?>
 					</div>
 				</li>
 				<li>
-					<div class="radio-button" id="choice_6"></div>
+					<div class="radio-button" id="choice_9" name="choice" value="choice9"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[8][1];
+							
 						?>
 					</div>
 				</li>
 				<li>
-					<div class="radio-button" id="choice_6"></div>
+					<div class="radio-button" id="choice_10" name="choice" value="choice10"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[9][1];
+							
 						?>
 					</div>
 				</li>
 				<li>
-					<div class="radio-button" id="choice_6"></div>
+					<div class="radio-button" id="choice_11" name="choice"  value="choice11"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[10][1];
+							
 						?>
 					</div>
 				</li>
 				<li>
-					<div class="radio-button" id="choice_6"></div>
+					<div class="radio-button" id="choice_12" name="choice" value="choice12"></div>
 					<div class="choice-text">
 						<?php
 							echo $answerArray[11][1];
+							
 						?>
 					</div>
 				</li>
 				
 			</ul>	
 		</div>
-		
+			<input type="submit">
+		</form>
 		<!-- TEMPORARY: Submit button to submit poll and take user to immediate result page -->
 		<!-- Button is inactive until a choice is selected -->
 		<!-- Needs to also actually submit the answer to database -->
@@ -281,8 +303,9 @@
 			
 			//declare click handler for submit button
 			$(document).on('click', '.right-arrow.submit', function()
-			{
-				window.location.href = 'immedresults.html';
+			{	
+
+				window.location.href = 'immedresults.php';
 			});
 			
 			//on click, load question
