@@ -15,12 +15,12 @@ function callLogin($log)
   {
     die("Connection failed: " . $conn->conect_error);
   }
-  $ress = 1;
-  echo $ress;
-  $ress = mysqli_query($conn, $log) or die("UserName or password do not match");
+  //$ress = 1;
+  //echo $ress;
+  $res = mysqli_query($conn, $log) or die("UserName or password do not match");
   $conn->close();
-  echo $ress;
-  return $ress;
+  //echo $ress;
+  //return $ress;
 }
 
 $user = $_POST["user"];
@@ -35,8 +35,8 @@ $res = callLogin($login);
   //echo $res;
   $cookie_name = $user;
   $cookie_value = $res; //will be unique id of user
-  //setcookie($cookie_name, $cookie_value, time()+(86400), "/");
-  //header('Location: cookieTest.php');
+  setcookie($cookie_name, $cookie_value, time()+(86400), "/");
+  header('Location: home.html');
 
 
 ?>
