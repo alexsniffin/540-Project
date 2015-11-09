@@ -13,6 +13,8 @@
 	</head>
 
 	<body>
+	
+	<div class="main-content login">
 
 		<!-- Logo -->
 		<img class="logo" src="imgs/logo_2x.png"></img>

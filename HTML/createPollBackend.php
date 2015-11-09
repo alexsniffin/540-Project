@@ -1,11 +1,13 @@
-<html>
-<body>
+<!DOCTYPE html>
+
+<html lang = "en">
 
 <!-- Initial inputs to test out various functions in the PHP body below -->
 <!-- IMPORTANT!!! Code is unoptimized so far -->
 
 
-<!-- For debugging purposes. -->>
+<!-- For debugging purposes. -->
+<!-- 
 	<?php echo $_POST["quest"]; ?><br>
 	
 	<?php echo $_POST["categoryselection"]; ?><br>
@@ -29,6 +31,7 @@
 	<?php echo $_POST["ans11"]; ?><br>
 	<?php echo $_POST["ans12"]; ?><br>
 	<?php echo "end debug printout"; ?><br>
+ -->
 	
 
 
@@ -49,7 +52,7 @@ if ($conn->connect_error)
     die("Connection failed: " . $conn->connect_error);
 }
 // this statement can be removed later
-echo "Connected successfully";
+// echo "Connected successfully";
 
 //Variable that will hold string to send to SQL server for poll input
 $sqlInsert;
@@ -87,7 +90,7 @@ function loadArray()
 	{
 		$increment = 'ans' . $i;
 	
-		echo $increment . '<br>';
+// 		echo $increment . '<br>';
 	
 		if(isset($_POST["$increment"]) && !empty($_POST["$increment"]))
 		{
@@ -215,12 +218,12 @@ if(isset($_POST["pubOpriv"]))
 	//build SQL string statement
 	$sqlInsertString = privatePoll($sqlInsert,$userID, $key);
 
-	echo '<br>' . $sqlInsertString . '<br>';
+// 	echo '<br>' . $sqlInsertString . '<br>';
 
 	$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
 	$conn->close();
-	echo "sent to private<br>";
-	echo "<br> Share Key is: " . $key;
+// 	echo "sent to private<br>";
+// 	echo "<br> Share Key is: " . $key;
 	
 	
 }
@@ -229,13 +232,13 @@ else
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	$sqlInsertString = publicPoll($sqlInsert,$userID);
 	
-	echo '<br>' . $sqlInsertString . '<br>';
+// 	echo '<br>' . $sqlInsertString . '<br>';
 	
 	//Attempt to insert data into database
 	$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
 	$conn->close();
 	
-	echo "sent to public<br>";
+// 	echo "sent to public<br>";
 	
 	
 }
@@ -245,17 +248,81 @@ else
 
 
 
-echo "<br>";
+// echo "<br>";
 
+// END PHP
 ?>
+
+<head>
+		<title>Create | Polling App</title>
+		<meta charset = "utf-8">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+<body>
 
 <!-- Test out the poll creation again -->
 
+<!-- 
 	<form action="createPoll.php" method="post">
 	
 	Try again?
 	<input type="submit">
 	</form>
+ -->
+ 
+ <!-- Navbar -->
+	<nav class="navbar navbar-inverse">
+  		<div class="container-fluid">
+    	<div class="navbar-header">
+      		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span> 
+      		</button>
+      	<a class="navbar-brand" href="home.html"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
+   		 </div>
+    		<div class="collapse navbar-collapse" id="myNavbar">
+     		    <ul class="nav navbar-nav">
+        			<li><a href="createPoll.php">Create</a></li>
+        			<li><a href="votepublic.php">Vote</a></li>
+       			    <li><a href="privatepoll.html">Private Polls</a></li> 
+      			</ul>
+    		</div>
+  		</div>
+	</nav>
+	
+	<!-- User Bar -->
+	<div class="userbar">
+		<ul>
+			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png">pollshark567</a></li>
+			<li><img src ="imgs/coin_icon_2x.png">12</li>
+		<ul>
+	</div>
+	
+	<!-- Start main content -->
+	<div class="main-content">
+	
+		<!-- Success Image -->
+		<div class="success-img"></div>
+		
+		<div class="top">
+		<h2>You have created a new poll. <br/><br/>
+			<a href="profile.html">Track </a> your results, <br/>
+			<a href="createpoll.php">Create </a> another poll, or <br/>
+			<a href="votepublic.php">Cast some votes </a> of your own!</h2>
+		</div>	
+		
+	</div>
+ 
+
 
 </body>
 </html>

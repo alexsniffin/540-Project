@@ -46,12 +46,15 @@ $res = mysqli_query($conn, $crtUserACC);
 	</head>
 
 	<body>
+	<div class="main-content login">
 
 		<!-- Logo -->
 		<img class="logo" src="imgs/logo_2x.png"></img>
 
 		<!-- Top of page text -->
 		<div class="signin">
-      <p> You Succsefully created an account. Click <a href="index.php">here</a> to login </p>
-    </div>
+      		<p> You Succsefully created an account. Click <a href="index.php">here</a> to login </p>
+    	</div>
+    	
+    </div>	
   </html>
