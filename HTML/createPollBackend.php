@@ -316,6 +316,7 @@ else
 		<div class="top">
 		<h2>You have created a new poll. <br/><br/>
 			<a href="profile.html">Track </a> your results, <br/>
+			Share Key: <?php echo $key;?>
 			<a href="createpoll.php">Create </a> another poll, or <br/>
 			<a href="votepublic.php">Cast some votes </a> of your own!</h2>
 		</div>	

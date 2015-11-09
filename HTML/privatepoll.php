@@ -3,7 +3,7 @@
 <html lang = "en">
 
 	<head>
-		<title>Polling App</title>
+		<title>Private Polls</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -29,8 +29,7 @@
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
         			<li><a href="votepublic.php">Vote</a></li>
-       			    <li><a href="privatepoll.php">Private Polls</a></li> 
-					
+       			    <li><a href="privatepoll.html">Private Polls</a></li> 
       			</ul>
     		</div>
   		</div>
@@ -47,27 +46,25 @@
 	<!-- Start main content -->
 	<div class="main-content">
 	
-		<!-- Top of page text -->
-		<div class="top">
-		<h2>Ready to share your<br/>opinions with the world?</h2>
-		</div>
-	
-		<!-- Vote Now Button -->
-		<div class="round-button-container">
-			<div class="round-button">
-			<a href="votepublic.php">Vote</br>Now</a>
-			</div>
-		</div>	
-		
-		<!-- Bottom of page text -->
-		<div class="bottom">
-		<p>or choose from<br/></p> <a href="categories.html">Categories</a>
-		<p>you can even<br/></p> <a href="createPoll.php">Create your own poll</a>
-		</div>
-		
-	</div>
+		<!-- Share code form -->
+		<div class="share-code-container">
+			<h2>Please enter your share code in order to vote:</h2>
 			
+			<form action="voteprivate.php" method="post">
+  				<div class="form-group">
+    				<input type="sharecode" class="form-control" id="sharecode" name="sharecode">
+  				</div>
+				<a href="voteprivate.php">
+  			<input type="submit">   
+			</form>
+  			
+  			
+  			</a>
+  			
+  		</div>
+	
+	</div>
+		
 	</body>
-
 	
 </html>
