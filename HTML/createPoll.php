@@ -36,7 +36,7 @@
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
         			<li><a href="votepublic.php">Vote</a></li>
-       			    <li><a href="privatepoll.html">Private Polls</a></li> 
+       			    <li><a href="privatepoll.php">Private Polls</a></li> 
       			</ul>
     		</div>
   		</div>
