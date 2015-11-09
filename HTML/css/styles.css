@@ -624,6 +624,15 @@ p{
     color: #000;
 }
 
+.create-signIn input[type="number"]{
+	height: 40px;
+	width: 20%;
+    vertical-align: middle;
+    border: solid;
+	font-size: 14pt;
+    color: #000;
+}
+
 .create-signIn input[type="email"]{
 	height: 40px;
 	width: 20%;
@@ -631,6 +640,24 @@ p{
 		border: solid;
 	font-size: 14pt;
 		color: #000;
+}
+
+.create-signIn input[type="submit"]{
+	text-align: center;
+    background: #e04747;
+    width: 190px;
+    height: 45px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 20pt;
+	line-height: 25pt;
+	font-weight: 200;
+	color: #f2faff !important;
+	padding-top: 5px;
+	border: none;
 }
 
 .signIn{

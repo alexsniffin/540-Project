@@ -22,10 +22,11 @@ $res = mysqli_query($conn, $login);
 
 
   // create cookies
+  $res = 1;
   $cookie_name = $user;
   $cookie_value = $res; //will be unique id of user
   setcookie($cookie_name, $cookie_value, time()+(86400), "/");
-  header('Location: home.html');
+  header('Location: cookieTest.php');
 
 
 ?>
