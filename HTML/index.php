@@ -25,7 +25,7 @@
 					<!-- Sign in  -->
         <div class="signIn">
 					<form action="login.php" class="create-signIn" method="post">
-						<label for="userName"><strong>Username: </strong></label><input type="text" name="user" id="userName" >
+						<label for="Email"><strong>Email: </strong></label><input type="email" name="user" id="Email" >
 						<br>
 						<label for="passWord"><strong>Password: </strong></label><input type="password" name="pwrd" id="passWord">
 						<br>
