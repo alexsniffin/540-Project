@@ -13,11 +13,6 @@
 	<?php echo $_POST["categoryselection"]; ?><br>
 	<?php echo $_POST["datepicker"]; ?><br>
 	
-	
-	
-	
-	
-	
 	<?php echo $_POST["ans1"]; ?><br>
 	<?php echo $_POST["ans2"]; ?><br>
 	<?php echo $_POST["ans3"]; ?><br>
@@ -76,6 +71,9 @@ else
 
 //winning
 $winning = true;
+
+$categoryselection = $_POST["categoryselection"];
+$date = $_POST["datepicker"];
 
 //Loads in user input in order to create SQL call function string
 //Currently uses 2D Array 
@@ -153,10 +151,10 @@ function printArray($tempArray)
 }
 
 // Takes in user input and concatenates into a string to send to SQL for insertion
-function publicPoll($tempArray, $ID)
+function publicPoll($tempArray, $ID, $category, $date)
 {
 	
-	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."',"."NULL,"."'NULL',"."30,";
+	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."',"."NULL,'". $category ."'," . $date .",";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
@@ -164,11 +162,25 @@ function publicPoll($tempArray, $ID)
 		{
 				if($j < count($tempArray[$i]) - 1)
 				{
+					if($tempArray[$i][$j] != 'NULL')
+					{
 					$builtString .= "'" . $tempArray[$i][$j] . "',";
+					}
+					else
+					{
+					$builtString .= "NULL,"	;
+					}
 				}
 				else
 				{
-					$builtString .= "'" . $tempArray[$i][$j] . "');";
+					if($tempArray[$i][$j] != 'NULL')
+					{
+						$builtString .= "'" . $tempArray[$i][$j] . "');";
+					}
+					else
+					{
+						$builtString .= "NULL);";
+					}
 				}
 		}
 		
@@ -180,10 +192,10 @@ function publicPoll($tempArray, $ID)
 }
 
 // Takes in user input and concatenates with a unique key into a string to send to SQL for insertion
-function privatePoll($tempArray, $ID, $shareKey)
+function privatePoll($tempArray, $ID, $shareKey, $category, $date)
 {
 	
-	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."','".$shareKey."',NULL," . "30,";
+	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."','".$shareKey."','". $category ."'," . $date .",";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
@@ -191,11 +203,25 @@ function privatePoll($tempArray, $ID, $shareKey)
 		{
 				if($j < count($tempArray[$i]) - 1)
 				{
+					if($tempArray[$i][$j] != 'NULL')
+					{
 					$builtString .= "'" . $tempArray[$i][$j] . "',";
+					}
+					else
+					{
+					$builtString .= "NULL,"	;
+					}
 				}
 				else
 				{
-					$builtString .= "'" . $tempArray[$i][$j] . "');";
+					if($tempArray[$i][$j] != 'NULL')
+					{
+						$builtString .= "'" . $tempArray[$i][$j] . "');";
+					}
+					else
+					{
+						$builtString .= "NULL);";
+					}
 				}
 				
 		}
@@ -216,35 +242,27 @@ $sqlInsert = loadArray();
 if(isset($_POST["pubOpriv"]))
 {
 	//build SQL string statement
-	$sqlInsertString = privatePoll($sqlInsert,$userID, $key);
+	$sqlInsertString = privatePoll($sqlInsert,$userID, $key, $categoryselection, $date);
 
 // 	echo '<br>' . $sqlInsertString . '<br>';
 
 	$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
 	$conn->close();
 // 	echo "sent to private<br>";
-// 	echo "<br> Share Key is: " . $key;
-	
-	
+// 	echo "<br> Share Key is: " . $key;	
 }
 else
 {
 	$conn = new mysqli($servername, $username, $password, $dbname);
-	$sqlInsertString = publicPoll($sqlInsert,$userID);
+	$sqlInsertString = publicPoll($sqlInsert,$userID,$categoryselection,$date);
 	
-// 	echo '<br>' . $sqlInsertString . '<br>';
+ 	echo '<br>' . $sqlInsertString . '<br>';
 	
 	//Attempt to insert data into database
 	$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
 	$conn->close();
-	
-// 	echo "sent to public<br>";
-	
-	
 }
-
-
-
+// 	echo "sent to public<br>";
 
 
 

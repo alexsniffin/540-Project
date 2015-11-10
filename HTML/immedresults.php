@@ -24,40 +24,40 @@ $winning = true;
 			
 switch($choice)
 {
-	case "choice1":
-		$resAnswer = $answersArray[0];
+	case "choice0":
+		$resAnswer = $answerArray[0];
 		break;
-	case "choice2":
+	case "choice1":
 		$resAnswer = $answerArray[1];
 			break;
-	case "choice3":
+	case "choice2":
 		$resAnswer = $answerArray[2];
 		break;
-	case "choice4":
+	case "choice3":
 		$resAnswer = $answerArray[3];
 		break;
-	case "choice5":
+	case "choice4":
 		$resAnswer = $answerArray[4];
 		break;
-	case "choice6":
+	case "choice5":
 		$resAnswer = $answerArray[5];
 		break;
-	case "choice7":
+	case "choice6":
 		$resAnswer = $answerArray[6];
 		break;
-	case "choice8":
+	case "choice7":
 		$resAnswer = $answerArray[7];
 		break;
-	case "choice9":
+	case "choice8":
 		$resAnswer = $answerArray[8];
 		break;
-	case "choice10":
+	case "choice9":
 		$resAnswer = $answerArray[9];
 		break;
-	case "choice11":
+	case "choice10":
 		$resAnswer = $answerArray[10];
 		break;
-	case "choice12":
+	case "choice11":
 		$resAnswer = $answerArray[11];
 		break;
 }
