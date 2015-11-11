@@ -17,12 +17,27 @@
 	//winning
 	$winning = true;
 
+	//User ID
+	$userID = '3';
+	
+	$randID = '';
+	
 	//This sequence of instructions fetches a random poll id from
 	//other users every time the page is loaded
-	$randSQLQuery = "CALL random_public_poll(3);";
-	$randIDTransfer = mysqli_query($conn,$randSQLQuery) or die("Query fail: " . mysqli_error());
-	$randID = mysqli_fetch_array($randIDTransfer);
-	$conn->close();
+	if(isset($_GET["cat"]))
+	{
+		$randSQLQuery = "CALL random_public_poll(". $userID . ",'". $_GET["cat"] ."');";
+		$randIDTransfer = mysqli_query($conn,$randSQLQuery) or die("Query fail: " . mysqli_error());
+		$randID = mysqli_fetch_array($randIDTransfer);
+		$conn->close();
+	}
+	else
+	{
+		$randSQLQuery = "CALL random_public_poll(".$userID.");";
+		$randIDTransfer = mysqli_query($conn,$randSQLQuery) or die("Query fail: " . mysqli_error());
+		$randID = mysqli_fetch_array($randIDTransfer);
+		$conn->close();
+	}
 
 	echo $randID[0];
 	

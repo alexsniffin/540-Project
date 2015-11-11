@@ -75,6 +75,8 @@ $winning = true;
 $categoryselection = $_POST["categoryselection"];
 $date = $_POST["datepicker"];
 
+echo $date;
+
 //Loads in user input in order to create SQL call function string
 //Currently uses 2D Array 
 function loadArray()
@@ -93,6 +95,7 @@ function loadArray()
 		if(isset($_POST["$increment"]) && !empty($_POST["$increment"]))
 		{
 			$buff[0][$i] = $_POST["$increment"];
+			
 		}
 		else
 		{
@@ -133,6 +136,7 @@ function ydintIncr($incr)
 // Could be useful for printing to main vote screen.
 function printArray($tempArray)
 {
+	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
 		for ($j = 0; $j < count($tempArray[$i]); $j++)
@@ -153,8 +157,57 @@ function printArray($tempArray)
 // Takes in user input and concatenates into a string to send to SQL for insertion
 function publicPoll($tempArray, $ID, $category, $date)
 {
+	$catSwitch = '';
 	
-	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."',"."NULL,'". $category ."'," . $date .",";
+	switch($category)
+	{
+		
+		case "Science":
+			$catSwitch = 'science';
+			break;
+		case "Literature":
+			$catSwitch = 'lit';
+				break;
+		case "Technology":
+			$catSwitch = 'tech';
+			break;
+		case "Music":
+			$catSwitch = 'music';
+			break;
+		case "Movies":
+			$catSwitch = 'movies';
+			break;
+		case "Current Events":
+			$catSwitch = 'curEvent';
+			break;
+		case "Gaming":
+			$catSwitch = 'game';
+			break;
+		case "Food & Drink":
+			$catSwitch = 'food';
+			break;
+		case "Politics":
+			$catSwitch = 'poli';
+			break;
+	}
+	
+	$charArray = str_split($tempArray[0][0]);
+	$wordLoad = '';
+	$quest = '';
+	
+	
+	for($i=0;$i < count($charArray); $i++)
+	{
+		if($charArray[$i] == "'")
+		{
+			$charArray[$i] = "\'";
+		}
+			$wordLoad .= $charArray[$i];
+		}
+						
+		$quest .= $wordLoad;
+	
+	$builtString = "CALL create_poll(".$ID.","."'".$quest."',"."NULL,'". $catSwitch ."'," . $date .",";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
@@ -164,7 +217,18 @@ function publicPoll($tempArray, $ID, $category, $date)
 				{
 					if($tempArray[$i][$j] != 'NULL')
 					{
-					$builtString .= "'" . $tempArray[$i][$j] . "',";
+						$charArray = str_split($tempArray[$i][$j]);
+						$wordLoad = '';
+						
+						for($k=0;$k < count($charArray); $k++)
+						{
+							if($charArray[$k] == "'")
+							{
+								$charArray[$k] = "\'";
+							}
+							$wordLoad .= $charArray[$k];
+						}
+							$builtString .= "'" . $wordLoad . "',";
 					}
 					else
 					{
@@ -175,7 +239,19 @@ function publicPoll($tempArray, $ID, $category, $date)
 				{
 					if($tempArray[$i][$j] != 'NULL')
 					{
-						$builtString .= "'" . $tempArray[$i][$j] . "');";
+						$charArray = str_split($tempArray[$i][$j]);
+						$wordLoad = '';
+						
+						for($k=0;$k < count($charArray); $k++)
+						{
+							if($charArray[$k] == "'")
+							{
+								$charArray[$k] = "\'";
+							}
+							$wordLoad .= $charArray[$k];
+						}
+						
+						$builtString .= "'" . $wordLoad . "');";
 					}
 					else
 					{
@@ -184,8 +260,10 @@ function publicPoll($tempArray, $ID, $category, $date)
 				}
 		}
 		
+		
 	}
 	
+
 	//$buildString .= "'" . $tempArray[0][12] . "');";
 	
 	return $builtString;
@@ -195,7 +273,56 @@ function publicPoll($tempArray, $ID, $category, $date)
 function privatePoll($tempArray, $ID, $shareKey, $category, $date)
 {
 	
-	$builtString = "CALL create_poll(".$ID.","."'".$tempArray[0][0]."','".$shareKey."','". $category ."'," . $date .",";
+	$catSwitch = '';
+	
+	switch($category)
+	{
+		
+		case "Science":
+			$catSwitch = 'science';
+			break;
+		case "Literature":
+			$catSwitch = 'lit';
+				break;
+		case "Technology":
+			$catSwitch = 'tech';
+			break;
+		case "Music":
+			$catSwitch = 'music';
+			break;
+		case "Movies":
+			$catSwitch = 'movies';
+			break;
+		case "Current Events":
+			$catSwitch = 'curEvent';
+			break;
+		case "Gaming":
+			$catSwitch = 'game';
+			break;
+		case "Food & Drink":
+			$catSwitch = 'food';
+			break;
+		case "Politics":
+			$catSwitch = 'poli';
+			break;
+	}
+	
+	$charArray = str_split($tempArray[0][0]);
+	$wordLoad = '';
+	$quest = '';
+						
+	for($i=0;$i < count($charArray); $i++)
+	{
+		if($charArray[$i] == "'")
+		{
+			$charArray[$i] = "\'";
+		}
+			$wordLoad .= $charArray[$i];
+		}
+						
+		$quest .= $wordLoad;
+	
+	$builtString = "CALL create_poll(".$ID.","."'".$quest."','".$shareKey."','". $catSwitch ."'," . $date .",";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
@@ -205,7 +332,18 @@ function privatePoll($tempArray, $ID, $shareKey, $category, $date)
 				{
 					if($tempArray[$i][$j] != 'NULL')
 					{
-					$builtString .= "'" . $tempArray[$i][$j] . "',";
+						$charArray = str_split($tempArray[$i][$j]);
+						$wordLoad = '';
+						
+						for($k=0;$k < count($charArray); $k++)
+						{
+							if($charArray[$k] == "'")
+							{
+								$charArray[$k] = "\'";
+							}
+							$wordLoad .= $charArray[$k];
+						}
+							$builtString .= "'" . $wordLoad . "',";
 					}
 					else
 					{
@@ -216,7 +354,19 @@ function privatePoll($tempArray, $ID, $shareKey, $category, $date)
 				{
 					if($tempArray[$i][$j] != 'NULL')
 					{
-						$builtString .= "'" . $tempArray[$i][$j] . "');";
+						$charArray = str_split($tempArray[$i][$j]);
+						$wordLoad = '';
+						
+						for($k=0;$k < count($charArray); $k++)
+						{
+							if($charArray[$k] == "'")
+							{
+								$charArray[$k] = "\'";
+							}
+							$wordLoad .= $charArray[$k];
+						}
+						
+						$builtString .= "'" . $wordLoad . "');";
 					}
 					else
 					{

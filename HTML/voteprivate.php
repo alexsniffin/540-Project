@@ -20,7 +20,7 @@
 	$winning = true;
 	
 	$shareKey = $_POST['sharecode'];
-	echo $shareKey;
+	//echo $shareKey;
 	
 
 	//This sequence of instructions fetches a random poll id from
@@ -30,7 +30,7 @@
 	$privID = mysqli_fetch_array($privIDTransfer);
 	$conn->close();
 
-	echo $privID[0];
+	//echo $privID[0];
 	
 	
 	//Print Poll question
@@ -79,6 +79,7 @@
 ?>
 
 	
+	
 		<!-- Question -->
 		<div class="question">
 			<div class="left-arrow"></div>
@@ -93,89 +94,21 @@
 			<div class="right-arrow"></div>
 				</div>
 	
-	
+		
 		<!-- Choices -->
 					<form action="immedresults.php" method="post">
-					<input type="radio" id="choice_1" name="choice" value="choice1">
+					<?php 
 					
-						<?php
-							echo $answerArray[0][1];
-						
-						
-						?>		
-					<input type="radio" id="choice_2" name="choice" value="choice2">
 					
-						<?php
-							echo $answerArray[1][1];
-							
-						?>
-					<input type="radio" id="choice_3" name="choice" value="choice3">
+					for($i=0;$i<count($answerArray); $i++)
+					{
+						echo "<input type='radio' id='choice' name='choice' value='choice".$i."'>".$answerArray[$i][1]."<br>";
+					}
 					
-						<?php
-							echo $answerArray[2][1];
-							
-						?>
-					<input type="radio" id="choice_4" name="choice" value="choice4">
-					
-						<?php
-							echo $answerArray[3][1];
-							
-						?>
-					<input type="radio" id="choice_5" name="choice" value="choice5">
-					
-						<?php
-							echo $answerArray[4][1];
-							
-						?>
-					<input type="radio" id="choice_6" name="choice" value="choice6">
-					
-						<?php
-							echo $answerArray[5][1];
-							
-						?>
-					<input type="radio" id="choice_7" name="choice" value="choice7">
-					
-						<?php
-							echo $answerArray[6][1];
-							
-						?>
-					<input type="radio" id="choice_8" name="choice" value="choice8">
-					
-						<?php
-							echo $answerArray[7][1];
-							
-						?>
-					<input type="radio" id="choice_9" name="choice" value="choice9">
-					
-						<?php
-							echo $answerArray[8][1];
-							
-						?>
-					<input type="radio" id="choice_10" name="choice" value="choice10>
-			
-						<?php
-							echo $answerArray[9][1];
-							
-						?>
-					<input type="radio"id="choice_11" name="choice"  value="choice11">
-					
-						<?php
-							echo $answerArray[10][1];
-							
-						?>
-					<input type="radio" id="choice_12" name="choice" value="choice12">
-						<?php
-							echo $answerArray[11][1];
-							
-						?>
-						
+					?>
 					<input type="submit">   
 					</form>
-				
-			 
-			
-	
+
 	</body>
 
-	
 </html>

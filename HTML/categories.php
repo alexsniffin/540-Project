@@ -59,15 +59,15 @@
 		<!-- This will need to be populated from the database, and clicking each category will filter the polls -->
 		<div class="category-container">
 			<ul>
-				<li><a href="#">Science</a></li>
-				<li><a href="#">Literature</a></li>
-				<li><a href="#">Technology</a></li>
-				<li><a href="#">Music</a></li>
-				<li><a href="#">Movies</a></li>
-				<li><a href="#">Current Events</a></li>
-				<li><a href="#">Gaming</a></li>
-				<li><a href="#">Food & Drink</a></li>
-				<li><a href="#">Politics</a></li>
+				<li><a href="votepublic.php?cat=science">Science</a></li>
+				<li><a href="votepublic.php?cat=lit">Literature</a></li>
+				<li><a href="votepublic.php?cat=tech">Technology</a></li>
+				<li><a href="votepublic.php?cat=music">Music</a></li>
+				<li><a href="votepublic.php?cat=movies">Movies</a></li>
+				<li><a href="votepublic.php?cat=curEvent">Current Events</a></li>
+				<li><a href="votepublic.php?cat=game">Gaming</a></li>
+				<li><a href="votepublic.php?cat=food">Food & Drink</a></li>
+				<li><a href="votepublic.php?cat=poli">Politics</a></li>
 			</ul>	
 		</div>
 	
