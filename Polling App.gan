@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2015-09-27" view-index="0" gantt-divider-location="863" resource-divider-location="300" version="2.7.1" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2015-11-11" view-index="0" gantt-divider-location="863" resource-divider-location="300" version="2.7.1" locale="en_US">
     <description/>
-    <view zooming-state="default:7" id="gantt-chart">
+    <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Name" width="53" order="0"/>
         <field id="tpd4" name="Begin date" width="18" order="1"/>
         <field id="tpd5" name="End date" width="28" order="2"/>
-        <timeline><![CDATA[11,16,0,10,3]]></timeline>
+        <timeline><![CDATA[16,3,11,0,10]]></timeline>
         <option id="color.recent"><![CDATA[#ff9933 #66cc00 #ff3333 #eeeeee]]></option>
     </view>
     <view id="resource-table">
@@ -35,31 +35,45 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Set Up Database/Web Server" color="#8cb6ce" meeting="false" start="2015-10-02" duration="1" complete="0" expand="true">
+        <task id="0" name="Set Up Database/Web Server" color="#8cb6ce" meeting="false" start="2015-10-02" duration="1" complete="0" expand="false">
             <task id="10" name="Set up database structure with tables and ER Model" color="#66cc00" meeting="false" start="2015-10-02" duration="1" complete="0" expand="true"/>
         </task>
         <task id="3" name="Create HTML pages" color="#ff3333" meeting="false" start="2015-10-05" duration="10" complete="0" expand="false">
             <task id="11" name="Write PHP to Interface Between Database and Webpages" color="#ff9933" meeting="false" start="2015-10-05" duration="10" complete="0" expand="true"/>
         </task>
         <task id="12" name="Name App" color="#eeeeee" meeting="false" start="2015-10-02" duration="11" complete="0" expand="true"/>
-        <task id="13" name="Google sign-in button will allow user to log in and automatically create an account with their Google account" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true">
+        <task id="13" name="Google sign-in button will allow user to log in and automatically create an account with their Google account" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="false">
             <task id="33" name="Intermediate page/popup for username setup" color="#8cb6ce" meeting="false" start="2015-10-26" duration="7" complete="0" expand="true"/>
-            <task id="36" name="Profile page will pull in info from the database" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
             <task id="37" name="Coins will increment and decrement according to user activity" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
         </task>
         <task id="34" name="Create Profile page" color="#000000" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
         <task id="16" name="Confirmation messages for voting and creating polls" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
         <task id="17" name="Submitting polls will send results to the database" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
-        <task id="18" name="Triggers for checking special conditions and improving data integrity" color="#000000" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true">
+        <task id="18" name="Triggers for checking special conditions and improving data integrity" color="#000000" meeting="false" start="2015-10-26" duration="14" complete="0" expand="false">
             <task id="29" name="Private poll landing page will actually check for a valid share code" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
         </task>
         <task id="19" name="Immediate result page will be populated from the database" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
         <task id="22" name="Categories page will communicate with the database" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
-        <task id="25" name="Add expiration date field to the Create Poll page" color="#000000" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true">
+        <task id="25" name="Add expiration date field to the Create Poll page" color="#000000" meeting="false" start="2015-10-26" duration="14" complete="0" expand="false">
             <task id="30" name="All fields of the Create Poll page will be submitted to the database" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
         </task>
         <task id="26" name="Implement dynamic adding of choices when creating a poll" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
-        <task id="28" name="Test browser compatibility" color="#8cb6ce" meeting="false" start="2015-10-26" duration="14" complete="0" expand="true"/>
+        <task id="38" name="GUI will be connected accurately with the PHP" color="#8cb6ce" meeting="false" start="2015-11-11" duration="7" complete="0" expand="true"/>
+        <task id="41" name="Voting page will dynamically display the answers and results within the same page" color="#8cb6ce" meeting="false" start="2015-11-11" duration="7" complete="0" expand="true"/>
+        <task id="44" name="Coins will increment when user votes or when other users vote on their polls and will also be required for creating a poll" meeting="false" start="2015-09-28" duration="1" complete="0" expand="true"/>
+        <task id="45" name="Procedure for subtracting coins from the user" meeting="false" start="2015-09-28" duration="1" complete="0" expand="true"/>
+        <task id="46" name="Constraint to check if user has enough coins" color="#8cb6ce" meeting="false" start="2015-11-11" duration="7" complete="0" expand="true"/>
+        <task id="47" name="Create a separate Database user with reduced privileges to prevent security risks" color="#8cb6ce" meeting="false" start="2015-11-11" duration="10" complete="0" expand="true"/>
+        <task id="48" name="Implement a session" color="#000000" meeting="false" start="2015-11-11" duration="7" complete="0" expand="true">
+            <task id="58" name="Profile page will pull logged in user's info from the database" color="#8cb6ce" meeting="false" start="2015-11-11" duration="7" complete="0" expand="true"/>
+            <task id="76" name="Add log out button and function" color="#8cb6ce" meeting="false" start="2015-11-11" duration="7" complete="0" expand="true"/>
+        </task>
+        <task id="51" name="HTML/CSS input fields and other needed areas will be fine tuned to look correct" color="#8cb6ce" meeting="false" start="2015-11-11" duration="8" complete="0" expand="true"/>
+        <task id="54" name="Display error messages when an input is incorrect" color="#8cb6ce" meeting="false" start="2015-11-11" duration="8" complete="0" expand="true"/>
+        <task id="55" name="Test all input fields and try inputting unexpected results, out of bound, etc." color="#8cb6ce" meeting="false" start="2015-11-16" duration="5" complete="0" expand="true"/>
+        <task id="56" name="Test functionality of all buttons" color="#8cb6ce" meeting="false" start="2015-11-16" duration="5" complete="0" expand="true"/>
+        <task id="57" name="Experiment and try to break the code by trying to exploit client-sided issues" color="#8cb6ce" meeting="false" start="2015-11-16" duration="5" complete="0" expand="true"/>
+        <task id="50" name="Test browser compatibility" color="#8cb6ce" meeting="false" start="2015-11-16" duration="5" complete="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Lee" function="Default:0" contacts="" phone=""/>
@@ -74,32 +88,53 @@
         <allocation task-id="16" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="25" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="26" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="28" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="34" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="38" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="50" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="58" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="51" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="54" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="55" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="56" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="57" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="10" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="11" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="12" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="18" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="37" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="46" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="47" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="55" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="56" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="57" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="11" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="12" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="17" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="29" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="19" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="31" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="22" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="30" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="36" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="37" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="38" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="58" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="48" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="54" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="55" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="56" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="57" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="0" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="3" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="11" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="12" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="13" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="33" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="31" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="28" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="36" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="50" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="58" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="48" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="54" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="55" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="56" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="57" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
     </allocations>
     <vacations/>
     <taskdisplaycolumns>
