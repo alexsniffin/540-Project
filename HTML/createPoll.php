@@ -38,6 +38,9 @@
         			<li><a href="votepublic.php">Vote</a></li>
        			    <li><a href="privatepoll.php">Private Polls</a></li> 
       			</ul>
+      			<ul class="nav navbar-nav navbar-right">
+      				<li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li> 
+     			</ul>
     		</div>
   		</div>
 	</nav>
