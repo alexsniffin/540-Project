@@ -120,7 +120,12 @@ CREATE PROCEDURE create_poll
 	IN ans12 VARCHAR(128))
 BEGIN
 	DECLARE poll_id INT;
-		INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question, category);
+
+	IF days_to_close IS NULL THEN
+		SET days_to_close = 30;
+	END IF;
+
+	INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question, category);
 	SET poll_id = LAST_INSERT_ID();
 
 	--Not sure how to do this in a loop with SQL
@@ -237,6 +242,32 @@ BEGIN
 	UPDATE Users u, Polls p
 	SET u.coins = u.coins + 1
 	WHERE p.P_ID = P_ID AND p.User_ID = u.User_ID;
+END //
+DELIMITER ;
+
+-- Removes 100 coins from the User. This will be used for buying a Poll. If they don't have enoguh coins then it will return an error.
+-- Input: User_ID(Int)
+-- Output: Void
+DELIMITER //
+CREATE PROCEDURE removeCoins
+	(IN User_ID INT)
+BEGIN
+	DECLARE totalCoins INT;
+	DECLARE errMsg VARCHAR(128);
+
+	SELECT u.coins INTO totalCoins 
+	FROM Users u 
+	WHERE u.User_ID = User_ID 
+	LIMIT 1;
+
+	IF (totalCoins >= 100) THEN
+		UPDATE Users u
+		SET u.coins = u.coins - 100
+		WHERE u.User_ID = User_ID;
+	ELSE
+		SET errMsg = "Sorry, you don''t have enough coins for this!";
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+	END IF;
 END //
 DELIMITER ;
 
