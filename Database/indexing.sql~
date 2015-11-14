@@ -1,5 +1,3 @@
--- MySQL automatically creates clustered indexing on primary keys. Nice.
-
 -- Indexing for Share Code to increase search speed for private polls
 ALTER TABLE Polls ADD INDEX (share_code);
 
