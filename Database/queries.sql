@@ -10,12 +10,11 @@
 DELIMITER //
 CREATE PROCEDURE random_public_poll 
 	(IN user INT,
-	IN category CHAR(32),
-	OUT poll_id INT)
+	IN cate CHAR(32))
 BEGIN
-	SELECT P_ID INTO poll_id
+	SELECT P_ID
 	FROM Polls p
-	WHERE p.User_ID <> user AND p.category = category AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
+	WHERE p.User_ID <> user AND p.share_code IS NULL AND date_to_close > NOW() AND (cate IS NULL OR p.category = cate) AND NOT EXISTS (
 		SELECT User_ID
 		FROM Voted v
 		WHERE v.User_ID = user AND v.ANS_ID IN (
@@ -40,7 +39,7 @@ CREATE FUNCTION getRandomPublicPoll(user INT, category CHAR(32))
 BEGIN
 	DECLARE poll_id varchar(10);
 
-	SELECT P_ID INTO poll_id
+	SELECT P_ID
 	FROM Polls p
 	WHERE p.User_ID <> user AND p.category = category AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
 		SELECT User_ID

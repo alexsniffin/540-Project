@@ -10,12 +10,11 @@
 DELIMITER //
 CREATE PROCEDURE random_public_poll 
 	(IN user INT,
-	IN category CHAR(32),
-	OUT poll_id INT)
+	IN category CHAR(32))
 BEGIN
 	SELECT P_ID INTO poll_id
 	FROM Polls p
-	WHERE p.User_ID <> user AND p.category = category AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
+	WHERE p.User_ID <> user AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
 		SELECT User_ID
 		FROM Voted v
 		WHERE v.User_ID = user AND v.ANS_ID IN (
@@ -23,7 +22,10 @@ BEGIN
 			FROM Answers a
 			WHERE a.P_ID = p.P_ID
 		)
-	)
+	) AND p.category LIKE
+		CASE WHEN p.category IS NOT NULL THEN
+			p.category = category
+		END
 	ORDER BY RAND() LIMIT 1;
 END //
 DELIMITER ;
@@ -40,7 +42,7 @@ CREATE FUNCTION getRandomPublicPoll(user INT, category CHAR(32))
 BEGIN
 	DECLARE poll_id varchar(10);
 
-	SELECT P_ID INTO poll_id
+	SELECT P_ID
 	FROM Polls p
 	WHERE p.User_ID <> user AND p.category = category AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
 		SELECT User_ID
@@ -120,6 +122,18 @@ CREATE PROCEDURE create_poll
 	IN ans12 VARCHAR(128))
 BEGIN
 	DECLARE poll_id INT;
+	DECLARE totalCoins INT;
+	DECLARE errMsg VARCHAR(128);
+
+	SELECT u.coins INTO totalCoins 
+	FROM Users u 
+	WHERE u.User_ID = user
+	LIMIT 1;
+
+	IF (totalCoins < 100) THEN
+		SET errMsg = "Sorry, you don''t have enough coins for this!";
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
+	END IF;
 
 	IF days_to_close IS NULL THEN
 		SET days_to_close = 30;
