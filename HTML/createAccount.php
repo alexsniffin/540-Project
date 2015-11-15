@@ -1,5 +1,19 @@
 <?php
 
+$servername = "24.197.117.117";
+$username = "darth";
+$password = "ineedhelp";
+$dbname = "pollApp";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if($conn->connect_error)
+{
+	die("Connection failed: " . $conn->conect_error);
+}
+
 //take in user info from form
 $usrName = $_POST["user"];
 $pass1 = $_POST["pwrd1"];
@@ -10,35 +24,20 @@ $age = $_POST["age"];
 $ip = 0;
 
 // Compare passwords and make sure they are the servername
-
 if($pass1 != $pass2)
 {
   die("Passwords do not match!");
 }
 
 // sql call to create account
-$crtUserACC = "CALL createUser('" . $eAdd . "', '" . $pass1 . "', '" . $usrName . "', '" . $gend . "', " . $age . ", " . $ip . ", NULL, NOW())";
+$crtUserACC = "CALL createUser('" . $eAdd . "','" . $pass1 ."','" . $usrName . "','" . $gend . "'," . $age . "," . $ip . ",NULL,NOW())";
 $res = NULL;
 
-function callCreate($crtACC)
-{
-  $servername = "24.197.117.117";
-  $username = "darth";
-  $password = "ineedhelp";
-  $dbname = "pollApp";
+function callCreate($crtACC){}
 
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
+$res = mysqli_query($conn, $crtUserACC) or die("Query fail: " . mysqli_error()); //or die("There was an error with your Account Creation, please try again");
+$conn->close();
 
-  // Check connection
-  if($conn->connect_error)
-  {
-    die("Connection failed: " . $conn->conect_error);
-  }
-  $res = mysqli_query($conn, $crtACC) or die("Email address allready in use");
-
-  $conn->close();
-}
 
 ?>
 <html lang = "en">
