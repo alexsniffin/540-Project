@@ -31,6 +31,12 @@
 
 
 <?php
+
+//User ID passed in from session
+session_start();
+$_SESSION['arrLogin'] = $_SESSION['arrLogin'];
+$userID=$_SESSION['arrLogin'];
+
 //Connect to database
 $servername = "24.197.117.117";
 $username = "darth";
@@ -53,7 +59,9 @@ if ($conn->connect_error)
 $sqlInsert;
 
 //User ID initialized to 1 for debugging purposes
-$userID = 1;
+
+
+echo "<br>userID: ".$userID."<br>";
 
 //Vistigial incrementer for now
 $incr1 = 0;
@@ -155,9 +163,17 @@ function printArray($tempArray)
 }
 
 // Takes in user input and concatenates into a string to send to SQL for insertion
-function publicPoll($tempArray, $ID, $category, $date)
+function publicPoll($tempArray, $ID, $category, $dateIn)
 {
 	$catSwitch = '';
+	$dateConver = $dateIn;
+	$date = strtotime($dateConver);
+	
+	$diff = $date-time();
+	$days = floor($diff/(60*60*24)+2);
+	
+	echo "<br> Calculated days: ".$days."<br>";
+	
 	
 	switch($category)
 	{
@@ -207,7 +223,7 @@ function publicPoll($tempArray, $ID, $category, $date)
 						
 		$quest .= $wordLoad;
 	
-	$builtString = "CALL create_poll(".$ID.","."'".$quest."',"."NULL,'". $catSwitch ."'," . $date .",";
+	$builtString = "CALL create_poll(".$ID.","."'".$quest."',"."NULL,'". $catSwitch ."'," . $days .",";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
@@ -270,10 +286,20 @@ function publicPoll($tempArray, $ID, $category, $date)
 }
 
 // Takes in user input and concatenates with a unique key into a string to send to SQL for insertion
-function privatePoll($tempArray, $ID, $shareKey, $category, $date)
+function privatePoll($tempArray, $ID, $shareKey, $category, $dateIn)
 {
 	
 	$catSwitch = '';
+	
+	$catSwitch = '';
+	$dateConver = $dateIn;
+	$date = strtotime($dateConver);
+	
+	$diff = $date-time();
+	$days = floor($diff/(60*60*24+2)+2);
+	
+	echo $days;
+	
 	
 	switch($category)
 	{

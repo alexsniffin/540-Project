@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 
+
+
 <html lang = "en">
+<?php 
+session_start();
+$userID=$_SESSION['arrLogin'];
+
+?>
 
 	<head>
 		<title>Polling App</title>
@@ -10,6 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
   		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<?php echo $userID; ?>
 	</head>
 	
 	<body>

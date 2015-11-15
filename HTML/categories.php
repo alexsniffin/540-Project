@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <html lang = "en">
-
+<?php session_start();
+$userID=$_SESSION['arrLogin'];?>
 	<head>
 		<title>Categories</title>
 		<meta charset = "utf-8">

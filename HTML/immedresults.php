@@ -4,7 +4,7 @@
 <?php
 
 session_start();
-
+$userID=$_SESSION['arrLogin'];
 $answerArray = $_SESSION['arrReturn'];
 $choice = $_POST['choice'];
 

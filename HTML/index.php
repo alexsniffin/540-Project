@@ -21,7 +21,16 @@
 
 		<!-- Top of page text -->
 		<div class="login-text">
-		Sign in using your username and password or create a new account
+		<?php
+		if(isset($_GET["log"]))
+		{
+			echo "Login failed! Please enter in your appropriate Email and Password.";
+		}
+		else
+		{
+			echo "Sign in using your username and password or create a new account";
+		}
+		?>
 		</div>
 
 					<!-- Sign in  -->

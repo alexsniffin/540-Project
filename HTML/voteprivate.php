@@ -4,7 +4,7 @@
 <?php
 //====================================BEGIN PHP CODE============================================//
 	session_start();
-
+	$userID=$_SESSION['arrLogin'];
 	
 	
 	//Connect to database
