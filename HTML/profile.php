@@ -43,13 +43,13 @@ $user = $_SESSION['userProfile'];
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span> 
       		</button>
-      	<a class="navbar-brand" href="home.html"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
+      	<a class="navbar-brand" href="home.php"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
    		 </div>
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
         			<li><a href="votepublic.php">Vote</a></li>
-       			    <li><a href="privatepoll.html">Private Polls</a></li> 
+       			    <li><a href="privatepoll.php">Private Polls</a></li> 
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
       				<li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li> 
@@ -71,7 +71,7 @@ $user = $_SESSION['userProfile'];
 	
 		<!-- Username and info -->
 		<div class="user-header">
-		<h2><?php echo $user[2]; ?></h2>
+		<h2><?php echo $user[1]; ?></h2>
 		<ul>
 			<li><strong>12</strong> Votes</li>
 			<li><strong>4</strong> Polls Created</li>

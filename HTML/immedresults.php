@@ -1,4 +1,3 @@
-
 <html>
 
 <?php
@@ -30,7 +29,7 @@ switch($choice)
 		break;
 	case "choice1":
 		$resAnswer = $answerArray[1];
-			break;
+		break;
 	case "choice2":
 		$resAnswer = $answerArray[2];
 		break;
@@ -62,8 +61,6 @@ switch($choice)
 		$resAnswer = $answerArray[11];
 		break;
 }
-			
-echo "You answered: " . $resAnswer[1] . ".<br>Number of Shared Opinions: " . $resAnswer[2]; 
 				
 $builtString = "CALL userVote(" . $userID . "," . $resAnswer[0] . ")";
 				
@@ -99,19 +96,75 @@ while ($row = mysqli_fetch_array($getProfile))
 $_SESSION['userProfile'] = $profile;
 
 ?>
-<br><br>
-<form action="votepublic.php?cat" method="post">
-	
-	Vote Again.
-	<input type="submit">
-</form>
-	
-<form action="home.php" method="post">
-	
-	Go to Home.
-	<input type="submit">
-</form>
 
+	<head>
+		<title>Results | Polling App</title>
+		<meta charset = "utf-8">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	</head>
 	
+	<body>
+	
+	<!-- Navbar -->
+	<nav class="navbar navbar-inverse">
+  		<div class="container-fluid">
+    	<div class="navbar-header">
+      		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span> 
+      		</button>
+      	<a class="navbar-brand" href="home.php"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
+   		 </div>
+    		<div class="collapse navbar-collapse" id="myNavbar">
+     		    <ul class="nav navbar-nav">
+        			<li><a href="createPoll.php">Create</a></li>
+        			<li><a href="votepublic.php">Vote</a></li>
+       			    <li><a href="privatepoll.php">Private Polls</a></li> 
+      			</ul>
+      			<ul class="nav navbar-nav navbar-right">
+      				<li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li> 
+     			</ul>
+    		</div>
+  		</div>
+	</nav>
+	
+	<!-- User Bar -->
+	<div class="userbar">
+		<ul>
+			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
+			<li><img src ="imgs/coin_icon_2x.png"><?php echo $user[2]; ?></li>
+		<ul>
+	</div>
+	
+	<!-- Start main content -->
+	<div class="main-content">
+	
+		<div class="top">
+			<h2>
+				<?php
+					echo "You answered: " . $resAnswer[1] . ".<br>Number of Shared Opinions: " . $resAnswer[2];
+				?>
+			</h2>
+	
+			<form action="votepublic.php?cat" method="post">
+				<input type="submit" class="submit-button login" value="Vote Again">
+			</form>
+				
+			</br></br></br>	
+			
+			<form action="home.php" method="post">
+				<input type="submit" class="submit-button login" value="Go to Home">
+			</form>
+		
+		</div>
+
+	</div>
+	
+	</body>	
 
 </html>
