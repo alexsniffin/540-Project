@@ -34,8 +34,8 @@
 
 //User ID passed in from session
 session_start();
-$_SESSION['arrLogin'] = $_SESSION['arrLogin'];
 $userID=$_SESSION['arrLogin'];
+
 
 //Connect to database
 $servername = "24.197.117.117";
@@ -440,6 +440,30 @@ else
 }
 // 	echo "sent to public<br>";
 
+//===================================Subtract Coins from user account===============================
+$coinString = "CALL removeCoins(".$userID.");";
+				
+$conn = new mysqli($servername, $username, $password, $dbname);
+mysqli_query($conn, $coinString) or die("Query fail: " . mysqli_error()); 
+$conn->close();
+
+//===================================Update User Account===============================
+$conn = new mysqli($servername, $username, $password, $dbname);
+$sqlQuery = "call getProfile(".$userID.");";
+
+$getProfile = mysqli_query($conn, $sqlQuery) or die ("Query fail: " . mysqli_error());
+$conn->close();
+
+$profile = array();//mysqli_fetch_array($getProfile);
+while ($row = mysqli_fetch_array($getProfile))
+{
+	for($i=0; $i < 5; $i++)
+	{
+		$profile[$i] = $row[$i];
+	}
+}
+
+$_SESSION['userProfile'] = $profile;
 
 
 // echo "<br>";
@@ -481,7 +505,7 @@ else
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span> 
       		</button>
-      	<a class="navbar-brand" href="home.html"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
+      	<a class="navbar-brand" href="home.php"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
    		 </div>
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
@@ -499,8 +523,8 @@ else
 	<!-- User Bar -->
 	<div class="userbar">
 		<ul>
-			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png">pollshark567</a></li>
-			<li><img src ="imgs/coin_icon_2x.png">12</li>
+			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png"><?php echo $profile[1]; ?></a></li>
+			<li><img src ="imgs/coin_icon_2x.png"><?php echo $profile[2]; ?></li>
 		<ul>
 	</div>
 	

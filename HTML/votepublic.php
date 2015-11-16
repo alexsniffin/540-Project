@@ -81,6 +81,7 @@
 	$answerArray = callAnswers($randID[0],$conn) or die("Query fail: " . mysqli_error());
 	
 	$_SESSION['arrReturn'] = $answerArray;
+	$_SESSION['pollID'] = $randID[0];
 	
 	
 	$conn->close();

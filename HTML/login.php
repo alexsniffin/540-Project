@@ -2,7 +2,6 @@
 
 session_start();
 
-
  $servername = "24.197.117.117";
  $username = "darth";
  $password = "ineedhelp";
@@ -35,7 +34,27 @@ $logPass = mysqli_fetch_array($res);
 
 $userID = $logPass[0];
 
+//Get profile information
+$conn = new mysqli($servername, $username, $password, $dbname);
+$sqlQuery = "call getProfile(".$userID.");";
+
+echo $sqlQuery;
+echo $userID;
+$getProfile = mysqli_query($conn, $sqlQuery) or die ("Query fail: " . mysqli_error());
+$conn->close();
+
+$profile = array();//mysqli_fetch_array($getProfile);
+while ($row = mysqli_fetch_array($getProfile))
+{
+	for($i=0; $i < count($row); $i++)
+	{
+		$profile[$i] = $row[$i];
+	}
+}
+ 
+ 
 $_SESSION['arrLogin'] = $userID;
+$_SESSION['userProfile'] = $profile;
 
 $res = -1;
 
@@ -50,7 +69,7 @@ else
   //$cookie_name = $user;
   //$cookie_value = $res; //will be unique id of user
   //setcookie($cookie_name, $cookie_value, time()+(86400), "/");
-  header('Location: home.html');
+  header('Location: home.php');
 }
 
 ?>
