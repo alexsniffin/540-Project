@@ -61,7 +61,7 @@ $user = $_SESSION['userProfile'];
 			
 			<form action="voteprivate.php" method="post">
   				<div class="form-group">
-    				<input type="sharecode" class="form-control" id="sharecode" name="sharecode">
+    				<input type="sharecode" required class="form-control" id="sharecode" name="sharecode">
   				</div>
 				<a href="voteprivate.php">
   			<input type="submit">   

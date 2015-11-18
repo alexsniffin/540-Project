@@ -78,7 +78,8 @@ $user = $_SESSION['userProfile'];
 				<!-- Category selection -->
 				<div class="form-group">
 					<label for="categoryselection"><strong>Choose a category:</strong> </label>
-					<select class="form-control" id="categoryselection" name="categoryselection">
+					<select class="form-control" required id="categoryselection" name="categoryselection">
+						<option value="">[Choose a category]</option>
 						<option>Science</option>
 						<option>Literature</option>
 						<option>Technology</option>
@@ -94,7 +95,6 @@ $user = $_SESSION['userProfile'];
 				<!-- Date selection -->
 				<div class="form-group">
 					<label for="exp_date"><strong>Expiration Date:</strong> </label>
-					<!-- Need to somehow get result of this and give to database -->
 					<input id="datepicker" name="datepicker" class="calendar-input"/>
 				</div>
 			
@@ -104,17 +104,17 @@ $user = $_SESSION['userProfile'];
 					<label for="pubOpriv">This is a private poll</label>
 				</div>
 			
-				<strong>Enter a question:</strong> <input type="text" name="quest" maxlength="255"><br>
+				<strong>Enter a question:</strong> <input type="text" required name="quest" maxlength="255"><br>
 				<strong>Choices:</strong><br>
 				
 				<div class = "choices">
 					<div class="choice-row top-choice" id="choice-row-1">
-						<input id="row1" type="text" class="choice" name="ans1" maxlength="255">
+						<input id="row1" required type="text" class="choice" name="ans1" maxlength="255">
 					</div>
 					
 					<div class="choice-row" id="choice-row-2">
 						<div class="plus-button"></div>
-						<input id="row2" type="text" class="choice" name="ans2" maxlength="255">
+						<input id="row2" required type="text" class="choice" name="ans2" maxlength="255">
 					</div>
 				</div>
 				
