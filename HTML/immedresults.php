@@ -4,6 +4,7 @@
 
 session_start();
 $userID=$_SESSION['arrLogin'];
+$user = $_SESSION['userProfile'];
 $answerArray = $_SESSION['arrReturn'];
 $choice = $_POST['choice'];
 $pollID = $_SESSION['pollID'];

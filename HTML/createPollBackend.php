@@ -61,7 +61,7 @@ $sqlInsert;
 //User ID initialized to 1 for debugging purposes
 
 
-echo "<br>userID: ".$userID."<br>";
+// echo "<br>userID: ".$userID."<br>";
 
 //Vistigial incrementer for now
 $incr1 = 0;
@@ -83,7 +83,7 @@ $winning = true;
 $categoryselection = $_POST["categoryselection"];
 $date = $_POST["datepicker"];
 
-echo $date;
+// echo $date;
 
 //Loads in user input in order to create SQL call function string
 //Currently uses 2D Array 
@@ -172,7 +172,7 @@ function publicPoll($tempArray, $ID, $category, $dateIn)
 	$diff = $date-time();
 	$days = floor($diff/(60*60*24)+2);
 	
-	echo "<br> Calculated days: ".$days."<br>";
+// 	echo "<br> Calculated days: ".$days."<br>";
 	
 	
 	switch($category)
@@ -298,7 +298,7 @@ function privatePoll($tempArray, $ID, $shareKey, $category, $dateIn)
 	$diff = $date-time();
 	$days = floor($diff/(60*60*24+2)+2);
 	
-	echo $days;
+// 	echo $days;
 	
 	
 	switch($category)

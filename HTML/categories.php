@@ -2,7 +2,8 @@
 
 <html lang = "en">
 <?php session_start();
-$userID=$_SESSION['arrLogin'];?>
+$user=$_SESSION['userProfile'];
+?>
 	<head>
 		<title>Categories</title>
 		<meta charset = "utf-8">
@@ -42,8 +43,8 @@ $userID=$_SESSION['arrLogin'];?>
 	<!-- User Bar -->
 	<div class="userbar">
 		<ul>
-			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png">pollshark567</a></li>
-			<li><img src ="imgs/coin_icon_2x.png">12</li>
+			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
+			<li><img src ="imgs/coin_icon_2x.png"><?php echo $user[2];?></li>
 		<ul>
 	</div>
 	
