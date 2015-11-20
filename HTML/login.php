@@ -38,8 +38,6 @@ $userID = $logPass[0];
 $conn = new mysqli($servername, $username, $password, $dbname);
 $sqlQuery = "call getProfile(".$userID.");";
 
-echo $sqlQuery;
-echo $userID;
 $getProfile = mysqli_query($conn, $sqlQuery) or die ("Query fail: " . mysqli_error());
 $conn->close();
 
