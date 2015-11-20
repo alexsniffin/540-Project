@@ -109,12 +109,12 @@ $user = $_SESSION['userProfile'];
 				
 				<div class = "choices">
 					<div class="choice-row top-choice" id="choice-row-1">
-						<input id="row1" required type="text" class="choice" name="ans1" maxlength="255">
+						<input id="row1" required type="text" class="choice" name="ans1" maxlength="128">
 					</div>
 					
 					<div class="choice-row" id="choice-row-2">
 						<div class="plus-button"></div>
-						<input id="row2" required type="text" class="choice" name="ans2" maxlength="255">
+						<input id="row2" required type="text" class="choice" name="ans2" maxlength="128">
 					</div>
 				</div>
 				
@@ -159,7 +159,7 @@ $user = $_SESSION['userProfile'];
 				rowNum++;
 				var row = '<div class="choice-row" id="choice-row-' + rowNum 
 							+'"><div class="minus-button"></div><input id="row'
-							+ rowNum + '" type="text" class="choice" name="ans' + rowNum + '" maxlength="255"></div>';
+							+ rowNum + '" type="text" class="choice" name="ans' + rowNum + '" maxlength="128"></div>';
 				$('.choices').append(row);
 				//window.location.href = "createPoll.php?w1=" + rowNum;
 			}

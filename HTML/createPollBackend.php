@@ -432,7 +432,7 @@ else
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	$sqlInsertString = publicPoll($sqlInsert,$userID,$categoryselection,$date);
 	
- 	echo '<br>' . $sqlInsertString . '<br>';
+//  	echo '<br>' . $sqlInsertString . '<br>';
 	
 	//Attempt to insert data into database
 	$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());
@@ -536,10 +536,10 @@ $_SESSION['userProfile'] = $profile;
 		
 		<div class="top">
 		<h2>You have created a new poll. <br/><br/>
-			<a href="profile.html">Track </a> your results, <br/>
+			<a href="profile.php" rel="external">Track </a> your results, <br/>
 			Share Key: <?php echo $key;?>
-			<a href="createpoll.php">Create </a> another poll, or <br/>
-			<a href="votepublic.php">Cast some votes </a> of your own!</h2>
+			<a href="createpoll.php" rel="external">Create </a> another poll, or <br/>
+			<a href="votepublic.php" rel="external">Cast some votes </a> of your own!</h2>
 		</div>	
 		
 	</div>
