@@ -41,6 +41,12 @@
 		$conn->close();
 	}
 	
+	//If there are no available polls, reload home page and inform user
+	if($randID[0] == '')
+	{
+		header('Location: home.php?pol=noPolls');
+	}
+	
 	//Print Poll question
 	function callQuestion($temp, $connection)
 	{
@@ -82,6 +88,12 @@
 	
 	$conn->close();
 	
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	$quest = callQuestion($randID[0], $conn);
+	$conn->close();
+	
+	
+
 	
 //=============================END PHP CODE=================================//
 ?>
@@ -139,9 +151,7 @@
 			<div class="question-text">
 				<?php
 				//Call question and print it out.
-				$conn = new mysqli($servername, $username, $password, $dbname);
-				$quest = callQuestion($randID[0], $conn);
-				$conn->close();
+				echo $quest;
 				?>
 			</div>
 			<div class="right-arrow"></div>

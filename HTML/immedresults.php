@@ -5,6 +5,11 @@
 session_start();
 $userID=$_SESSION['arrLogin'];
 $user = $_SESSION['userProfile'];
+
+//Answer Array that contains all answers from the question
+//index 0 is the poll id (i think)
+//index 1 is the answer string
+//index 2 is the number of votes an answer has
 $answerArray = $_SESSION['arrReturn'];
 $choice = $_POST['choice'];
 $pollID = $_SESSION['pollID'];
@@ -61,7 +66,17 @@ switch($choice)
 		$resAnswer = $answerArray[11];
 		break;
 }
-				
+
+
+//Get the total amount of votes for all answers
+$totalVotes = 1;
+for($i = 0; $i < count($answerArray); $i++)
+{
+	$totalVotes += $answerArray[$i][2];
+}
+			
+//echo $totalVotes;
+			
 $builtString = "CALL userVote(" . $userID . "," . $resAnswer[0] . ")";
 				
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -175,7 +190,7 @@ $_SESSION['userProfile'] = $profile;
 		<div class="top">
 			<h2>
 				<?php
-					echo "You answered: " . $resAnswer[1] . ".<br>Number of Shared Opinions: " . $resAnswer[2];
+					echo "You answered: " . $resAnswer[1] . ".<br>Number of Shared Opinions: " . $resAnswer[2]+1;
 					
 					// Testing to see what the $resAnswer array is holding
 						// foreach ($resAnswer as $element)

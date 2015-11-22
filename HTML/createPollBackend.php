@@ -83,7 +83,7 @@ $winning = true;
 $categoryselection = $_POST["categoryselection"];
 $date = $_POST["datepicker"];
 
-// echo $date;
+ //echo $date;
 
 //Loads in user input in order to create SQL call function string
 //Currently uses 2D Array 
@@ -296,7 +296,7 @@ function privatePoll($tempArray, $ID, $shareKey, $category, $dateIn)
 	$date = strtotime($dateConver);
 	
 	$diff = $date-time();
-	$days = floor($diff/(60*60*24+2)+2);
+	$days = floor($diff/(60*60*24)+2);
 	
 // 	echo $days;
 	
@@ -348,7 +348,7 @@ function privatePoll($tempArray, $ID, $shareKey, $category, $dateIn)
 						
 		$quest .= $wordLoad;
 	
-	$builtString = "CALL create_poll(".$ID.","."'".$quest."','".$shareKey."','". $catSwitch ."'," . $date .",";
+	$builtString = "CALL create_poll(".$ID.","."'".$quest."','".$shareKey."','". $catSwitch ."'," . $days .",";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
@@ -432,7 +432,7 @@ else
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	$sqlInsertString = publicPoll($sqlInsert,$userID,$categoryselection,$date);
 	
-//  	echo '<br>' . $sqlInsertString . '<br>';
+// 	echo '<br>' . $sqlInsertString . '<br>';
 	
 	//Attempt to insert data into database
 	$insert = mysqli_query($conn, $sqlInsertString) or die("Query fail: " . mysqli_error());

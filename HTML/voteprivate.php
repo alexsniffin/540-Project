@@ -42,8 +42,18 @@
 	$privID = mysqli_fetch_array($privIDTransfer);
 	$conn->close();
 
-	//echo $privID[0];
+	//If there are no available polls, reload home page and inform user
+	if($privID[0] == '')
+	{
+		header('Location: home.php?pol=noPolls');
+	}
 	
+	//echo $privID[0];
+	//If there are no available polls, reload home page and inform user
+	//if($randID[0] == '')
+	//{
+	//	header('Location: home.php?pol=noPolls');
+	//}
 	
 	//Print Poll question
 	function callQuestion($temp, $connection)
