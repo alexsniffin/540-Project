@@ -175,7 +175,7 @@ $_SESSION['userProfile'] = $profile;
 			
 		<!-- Question -->
 		<div class="question">
-			<div class="left-arrow"></div>
+			<div class="left-arrow inactive"></div>
 			<div class="question-text">
 				<?php
 				//Call question and print it out.
@@ -190,39 +190,41 @@ $_SESSION['userProfile'] = $profile;
 		<!-- Results -->
 		<div class="choices">
 			<ul class="results">
-			
 				<?php 
+					for($i=0; $i<count($answerArray); $i++)
+					{
+						$percentage = (($answerArray[$i][2] + 1) / $totalVotes) * 100;
 					
-					
-				for($i=0; $i<count($answerArray); $i++)
-				{
-					if($answerArray[$i][1] != $resAnswer[1])
-						echo "<li><div class='result-text'>".$answerArray[$i][1]."</div><div class='result-percentage'>Fake%</div><div class='result-bar' style='width:25%;'></div></li>";
-					else
-						echo "<li><div class='result-text'><strong>".$answerArray[$i][1]."</strong></div><div class='result-percentage'><strong>Fake%</strong></div><div class='result-bar' style='width:25%;'></div></li>";	
-				}
-					
+						if($answerArray[$i][1] != $resAnswer[1])
+						{
+							echo "<li><div class='result-text'>".$answerArray[$i][1]."</div><div class='result-percentage'>"
+									.$percentage."%</div><div class='result-bar' style='width:".$percentage."%;'></div></li>";
+						}			
+						else
+						{
+							echo "<li><div class='result-text'><strong>".$answerArray[$i][1]."</strong></div><div class='result-percentage'><strong>"
+									.$percentage."%</strong></div><div class='result-bar selected' style='width:".$percentage."%;'></div></li>";
+						}			
+					}	
 				?>
-				
 			</ul>	
-		</div>
-
-	
-		<div class="top">
-			<form action="votepublic.php?cat" method="post">
-				<input type="submit" class="submit-button login" value="Vote Again">
-			</form>
-				
-			</br></br></br>	
-			
-			<form action="home.php" method="post">
-				<input type="submit" class="submit-button login" value="Go to Home">
-			</form>
-		
 		</div>
 
 	</div>
 	
-	</body>	
+	</body>
+	
+	<!-- Just brings in a new poll by essentially refreshing the page right now -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+			//declare click handler for right arrow
+			$(document).on('click', '.right-arrow', function()
+			{	
+
+				window.location.href = 'votePublic.php';
+			});	
+		});
+	</script>
 
 </html>

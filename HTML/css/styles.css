@@ -431,6 +431,10 @@ p{
 	display: block;
     height: 100%;
     width: 25%;
+    background-color: #e06363;
+}
+
+.result-bar.selected{
     background-color: #e04747;
 }
 
