@@ -29,7 +29,6 @@
 	if($catego != "")
 	{
 		$randSQLQuery = "CALL random_public_poll(". $userID . ",'". $_GET["cat"] ."');";
-// 		echo "is set" . $randSQLQuery;
 		$randIDTransfer = mysqli_query($conn,$randSQLQuery) or die("Query fail: " . mysqli_error());
 		$randID = mysqli_fetch_array($randIDTransfer);
 		$conn->close();
@@ -37,13 +36,10 @@
 	else
 	{
 		$randSQLQuery = "CALL random_public_poll(".$userID.",null);";
-// 		echo $randSQLQuery;
 		$randIDTransfer = mysqli_query($conn,$randSQLQuery) or die("Query fail: " . mysqli_error());
 		$randID = mysqli_fetch_array($randIDTransfer);
 		$conn->close();
 	}
-
-// 	echo $randID[0];
 	
 	//Print Poll question
 	function callQuestion($temp, $connection)
@@ -83,7 +79,6 @@
 	
 	$_SESSION['arrReturn'] = $answerArray;
 	$_SESSION['pollID'] = $randID[0];
-	
 	
 	$conn->close();
 	

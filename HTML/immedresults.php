@@ -8,7 +8,6 @@ $user = $_SESSION['userProfile'];
 $answerArray = $_SESSION['arrReturn'];
 $choice = $_POST['choice'];
 $pollID = $_SESSION['pollID'];
-
 	
 //Connect to database
 $servername = "24.197.117.117";
@@ -70,6 +69,20 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 //Attempt to insert data into database
 $insert = mysqli_query($conn, $builtString) or die("Query fail: " . mysqli_error()); 
 $conn->close();
+
+//==================================Print the question again===========================
+//Print Poll question
+function callQuestion($temp, $connection)
+{
+	$sqlLine = "CALL getPollQuestion(" . $temp . ");";
+	$question = mysqli_query($connection, $sqlLine) or die("Query fail: " . mysqli_error());
+
+	// print out Question answers.
+	while ($row = mysqli_fetch_array($question))
+	{
+		echo $row[0] . " - " . $row[1] . " - " . $row[2];
+	}
+}
 
 //==================================Add Coins==========================================
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -144,11 +157,29 @@ $_SESSION['userProfile'] = $profile;
 	
 	<!-- Start main content -->
 	<div class="main-content">
+			
+		<!-- Question -->
+		<div class="question">
+			<div class="left-arrow"></div>
+			<div class="question-text">
+				<?php
+				//Call question and print it out.
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				$quest = callQuestion($pollID, $conn);
+				$conn->close();
+				?>
+			</div>
+			<div class="right-arrow"></div>
+		</div>
 	
 		<div class="top">
 			<h2>
 				<?php
 					echo "You answered: " . $resAnswer[1] . ".<br>Number of Shared Opinions: " . $resAnswer[2];
+					
+					// Testing to see what the $resAnswer array is holding
+						// foreach ($resAnswer as $element)
+						// echo '<br> -' . $element;
 				?>
 			</h2>
 	
