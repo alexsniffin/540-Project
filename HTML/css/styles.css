@@ -415,6 +415,10 @@ p{
     left: 5%;
 }
 
+.results strong{
+	color: #f2faff;
+}
+
 .result-percentage{
 	display: inline;
     float: right;

@@ -186,18 +186,29 @@ $_SESSION['userProfile'] = $profile;
 			</div>
 			<div class="right-arrow"></div>
 		</div>
+		
+		<!-- Results -->
+		<div class="choices">
+			<ul class="results">
+			
+				<?php 
+					
+					
+				for($i=0; $i<count($answerArray); $i++)
+				{
+					if($answerArray[$i][1] != $resAnswer[1])
+						echo "<li><div class='result-text'>".$answerArray[$i][1]."</div><div class='result-percentage'>Fake%</div><div class='result-bar' style='width:25%;'></div></li>";
+					else
+						echo "<li><div class='result-text'><strong>".$answerArray[$i][1]."</strong></div><div class='result-percentage'><strong>Fake%</strong></div><div class='result-bar' style='width:25%;'></div></li>";	
+				}
+					
+				?>
+				
+			</ul>	
+		</div>
+
 	
 		<div class="top">
-			<h2>
-				<?php
-					echo "You answered: " . $resAnswer[1] . ".<br>Number of Shared Opinions: " . $resAnswer[2]+1;
-					
-					// Testing to see what the $resAnswer array is holding
-						// foreach ($resAnswer as $element)
-						// echo '<br> -' . $element;
-				?>
-			</h2>
-	
 			<form action="votepublic.php?cat" method="post">
 				<input type="submit" class="submit-button login" value="Vote Again">
 			</form>
