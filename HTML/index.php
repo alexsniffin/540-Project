@@ -13,7 +13,7 @@
 	</head>
 
 	<body>
-	
+
 	<div class="main-content login">
 
 		<!-- Logo -->
@@ -36,9 +36,13 @@
 		<!-- Sign in  -->
         <div class="signIn">
 			<form action="login.php" class="create-signIn" method="post">
-				<label for="Email"><strong>Email: </strong></label><input type="email" required name="user" id="Email" >
+				<label for="Email"><strong>Email: </strong></label>
 				<br>
-				<label for="passWord"><strong>Password: </strong></label><input type="password" required name="pwrd" id="passWord">
+				<input type="email" required name="user" id="Email" >
+				<br>
+				<label for="passWord"><strong>Password: </strong></label>
+				<br>
+				<input type="password" required name="pwrd" id="passWord">
 				<br>
 				<input class="submit-button login" type="submit" value="Submit">
 			</form>

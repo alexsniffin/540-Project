@@ -24,24 +24,36 @@
 					<!-- Sign in  -->
         <div class="signIn">
 					<form action="createAccount.php" class="create-signIn" method="post">
-						<label for="userName"><strong>Username: </strong></label><input type="text" required name="user" id="userName" >
+						<label for="userName"><strong>Username: </strong></label>
 						<br>
-						<label for="passWord"><strong>Password: </strong></label><input type="password" required name="pwrd1" id="passWord">
+						<input type="text" required name="user" id="userName" >
 						<br>
-						<label for="passWord"><strong>Confirm Password: </strong></label><input type="password" required name="pwrd2" id="passWord">
+						<label for="passWord"><strong>Password: </strong></label>
 						<br>
-						<label for="email"><strong>E-mail:</strong></label><input type="email" required name="emadd" id="email">
+						<input type="password" required name="pwrd1" id="passWord">
 						<br>
-						<label for="sex"><strong>Sex: </strong></label><input type="radio" required name="sex" value="male">Male
+						<label for="passWord"><strong>Confirm Password: </strong></label>
+						<br>
+						<input type="password" required name="pwrd2" id="passWord">
+						<br>
+						<label for="email"><strong>E-mail:</strong></label>
+						<br>
+						<input type="email" required name="emadd" id="email">
+						<br>
+						<label for="sex"><strong>Sex: </strong></label>
+						<br>
+						<input type="radio" required name="sex" value="male">Male
 						<input type="radio" name="sex" value="female">Female
 						<br>
-						<label for="age"><strong>Age: </strong></label><input type="number" required name="age" >
+						<label for="age"><strong>Age: </strong></label>
+						<br>
+						<input type="number" required name="age" >
 						<br>
 						<input class="submit-button login" type="submit" value="Submit">
 					</form>
         </div>
-        
-    </div> 
+
+    </div>
 
 	</body>
 
