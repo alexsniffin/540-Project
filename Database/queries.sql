@@ -29,19 +29,18 @@ DELIMITER ;
 -- Use
 CALL random_public_poll(<id>); -- returns a result set
 
--- OR Try using the same, but as a function. It should only return a single value.
--- Input: User_ID(Int), Category type(String)
--- Output: Poll_ID(Int)
+-- #2
+-- Get a Private Poll using a <share_code>
+-- Input: Share_code(String)
+-- Output: Poll_ID(Result set)
 DELIMITER //
-CREATE FUNCTION getRandomPublicPoll(user INT, category CHAR(32)) 
-	RETURNS INT
-	DETERMINISTIC
+CREATE PROCEDURE private_poll
+	(IN user INT, 
+	IN share_code CHAR(8))
 BEGIN
-	DECLARE poll_id varchar(10);
-
 	SELECT P_ID
 	FROM Polls p
-	WHERE p.User_ID <> user AND p.category = category AND p.share_code IS NULL AND date_to_close > NOW() AND NOT EXISTS (
+	WHERE p.User_ID <> user AND p.share_code = share_code AND date_to_close > NOW() AND NOT EXISTS (
 		SELECT User_ID
 		FROM Voted v
 		WHERE v.User_ID = user AND v.ANS_ID IN (
@@ -51,47 +50,9 @@ BEGIN
 		)
 	)
 	ORDER BY RAND() LIMIT 1;
-
-	RETURN (poll_id);
-END;
-DELIMITER ;
--- Use
-SELECT getRandomPublicPoll(<id>); -- returns a single value
-
--- #2
--- Get a Private Poll using a <share_code>
--- Input: Share_code(String)
--- Output: Poll_ID(Result set)
-DELIMITER //
-CREATE PROCEDURE private_poll
-	(IN share_code CHAR(8))
-BEGIN
-	SELECT P_ID
-	FROM Polls p
-	WHERE p.share_code = share_code;
 END //
 DELIMITER ;
 
--- OR Try using the same, but as a function. It should only return a single value.
--- Input: Share_code(String)
--- Output: Poll_ID(Int)
-DELIMITER //
-CREATE FUNCTION getPrivatePoll(share_code CHAR(8)) 
-	RETURNS INT
-	DETERMINISTIC
-BEGIN
-	DECLARE poll_id varchar(10);
-
-	SELECT P_ID INTO poll_id
-	FROM Polls p
-	WHERE p.share_code = share_code;
-
-	RETURN (poll_id);
-END;
-DELIMITER ;
--- Use
-SELECT getPrivatePoll(<share_code>); -- returns a single value
---TODO Check if user voted on private poll, or owns private poll
 
 -- #3
 -- Create a poll and the corresponding answers
