@@ -89,7 +89,6 @@
 	$conn->close();
 	
 	$conn = new mysqli($servername, $username, $password, $dbname);
-	$quest = callQuestion($randID[0], $conn);
 	$conn->close();
 	
 	
@@ -124,7 +123,7 @@
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
-        			<li><a href="votepublic.php">Vote</a></li>
+        			<li><a href="votepublic.php?cat">Vote</a></li>
        			    <li><a href="privatepoll.php">Private Polls</a></li> 
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
@@ -147,11 +146,14 @@
 	
 		<!-- Question -->
 		<div class="question">
-			<div class="left-arrow"></div>
+			<div class="left-arrow inactive"></div>
 			<div class="question-text">
 				<?php
 				//Call question and print it out.
-				echo $quest;
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				$quest = callQuestion($randID[0], $conn);
+				$conn->close();
+
 				?>
 			</div>
 			<div class="right-arrow"></div>
@@ -177,5 +179,19 @@
 	</div>
 	
 	</body>
+	
+	<!-- Just brings in a new poll by essentially refreshing the page right now -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+			//declare click handler for right arrow
+			$(document).on('click', '.right-arrow', function()
+			{	
+
+				window.location.href = 'votePublic.php?cat';
+			});	
+		});
+	</script>
+
 
 </html>
