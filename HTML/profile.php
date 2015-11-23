@@ -123,17 +123,69 @@ $user = $_SESSION['userProfile'];
             $res = mysqli_query($conn, $getUsrPoll) or die("Query fail: " . mysqli_error()); //or die("There was an error retreiving your account information");
             $conn->close();
 
+            $numOfPolls = 0;
             $polls = array();//mysqli_fetch_array($res);
             while ($row = mysqli_fetch_array($res))
             {
-            	for($i=0; $i < count($row); $i++)
-            	{
-            		$polls[$i] = $row[$i];
-            	}
+            	$polls[$numOfPolls][0] = $row[0];
+              $polls[$numOfPolls][1] = $row[1];
+              $polls[$numOfPolls][2] = $row[2];
+              $polls[$numOfPolls][3] = $row[3];
+              $polls[$numOfPolls][4] = $row[4];
+              $polls[$numOfPolls][5] = $row[5];
+              $numOfPolls++;
             }
             ?>
             <tr>
-            <td><?php echo $polls[0]; ?>
+            <?php
+            $servername = "24.197.117.117";
+            $username = "darth";
+            $password = "ineedhelp";
+            $dbname = "pollApp";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn1 = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if($conn->connect_error)
+            {
+              die("Connection failed: " . $conn->conect_error);
+            }
+              $pollID = (int)$polls[0][0];
+              $pollInfo = "CALL getPollQuestion(" . $pollID . ")";
+              $getPollQuestion = mysqli_query($conn, $pollInfo) or die("Query fail: " . mysqli_error()); //or die("There was an error retreiving poll question");
+              $conn->close();
+              $pollQuestion = mysqli_fetch_array($getPollQuestion);
+              $getPollAnswers = "CALL getPollAnswers(" . $pollID . ")";
+              $pollAnswers = mysqli_query($conn1, $getPollAnswers);
+              $conn1->close();
+              $totalVotes = 0;
+              while ($answers = mysqli_fetch_array($pollAnswers))
+              {
+                $totalVotes += $answers[2];
+              }
+
+
+            ?>
+            <td><?php echo $pollQuestion[0]; ?></td>
+            <td><?php echo $totalVotes; ?></td>
+            <td><?php echo $polls[0][4]; ?></td>
+            <td><?php echo $polls[0][5]; ?></td>
+            <td>
+              <?php
+              $today = getdate();
+              if($today > $polls[5])
+              {
+                echo "Open";
+              }
+              else
+              {
+                echo "Closed";
+              }
+              ?>
+            </td>
+            <td><a href="">View</a>
             </tr>
 					  <tr>
 						<td>Poll 1</td>
@@ -249,5 +301,5 @@ $user = $_SESSION['userProfile'];
 
 </body>
 
-
+<?php $conn->close(); ?>
 </html>
