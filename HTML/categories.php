@@ -30,7 +30,7 @@ $user=$_SESSION['userProfile'];
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
-        			<li><a href="votepublic.php">Vote</a></li>
+        			<li><a href="votepublic.php?cat">Vote</a></li>
        			    <li><a href="privatepoll.php">Private Polls</a></li> 
       			</ul>
       			<ul class="nav navbar-nav navbar-right">

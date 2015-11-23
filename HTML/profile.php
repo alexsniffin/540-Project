@@ -2,7 +2,7 @@
 
 <html lang = "en">
 
-<?php 
+<?php
 session_start();
 
 //a single int representing the User ID in the database.
@@ -28,10 +28,10 @@ $user = $_SESSION['userProfile'];
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-  		
+
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
-	
+
 <body>
 
 	<!-- Navbar -->
@@ -41,34 +41,34 @@ $user = $_SESSION['userProfile'];
       		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span>
-        		<span class="icon-bar"></span> 
+        		<span class="icon-bar"></span>
       		</button>
       	<a class="navbar-brand" href="home.php"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
    		 </div>
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
-        			<li><a href="votepublic.php">Vote</a></li>
-       			    <li><a href="privatepoll.php">Private Polls</a></li> 
+        			<li><a href="votepublic.php?cat">Vote</a></li>
+       			    <li><a href="privatepoll.php">Private Polls</a></li>
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
-      				<li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li> 
+      				<li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
      			</ul>
     		</div>
   		</div>
 	</nav>
-	
+
 	<!-- User Bar -->
 	<div class="userbar">
 		<ul>
-			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
+			<li><a href="profile.php"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
 			<li><img src ="imgs/coin_icon_2x.png"><?php echo $user[2]; ?></li>
 		<ul>
 	</div>
-	
+
 	<!-- Start main content -->
 	<div class="main-content">
-	
+
 		<!-- Username and info -->
 		<div class="user-header">
 		<h2><?php echo $user[1]; ?></h2>
@@ -81,7 +81,7 @@ $user = $_SESSION['userProfile'];
 		<!-- Red divider -->
 		<div class="red-divider">
 		</div>
-		
+
 		<!-- Poll Info -->
 		<div class="info-container">
 			<ul class="nav nav-pills">
@@ -92,7 +92,7 @@ $user = $_SESSION['userProfile'];
 
 			<div class = "tab-content">
 				<div id="menu1" class="tab-pane active">
-				
+
 				  <table class="table table-hover">
 					<thead>
 					  <tr>
@@ -105,6 +105,36 @@ $user = $_SESSION['userProfile'];
 					  </tr>
 					</thead>
 					<tbody>
+            <?php
+            $servername = "24.197.117.117";
+            $username = "darth";
+            $password = "ineedhelp";
+            $dbname = "pollApp";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if($conn->connect_error)
+            {
+            	die("Connection failed: " . $conn->conect_error);
+            }
+            $getUsrPoll = "CALL getUserPolls(" . $userID . " )";
+            $res = mysqli_query($conn, $getUsrPoll) or die("Query fail: " . mysqli_error()); //or die("There was an error retreiving your account information");
+            $conn->close();
+
+            $polls = array();//mysqli_fetch_array($res);
+            while ($row = mysqli_fetch_array($res))
+            {
+            	for($i=0; $i < count($row); $i++)
+            	{
+            		$polls[$i] = $row[$i];
+            	}
+            }
+            ?>
+            <tr>
+            <td><?php echo $polls[0]; ?>
+            </tr>
 					  <tr>
 						<td>Poll 1</td>
 						<td>54</td>
@@ -131,12 +161,12 @@ $user = $_SESSION['userProfile'];
 					  </tr>
 					</tbody>
 				  </table>
-				  
+
 				</div>
-				
-				
+
+
 				<div id="menu2" class="tab-pane">
-				
+
 					<table class="table table-hover">
 					<thead>
 					  <tr>
@@ -159,12 +189,12 @@ $user = $_SESSION['userProfile'];
 					  </tr>
 					</tbody>
 				  </table>
-				  
+
 				</div>
-				
-				
+
+
 				<div id="menu3" class="tab-pane">
-				
+
 				  <table class="table table-hover">
 					<thead>
 					  <tr>
@@ -207,13 +237,13 @@ $user = $_SESSION['userProfile'];
 					  </tr>
 					</tbody>
 				  </table>
-				  
+
 				</div>
 			</div>
-		</div>	
-			
-			
-		</div>	
+		</div>
+
+
+		</div>
 
 	</div>
 

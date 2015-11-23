@@ -152,7 +152,7 @@ $_SESSION['userProfile'] = $profile;
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
-        			<li><a href="votepublic.php">Vote</a></li>
+        			<li><a href="votepublic.php?cat">Vote</a></li>
        			    <li><a href="privatepoll.php">Private Polls</a></li> 
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
@@ -175,7 +175,7 @@ $_SESSION['userProfile'] = $profile;
 			
 		<!-- Question -->
 		<div class="question">
-			<div class="left-arrow"></div>
+			<div class="left-arrow inactive"></div>
 			<div class="question-text">
 				<?php
 				//Call question and print it out.
@@ -186,32 +186,45 @@ $_SESSION['userProfile'] = $profile;
 			</div>
 			<div class="right-arrow"></div>
 		</div>
-	
-		<div class="top">
-			<h2>
-				<?php
-					echo "You answered: " . $resAnswer[1] . ".<br>Number of Shared Opinions: " . $resAnswer[2]+1;
-					
-					// Testing to see what the $resAnswer array is holding
-						// foreach ($resAnswer as $element)
-						// echo '<br> -' . $element;
-				?>
-			</h2>
-	
-			<form action="votepublic.php?cat" method="post">
-				<input type="submit" class="submit-button login" value="Vote Again">
-			</form>
-				
-			</br></br></br>	
-			
-			<form action="home.php" method="post">
-				<input type="submit" class="submit-button login" value="Go to Home">
-			</form>
 		
+		<!-- Results -->
+		<div class="choices">
+			<ul class="results">
+				<?php 
+					for($i=0; $i<count($answerArray); $i++)
+					{
+						$percentage = (($answerArray[$i][2] + 1) / $totalVotes) * 100;
+					
+						if($answerArray[$i][1] != $resAnswer[1])
+						{
+							echo "<li><div class='result-text'>".$answerArray[$i][1]."</div><div class='result-percentage'>"
+									.$percentage."%</div><div class='result-bar' style='width:".$percentage."%;'></div></li>";
+						}			
+						else
+						{
+							echo "<li><div class='result-text'><strong>".$answerArray[$i][1]."</strong></div><div class='result-percentage'><strong>"
+									.$percentage."%</strong></div><div class='result-bar selected' style='width:".$percentage."%;'></div></li>";
+						}			
+					}	
+				?>
+			</ul>	
 		</div>
 
 	</div>
 	
-	</body>	
+	</body>
+	
+	<!-- Just brings in a new poll by essentially refreshing the page right now -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+			//declare click handler for right arrow
+			$(document).on('click', '.right-arrow', function()
+			{	
+
+				window.location.href = 'votePublic.php';
+			});	
+		});
+	</script>
 
 </html>

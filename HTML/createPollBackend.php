@@ -510,7 +510,7 @@ $_SESSION['userProfile'] = $profile;
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
-        			<li><a href="votepublic.php">Vote</a></li>
+        			<li><a href="votepublic.php?cat">Vote</a></li>
        			    <li><a href="privatepoll.php">Private Polls</a></li> 
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
@@ -539,7 +539,7 @@ $_SESSION['userProfile'] = $profile;
 			<a href="profile.php" rel="external">Track </a> your results, <br/>
 			Share Key: <?php echo $key;?>
 			<a href="createpoll.php" rel="external">Create </a> another poll, or <br/>
-			<a href="votepublic.php" rel="external">Cast some votes </a> of your own!</h2>
+			<a href="votepublic.php?cat" rel="external">Cast some votes </a> of your own!</h2>
 		</div>	
 		
 	</div>

@@ -415,6 +415,10 @@ p{
     left: 5%;
 }
 
+.results strong{
+	color: #f2faff;
+}
+
 .result-percentage{
 	display: inline;
     float: right;
@@ -427,6 +431,10 @@ p{
 	display: block;
     height: 100%;
     width: 25%;
+    background-color: #e06363;
+}
+
+.result-bar.selected{
     background-color: #e04747;
 }
 

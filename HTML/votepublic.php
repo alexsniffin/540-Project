@@ -188,7 +188,11 @@
 			$(document).on('click', '.right-arrow', function()
 			{	
 
+<<<<<<< HEAD
 				window.location.href = 'votePublic.php?cat';
+=======
+				window.location.href = 'votePublic.php';
+>>>>>>> origin/master
 			});	
 		});
 	</script>
