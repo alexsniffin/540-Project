@@ -136,6 +136,7 @@ $user = $_SESSION['userProfile'];
               $numOfPolls++;
             }
             ?>
+            <?php for($p = 0; $p < $numOfPolls; $p++): ?>
             <tr>
             <?php
             $servername = "24.197.117.117";
@@ -152,7 +153,7 @@ $user = $_SESSION['userProfile'];
             {
               die("Connection failed: " . $conn->conect_error);
             }
-              $pollID = (int)$polls[0][0];
+              $pollID = (int)$polls[$p][0];
               $pollInfo = "CALL getPollQuestion(" . $pollID . ")";
               $getPollQuestion = mysqli_query($conn, $pollInfo) or die("Query fail: " . mysqli_error()); //or die("There was an error retreiving poll question");
               $conn->close();
@@ -170,12 +171,12 @@ $user = $_SESSION['userProfile'];
             ?>
             <td><?php echo $pollQuestion[0]; ?></td>
             <td><?php echo $totalVotes; ?></td>
-            <td><?php echo $polls[0][4]; ?></td>
-            <td><?php echo $polls[0][5]; ?></td>
+            <td><?php echo $polls[$p][4]; ?></td>
+            <td><?php echo $polls[$p][5]; ?></td>
             <td>
               <?php
               $today = getdate();
-              if($today > $polls[5])
+              if($today > $polls[$p][5])
               {
                 echo "Open";
               }
@@ -186,7 +187,9 @@ $user = $_SESSION['userProfile'];
               ?>
             </td>
             <td><a href="">View</a>
+            <?php endfor; ?>
             </tr>
+            <!---
 					  <tr>
 						<td>Poll 1</td>
 						<td>54</td>
@@ -211,6 +214,7 @@ $user = $_SESSION['userProfile'];
 						<td>Closed</td>
 						<td><a href="/immedresults.html">View</a></td>
 					  </tr>
+            //-->
 					</tbody>
 				  </table>
 
@@ -227,6 +231,62 @@ $user = $_SESSION['userProfile'];
 					  </tr>
 					</thead>
 					<tbody>
+            <?php for($p = 0; $p < $numOfPolls; $p++): ?>
+              <?php if(!is_null($poll[$p][3])): ?>
+            <tr>
+            <?php
+              $servername = "24.197.117.117";
+              $username = "darth";
+              $password = "ineedhelp";
+              $dbname = "pollApp";
+
+              // Create connection
+              $conn = new mysqli($servername, $username, $password, $dbname);
+              $conn1 = new mysqli($servername, $username, $password, $dbname);
+
+              // Check connection
+              if($conn->connect_error)
+              {
+                die("Connection failed: " . $conn->conect_error);
+              }
+                $pollID = (int)$polls[$p][0];
+                $pollInfo = "CALL getPollQuestion(" . $pollID . ")";
+                $getPollQuestion = mysqli_query($conn, $pollInfo) or die("Query fail: " . mysqli_error()); //or die("There was an error retreiving poll question");
+                $conn->close();
+                $pollQuestion = mysqli_fetch_array($getPollQuestion);
+                $getPollAnswers = "CALL getPollAnswers(" . $pollID . ")";
+                $pollAnswers = mysqli_query($conn1, $getPollAnswers);
+                $conn1->close();
+                $totalVotes = 0;
+                while ($answers = mysqli_fetch_array($pollAnswers))
+                {
+                  $totalVotes += $answers[2];
+                }
+
+
+                ?>
+                <td><?php echo $pollQuestion[0]; ?></td>
+                <td><?php echo $totalVotes; ?></td>
+                <td><?php echo $polls[$p][4]; ?></td>
+                <td><?php echo $polls[$p][5]; ?></td>
+                <td>
+                <?php
+                $today = getdate();
+                if($today > $polls[$p][5])
+                {
+                  echo "Open";
+                }
+                else
+                {
+                  echo "Closed";
+                }
+
+                ?>
+            </td>
+            <td><a href="">View</a>
+            </tr>
+            <?php endif; ?>
+            <?php endfor; ?>
 					  <tr>
 						<td>Poll 1</td>
 						<td><a href="/immedresults.html">View</a></td>
