@@ -32,16 +32,23 @@
 	$winning = true;
 	
 	$shareKey = $_POST['sharecode'];
-	//echo $shareKey;
+	echo $shareKey;
 	
+	//
+	$illegal = "#$%^&*()+=-[]';,./{}|:<>?~";
 
-	//This sequence of instructions fetches a random poll id from
-	//other users every time the page is loaded
-	$privSQLQuery = "CALL private_poll('". $shareKey ."');";
-	$privIDTransfer = mysqli_query($conn,$privSQLQuery) or die("Query fail: " . mysqli_error());
-	$privID = mysqli_fetch_array($privIDTransfer);
-	$conn->close();
-
+	$shareCheck = (false === strpbrk($shareKey, $illegal)) ? 'Allowed' : 'Disallowed';
+	
+	if($shareCheck == 'Allowed')
+	{
+		//This sequence of instructions fetches a random poll id from
+		//other users every time the page is loaded
+		$privSQLQuery = "CALL private_poll(". $userID .",'".$shareKey."');";
+		$privIDTransfer = mysqli_query($conn,$privSQLQuery) or die("Query fail: " . mysqli_error());
+		$privID = mysqli_fetch_array($privIDTransfer);
+		$conn->close();
+	}
+	
 	//If there are no available polls, reload home page and inform user
 	if($privID[0] == '')
 	{
@@ -125,7 +132,7 @@
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
         			<li><a href="createPoll.php">Create</a></li>
-        			<li><a href="votepublic.php?catVote</a></li>
+        			<li><a href="votepublic.php?cat">Vote</a></li>
        			    <li><a href="privatepoll.php">Private Polls</a></li> 
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
