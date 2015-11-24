@@ -136,7 +136,7 @@
 	<!-- User Bar -->
 	<div class="userbar">
 		<ul>
-			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
+			<li><a href="profile.php"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
 			<li><img src ="imgs/coin_icon_2x.png"><?php echo $user[2]; ?></li>
 		<ul>
 	</div>
@@ -167,8 +167,8 @@
 				<?php 
 				for($i=0; $i<count($answerArray); $i++)
 				{
-					echo "<li><div class='choice-text'><input type='radio' id='choice' name='choice' value='choice".$i
-						."'>".$answerArray[$i][1]."</div></li>";
+					echo "<li><div class='choice-text'><label><input type='radio' required id='choice' name='choice' value='choice".$i
+						."'>\t".$answerArray[$i][1]."</label></div></li>";
 				}
 					
 				?>
@@ -187,12 +187,7 @@
 			//declare click handler for right arrow
 			$(document).on('click', '.right-arrow', function()
 			{	
-
-<<<<<<< HEAD
 				window.location.href = 'votePublic.php?cat';
-=======
-				window.location.href = 'votePublic.php';
->>>>>>> origin/master
 			});	
 		});
 	</script>

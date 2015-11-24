@@ -56,6 +56,10 @@ p{
 	font-weight: 200;
 }
 
+input[type="radio"]{
+	cursor: pointer;
+}
+
 .main-content{
 	height: calc(100% - 100px);
 	overflow: auto;
@@ -369,11 +373,17 @@ p{
     margin-bottom: 8px;
 }
 
+.choices ul li label{
+	font-weight: 200;
+    position: absolute;
+    margin: 0 auto;
+}
+
 .choice-text{
     margin: 5px;
     display: inline;
     padding: 10px;
-
+    cursor: pointer;
 }
 
 .choices ul li.selected{
