@@ -156,7 +156,6 @@
 				$conn->close();
 				?>
 			</div>
-			<div class="right-arrow"></div>
 		</div>
 	
 		

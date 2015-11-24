@@ -101,10 +101,13 @@
 		<title>Vote | Polling App</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	</head>
 	
 	<body>
@@ -167,8 +170,8 @@
 				<?php 
 				for($i=0; $i<count($answerArray); $i++)
 				{
-					echo "<li><div class='choice-text'><label><input type='radio' required id='choice' name='choice' value='choice".$i
-						."'>\t".$answerArray[$i][1]."</label></div></li>";
+					echo "<li><div class='choice-text'><input type='radio' required id='choice' name='choice' value='choice".$i
+						."'><label>".$answerArray[$i][1]."</label></div></li>";
 				}
 					
 				?>
@@ -184,10 +187,16 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 		
-			//declare click handler for right arrow
+			//on click of right arrow, load question
 			$(document).on('click', '.right-arrow', function()
 			{	
-				window.location.href = 'votePublic.php?cat';
+				window.location.href = 'votepublic.php?cat';
+			});
+			
+			//on left swipe, load question
+			$('.question').on('swipeleft', function()
+			{
+				window.location.href = 'votepublic.php?cat';
 			});	
 		});
 	</script>
