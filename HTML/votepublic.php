@@ -125,12 +125,12 @@
    		 </div>
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
-        			<li><a href="createPoll.php">Create</a></li>
-        			<li><a href="votepublic.php?cat">Vote</a></li>
-       			    <li><a href="privatepoll.php">Private Polls</a></li> 
+        			<li><a href="createPoll.php" rel="external">Create</a></li>
+        			<li><a href="votepublic.php?cat" rel="external">Vote</a></li>
+       			    <li><a href="privatepoll.php" rel="external">Private Polls</a></li> 
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
-      				<li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li> 
+      				<li><a href="index.php" rel="external"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li> 
      			</ul>
     		</div>
   		</div>
@@ -139,7 +139,7 @@
 	<!-- User Bar -->
 	<div class="userbar">
 		<ul>
-			<li><a href="profile.php"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
+			<li><a href="profile.php" rel="external"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
 			<li><img src ="imgs/coin_icon_2x.png"><?php echo $user[2]; ?></li>
 		<ul>
 	</div>

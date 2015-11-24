@@ -64,7 +64,7 @@ $user = $_SESSION['userProfile'];
     				<input type="sharecode" required class="form-control" id="sharecode" name="sharecode">
   				</div>
 				<a href="voteprivate.php">
-  			<input type="submit">   
+  			<input type="submit" class="submit-button login">   
 			</form>
   			
   			

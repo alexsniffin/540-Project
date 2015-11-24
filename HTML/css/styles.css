@@ -286,11 +286,12 @@ input[type="radio"]{
 	border-color: #e04747;
 	text-align: center;
 	position: relative;
+    overflow: auto;
+    min-height: 200px;
 }
 
 .question-text{
     margin: 0 auto;
-    vertical-align: middle;
     font-size: 18pt;
     position: absolute;
     font-weight: 200;
@@ -301,9 +302,10 @@ input[type="radio"]{
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    overflow: scroll;
 
 }
+
+/* Need to shrink these arrows down a little */
 
 .left-arrow{
     display: inline-block;
