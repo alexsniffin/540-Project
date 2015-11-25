@@ -186,35 +186,9 @@ $user = $_SESSION['userProfile'];
               }
               ?>
             </td>
-            <td><a href="">View</a>
+            <td><a href="immedresults.php">View</a>
             <?php endfor; ?>
             </tr>
-            <!---
-					  <tr>
-						<td>Poll 1</td>
-						<td>54</td>
-						<td>3/6/2015</td>
-						<td>4/9/2015</td>
-						<td>Closed</td>
-						<td><a href="/immedresults.html">View</a></td>
-					  </tr>
-					  <tr>
-						<td>Poll 2</td>
-						<td>54</td>
-						<td>10/6/2015</td>
-						<td>11/9/2015</td>
-						<td>Open</td>
-						<td><a href="/immedresults.html">View</a></td>
-					  </tr>
-					  <tr>
-						<td>Poll 3</td>
-						<td>54</td>
-						<td>3/6/2015</td>
-						<td>4/9/2015</td>
-						<td>Closed</td>
-						<td><a href="/immedresults.html">View</a></td>
-					  </tr>
-            //-->
 					</tbody>
 				  </table>
 
@@ -231,62 +205,9 @@ $user = $_SESSION['userProfile'];
 					  </tr>
 					</thead>
 					<tbody>
-            <?php for($p = 0; $p < $numOfPolls; $p++): ?>
-              <?php if(!is_null($poll[$p][3])): ?>
-            <tr>
-            <?php
-              $servername = "24.197.117.117";
-              $username = "darth";
-              $password = "ineedhelp";
-              $dbname = "pollApp";
-
-              // Create connection
-              $conn = new mysqli($servername, $username, $password, $dbname);
-              $conn1 = new mysqli($servername, $username, $password, $dbname);
-
-              // Check connection
-              if($conn->connect_error)
-              {
-                die("Connection failed: " . $conn->conect_error);
-              }
-                $pollID = (int)$polls[$p][0];
-                $pollInfo = "CALL getPollQuestion(" . $pollID . ")";
-                $getPollQuestion = mysqli_query($conn, $pollInfo) or die("Query fail: " . mysqli_error()); //or die("There was an error retreiving poll question");
-                $conn->close();
-                $pollQuestion = mysqli_fetch_array($getPollQuestion);
-                $getPollAnswers = "CALL getPollAnswers(" . $pollID . ")";
-                $pollAnswers = mysqli_query($conn1, $getPollAnswers);
-                $conn1->close();
-                $totalVotes = 0;
-                while ($answers = mysqli_fetch_array($pollAnswers))
-                {
-                  $totalVotes += $answers[2];
-                }
 
 
-                ?>
-                <td><?php echo $pollQuestion[0]; ?></td>
-                <td><?php echo $totalVotes; ?></td>
-                <td><?php echo $polls[$p][4]; ?></td>
-                <td><?php echo $polls[$p][5]; ?></td>
-                <td>
-                <?php
-                $today = getdate();
-                if($today > $polls[$p][5])
-                {
-                  echo "Open";
-                }
-                else
-                {
-                  echo "Closed";
-                }
 
-                ?>
-            </td>
-            <td><a href="">View</a>
-            </tr>
-            <?php endif; ?>
-            <?php endfor; ?>
 					  <tr>
 						<td>Poll 1</td>
 						<td><a href="/immedresults.html">View</a></td>
@@ -320,33 +241,62 @@ $user = $_SESSION['userProfile'];
 					  </tr>
 					</thead>
 					<tbody>
-					  <tr>
-						<td>Poll 1</td>
-						<td>54</td>
-						<td>3/6/2015</td>
-						<td>4/9/2015</td>
-						<td>Closed</td>
-						<td><a href="/immedresults.html">View</a></td>
-						<td>00000000</td>
-					  </tr>
-					  <tr>
-						<td>Poll 2</td>
-						<td>54</td>
-						<td>10/6/2015</td>
-						<td>11/9/2015</td>
-						<td>Open</td>
-						<td><a href="/immedresults.html">View</a></td>
-						<td>00000000</td>
-					  </tr>
-					  <tr>
-						<td>Poll 3</td>
-						<td>54</td>
-						<td>3/6/2015</td>
-						<td>4/9/2015</td>
-						<td>Closed</td>
-						<td><a href="/immedresults.html">View</a></td>
-						<td>00000000</td>
-					  </tr>
+            <?php for($p = 0; $p < $numOfPolls; $p++): ?>
+              <?php if(!(empty($polls[$p][3]))): ?>
+                <tr>
+                <?php
+                  $servername = "24.197.117.117";
+                  $username = "darth";
+                  $password = "ineedhelp";
+                  $dbname = "pollApp";
+
+                  // Create connection
+                  $conn = new mysqli($servername, $username, $password, $dbname);
+                  $conn1 = new mysqli($servername, $username, $password, $dbname);
+
+                  // Check connection
+                  if($conn->connect_error)
+                  {
+                    die("Connection failed: " . $conn->conect_error);
+                  }
+                    $pollID = (int)$polls[$p][0];
+                    $pollInfo = "CALL getPollQuestion(" . $pollID . ")";
+                    $getPollQuestion = mysqli_query($conn, $pollInfo) or die("Query fail: " . mysqli_error()); //or die("There was an error retreiving poll question");
+                    $conn->close();
+                    $pollQuestion = mysqli_fetch_array($getPollQuestion);
+                    $getPollAnswers = "CALL getPollAnswers(" . $pollID . ")";
+                    $pollAnswers = mysqli_query($conn1, $getPollAnswers);
+                    $conn1->close();
+                    $totalVotes = 0;
+                    while ($answers = mysqli_fetch_array($pollAnswers))
+                    {
+                      $totalVotes += $answers[2];
+                    }
+
+
+                    ?>
+                    <td><?php echo $pollQuestion[0]; ?></td>
+                    <td><?php echo $totalVotes; ?></td>
+                    <td><?php echo $polls[$p][4]; ?></td>
+                    <td><?php echo $polls[$p][5]; ?></td>
+                    <td>
+                    <?php
+                    $today = getdate();
+                    if($today > $polls[$p][5])
+                    {
+                      echo "Open";
+                    }
+                    else
+                    {
+                      echo "Closed";
+                    }
+                    ?>
+                </td>
+                <td><a href="immedresults.php">View</a>
+                <td><?php echo $polls[$p][3];  ?></td>
+                </tr>
+              <?php endif; ?>
+            <?php endfor; ?>
 					</tbody>
 				  </table>
 
