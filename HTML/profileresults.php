@@ -108,7 +108,7 @@ for($i = 0; $i < count($answerArray); $i++)
 	<!-- User Bar -->
 	<div class="userbar">
 		<ul>
-			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
+			<li><a href="profile.php"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
 			<li><img src ="imgs/coin_icon_2x.png"><?php echo $user[2]; ?></li>
 		<ul>
 	</div>
@@ -136,7 +136,7 @@ for($i = 0; $i < count($answerArray); $i++)
 				<?php 
 					for($i=0; $i<count($answerArray); $i++)
 					{
-						$percentage = round(((($answerArray[$i][2] + 1) / $totalVotes) * 100), 1);
+						$percentage = round(((($answerArray[$i][2]) / $totalVotes) * 100), 1);
 						echo "<li><div class='result-text'><strong>".$answerArray[$i][1]."</strong></div><div class='result-percentage'><strong>"
 								.$percentage."%</strong></div><div class='result-bar selected' style='width:".$percentage."%;'></div></li>";		
 					}	
@@ -156,7 +156,7 @@ for($i = 0; $i < count($answerArray); $i++)
 			$(document).on('click', '.right-arrow', function()
 			{	
 
-				window.location.href = 'votePublic.php';
+				window.location.href = 'profile.php';
 			});	
 		});
 	</script>
