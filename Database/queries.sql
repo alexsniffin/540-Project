@@ -310,3 +310,16 @@ BEGIN
 	WHERE p.User_ID = User_ID;
 END //
 DELIMITER ;
+
+-- Get the polls a user has voted on
+-- Input: User_ID
+-- P_ID, question, answer
+DELIMITER //
+CREATE PROCEDURE getVotedOn
+	(IN User_ID INT)
+BEGIN
+	SELECT a.P_ID, p.question, a.ans
+	FROM Voted v, Polls p, Answers a
+	WHERE v.User_ID = User_ID AND v.ANS_ID = a.ANS_ID AND a.P_ID = p.P_ID;
+END //
+DELIMITER ;
