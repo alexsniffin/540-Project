@@ -34,7 +34,8 @@
 	$shareKey = $_POST['sharecode'];
 	echo $shareKey;
 	
-	//
+	//check to make sure characters are valid entries and
+	//won't destroy the database functionallity
 	$illegal = "#$%^&*()+=-[]';,./{}|:<>?~";
 
 	$shareCheck = (false === strpbrk($shareKey, $illegal)) ? 'Allowed' : 'Disallowed';

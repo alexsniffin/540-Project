@@ -29,6 +29,32 @@ if($pass1 != $pass2)
   die("Passwords do not match!");
 }
 
+//check to make sure characters are valid entries and
+//won't destroy the database functionallity
+$illegal = "#$%^&*()+=-[]';,./{}|:<>?~";
+
+$Check = (false === strpbrk($usrName, $illegal)) ? 'Allowed' : 'Disallowed';
+	
+if($Check == 'Disallowed')
+{
+	header('Location: index.php?log=fail');
+}
+$Check = (false === strpbrk($eAdd, $illegal)) ? 'Allowed' : 'Disallowed';
+	
+if($Check == 'Disallowed')
+{
+	header('Location: index.php?log=fail');
+}
+
+$illegal = "[]';,./{}|:<>?~";
+
+$Check = (false === strpbrk($pass1, $illegal)) ? 'Allowed' : 'Disallowed';
+	
+if($Check == 'Disallowed')
+{
+	header('Location: index.php?log=fail');
+}
+
 // sql call to create account
 $crtUserACC = "CALL createUser('" . $eAdd . "','" . $pass1 ."','" . $usrName . "','" . $gend . "'," . $age . "," . $ip . ",NULL,NOW())";
 $res = NULL;

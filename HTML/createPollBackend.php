@@ -415,6 +415,7 @@ $key = buildShareKey();
 
 
 $sqlInsert = loadArray();
+
 if(isset($_POST["pubOpriv"]))
 {
 	//build SQL string statement

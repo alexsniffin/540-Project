@@ -24,6 +24,24 @@ session_start();
 $user = $_POST["user"];
 $pass = $_POST["pwrd"];
 
+$illegal = "#$%^&*()+=-[]';,./{}|:<>?~";
+
+$Check = (false === strpbrk($user, $illegal)) ? 'Allowed' : 'Disallowed';
+	
+if($Check == 'Disallowed')
+{
+	header('Location: index.php?log=fail');
+}
+
+$illegal = "[]';,./{}|:<>?~";
+
+$Check = (false === strpbrk($pass, $illegal)) ? 'Allowed' : 'Disallowed';
+	
+if($Check == 'Disallowed')
+{
+	header('Location: index.php?log=fail');
+}
+
 //check for username and password being valid
 $login = "SELECT login('" . $user . "', '" . $pass . "')";
 

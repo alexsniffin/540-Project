@@ -135,6 +135,17 @@ $user = $_SESSION['userProfile'];
               $polls[$numOfPolls][5] = $row[5];
               $numOfPolls++;
             }
+			
+			//Create user poll data as session variable
+			// is a 2d array.
+			//index 0 = pollID
+			//index 1
+			//index 2
+			//index 3
+			//index 4
+			//index 5
+			$_SESSION['myPollArr'] = $polls;
+			
             ?>
             <?php for($p = 0; $p < $numOfPolls; $p++): ?>
             <tr>
@@ -184,9 +195,10 @@ $user = $_SESSION['userProfile'];
               {
                 echo "Closed";
               }
+			  
               ?>
             </td>
-            <td><a href="immedresults.php">View</a>
+            <td><a href="profileresults.php?pol=<?php echo $polls[$p][0];?>".>View</a>
             <?php endfor; ?>
             </tr>
 					</tbody>
@@ -292,7 +304,7 @@ $user = $_SESSION['userProfile'];
                     }
                     ?>
                 </td>
-                <td><a href="immedresults.php">View</a>
+                <td><a href="profileresults.php?pol=<?php echo $polls[$p][0];?>">View</a>
                 <td><?php echo $polls[$p][3];  ?></td>
                 </tr>
               <?php endif; ?>
