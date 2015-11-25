@@ -3,26 +3,54 @@
 <html lang = "en">
 
 <?php
-session_start();
+	session_start();
 
-//a single int representing the User ID in the database.
-//used for calling procedures.
-$userID = $_SESSION['arrLogin'];
+	//a single int representing the User ID in the database.
+	//used for calling procedures.
+	$userID = $_SESSION['arrLogin'];
 
-//An array containing User Profile information
-//index 0 = email (string)
-//index 1 = display name (string)
-//index 2 = coins (int)
-//index 3 = gender (string)
-//index 4 = age (int)
-//index 5 = creation date (timestamp) ----NOT RETURNED----
-//index 6 = total votes (int)		  ----NOT RETURNED----
-$user = $_SESSION['userProfile'];
+	//An array containing User Profile information
+	//index 0 = email (string)
+	//index 1 = display name (string)
+	//index 2 = coins (int)
+	//index 3 = gender (string)
+	//index 4 = age (int)
+	//index 5 = creation date (timestamp) ----NOT RETURNED----
+	//index 6 = total votes (int)		  ----NOT RETURNED----
+	$user = $_SESSION['userProfile'];
 
+	$servername = "24.197.117.117";
+	$username = "darth";
+	$password = "ineedhelp";
+	$dbname = "pollApp";
 
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+
+	// Check connection
+	if($conn->connect_error)
+	{
+		die("Connection failed: " . $conn->conect_error);
+	}
+	$getUsrPoll = "CALL getUserPolls(" . $userID . " )";
+	$res = mysqli_query($conn, $getUsrPoll) or die("Query fail: " . mysqli_error()); //or die("There was an error retreiving your account information");
+	$conn->close();
+
+	$numOfPolls = 0;
+	$polls = array();//mysqli_fetch_array($res);
+	while ($row = mysqli_fetch_array($res))
+	{
+	  $polls[$numOfPolls][0] = $row[0];
+	  $polls[$numOfPolls][1] = $row[1];
+	  $polls[$numOfPolls][2] = $row[2];
+	  $polls[$numOfPolls][3] = $row[3];
+	  $polls[$numOfPolls][4] = $row[4];
+	  $polls[$numOfPolls][5] = $row[5];
+	  $numOfPolls++;
+	}
  ?>
 	<head>
-		<title><?php echo $user[1]; ?>| Polling App</title>
+		<title><?php echo $user[1]; ?> | Polling App</title>
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -73,8 +101,8 @@ $user = $_SESSION['userProfile'];
 		<div class="user-header">
 		<h2><?php echo $user[1]; ?></h2>
 		<ul>
-			<li><strong>12</strong> Votes</li>
-			<li><strong>4</strong> Polls Created</li>
+			<li><strong>?</strong> Votes</li>
+			<li><strong><?php echo $numOfPolls; ?></strong> Polls Created</li>
 		</ul>
 		</div>
 
@@ -105,48 +133,7 @@ $user = $_SESSION['userProfile'];
 					  </tr>
 					</thead>
 					<tbody>
-            <?php
-            $servername = "24.197.117.117";
-            $username = "darth";
-            $password = "ineedhelp";
-            $dbname = "pollApp";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if($conn->connect_error)
-            {
-            	die("Connection failed: " . $conn->conect_error);
-            }
-            $getUsrPoll = "CALL getUserPolls(" . $userID . " )";
-            $res = mysqli_query($conn, $getUsrPoll) or die("Query fail: " . mysqli_error()); //or die("There was an error retreiving your account information");
-            $conn->close();
-
-            $numOfPolls = 0;
-            $polls = array();//mysqli_fetch_array($res);
-            while ($row = mysqli_fetch_array($res))
-            {
-            	$polls[$numOfPolls][0] = $row[0];
-              $polls[$numOfPolls][1] = $row[1];
-              $polls[$numOfPolls][2] = $row[2];
-              $polls[$numOfPolls][3] = $row[3];
-              $polls[$numOfPolls][4] = $row[4];
-              $polls[$numOfPolls][5] = $row[5];
-              $numOfPolls++;
-            }
-			
-			//Create user poll data as session variable
-			// is a 2d array.
-			//index 0 = pollID
-			//index 1
-			//index 2
-			//index 3
-			//index 4
-			//index 5
-			$_SESSION['myPollArr'] = $polls;
-			
-            ?>
             <?php for($p = 0; $p < $numOfPolls; $p++): ?>
             <tr>
             <?php
@@ -158,7 +145,17 @@ $user = $_SESSION['userProfile'];
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
             $conn1 = new mysqli($servername, $username, $password, $dbname);
-
+			
+			//Create user poll data as session variable
+			// is a 2d array.
+			//index 0 = pollID
+			//index 1
+			//index 2
+			//index 3
+			//index 4
+			//index 5
+			$_SESSION['myPollArr'] = $polls;
+			
             // Check connection
             if($conn->connect_error)
             {
