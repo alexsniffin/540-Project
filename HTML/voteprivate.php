@@ -32,7 +32,7 @@
 	$winning = true;
 	
 	$shareKey = $_POST['sharecode'];
-	echo $shareKey;
+//	echo $shareKey;
 	
 	//check to make sure characters are valid entries and
 	//won't destroy the database functionallity

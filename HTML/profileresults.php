@@ -118,7 +118,6 @@ for($i = 0; $i < count($answerArray); $i++)
 			
 		<!-- Question -->
 		<div class="question">
-			<div class="left-arrow inactive"></div>
 			<div class="question-text">
 				<?php
 				//Call question and print it out.
@@ -136,9 +135,17 @@ for($i = 0; $i < count($answerArray); $i++)
 				<?php 
 					for($i=0; $i<count($answerArray); $i++)
 					{
-						$percentage = round(((($answerArray[$i][2]) / $totalVotes) * 100), 1);
-						echo "<li><div class='result-text'><strong>".$answerArray[$i][1]."</strong></div><div class='result-percentage'><strong>"
-								.$percentage."%</strong></div><div class='result-bar selected' style='width:".$percentage."%;'></div></li>";		
+						if($totalVotes > 0)
+						{
+							$percentage = round(((($answerArray[$i][2]) / $totalVotes) * 100), 1);
+						}
+						else
+						{
+							$percentage = 0;
+						}
+						
+						echo "<li><div class='result-text'>".$answerArray[$i][1]."</div><div class='result-percentage'>"
+								.$percentage."%</div><div class='result-bar selected' style='width:".$percentage."%;'></div></li>";		
 					}	
 				?>
 			</ul>	

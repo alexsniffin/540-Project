@@ -313,8 +313,8 @@ input[type="radio"]{
     background-image: url('../imgs/leftArrow_2x.png');
     background-repeat: no-repeat;
     height: 100%;
-    width: 30%;
-    background-size: 70px 70px;
+    width: 25%;
+    background-size: 50px 50px;
     background-position: 30% 50%;
     cursor: pointer;
 }
@@ -330,8 +330,8 @@ input[type="radio"]{
 	background-image: url('../imgs/rightArrow_2x.png');
 	background-repeat: no-repeat;
     height: 100%;
-    width: 30%;
-    background-size: 70px 70px;
+    width: 25%;
+    background-size: 50px 50px;
     background-position: 70% 50%;
     cursor: pointer;
 }
