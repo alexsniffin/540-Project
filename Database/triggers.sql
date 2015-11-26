@@ -23,7 +23,6 @@ BEGIN
 	END IF;
 END //
 DELIMITER ;
-INSERT INTO Voted VALUES(NULL, 2, 1); -- Should throw the error message
 
 -- http://www.regextester.com/
 -- Check if a new user has a valid name, pass, and email and limit age to 150

@@ -1,10 +1,5 @@
--- Please note for some reason with MySQL it doesn't like tabs, so remove any tabs if you
--- use the terminal.
-
--- #1
 -- Get new random public poll for some <USER_ID>
--- Projects all of the polls that the <USER_ID> doesn't own, and also checks
--- all of the polls in which the user has voted in. Will check the date to close attribute too.
+-- Projects all of the polls that the <USER_ID> doesn't own, isn't a private poll, whether it's the right category, will check the date to close attribute and also checks all of the polls in which the user has voted in.
 -- Input: User_ID(Int), Category type(String)
 -- Output: Poll_ID(Result set)
 DELIMITER //
@@ -26,11 +21,8 @@ BEGIN
 	ORDER BY RAND() LIMIT 1;
 END //
 DELIMITER ;
--- Use
-CALL random_public_poll(<id>); -- returns a result set
 
--- #2
--- Get a Private Poll using a <share_code>
+-- Get a Private Poll using a <share_code>, follows same logic as public poll, except no category
 -- Input: Share_code(String)
 -- Output: Poll_ID(Result set)
 DELIMITER //
@@ -53,10 +45,8 @@ BEGIN
 END //
 DELIMITER ;
 
-
--- #3
 -- Create a poll and the corresponding answers
--- It's kind of ugly because I couldn't get a loop to work, but it works!
+-- It's kind of ugly, but it works! (No optional parameter length in MySQL)
 -- Input: Question(String), Share code(String), category(String), Days to close(Date), Ans1 - Ans12(Strings)
 -- Output: Null
 DELIMITER //
@@ -100,7 +90,8 @@ BEGIN
 	INSERT INTO Polls VALUES (NULL, user, share_code, NOW(), DATE_ADD(NOW(), INTERVAL days_to_close DAY), question, category);
 	SET poll_id = LAST_INSERT_ID();
 
-	--Not sure how to do this in a loop with SQL
+	-- and..... a lot of if statements. Ew SQL...
+	-- could probably do a procedure for adding in the answers
 	IF ans1 IS NOT NULL THEN
 		INSERT INTO Answers VALUES (NULL, poll_id, ans1, 0);
 	END IF;
@@ -151,10 +142,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- Use
-CALL create_poll(1, 'Some question using procedure', NULL, 30, 'Some answer using procedure', 'Another answer using procedure', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
--- #4 getPollQuestion, returns a single tuple with the question, name of person who made poll, and date created
+-- getPollQuestion, returns a single tuple with the question, name of person who made poll, and date created
 -- Input: Poll_ID(Int), Share Code(String)
 -- Output: Question, Name, Date Created(Result set)
 DELIMITER //
@@ -170,7 +158,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- #5 getPollAnswers, returns a result set of all answers for the given poll, their ANS_ID and the total votes which will be used for displaying results
+-- getPollAnswers, returns a result set of all answers for the given poll, their ANS_ID and the total votes which will be used for displaying results
 -- Input: Poll_ID(Int)
 -- Output: (Result set) ANS_ID, Answers, Total Votes
 DELIMITER //
@@ -183,7 +171,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- #6 Increment Answers total_votes after user votes on poll and adds the user in voted table
+-- Increment Answers total_votes after user votes on poll and adds the user in voted table
 -- Input: User_ID(Int), Ans_ID(Int)
 -- Output: Void
 DELIMITER //
@@ -217,7 +205,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- Removes 100 coins from the User. This will be used for buying a Poll. If they don't have enoguh coins then it will return an error.
+-- Removes 100 coins from the User. This will be used for buying a Poll. If they don't have enough coins then it will return an error.
 -- Input: User_ID(Int)
 -- Output: Void
 DELIMITER //
@@ -262,7 +250,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- Logins in to an email and password
+-- Logins with an email and password
 -- Input: email, password
 -- Output: User_ID, if wrong email or pass, it'll be -1
 DELIMITER //
