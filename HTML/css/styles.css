@@ -806,6 +806,8 @@ input[type="radio"]{
 .nav-pills > li {
     float: left;
     margin-left: 0 !important;
+    width: 50%;
+    text-align: center;
 }
 
 .nav-pills > li > a {
@@ -819,8 +821,10 @@ input[type="radio"]{
 }
 
 .table.table.table-hover{
-	font-size: 13pt;
+	font-size: 12pt;
     color: #f2faff;
+    table-layout: fixed;
+    
 }
 
 .table.table.table-hover tbody{
@@ -834,3 +838,11 @@ input[type="radio"]{
 .table.table.table-hover tr:hover{
 	background: #3d3e40;
 }
+
+.table.table.table-hover td{
+	font-size: 12pt;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	border-top: 1px solid #636568;
+}
+

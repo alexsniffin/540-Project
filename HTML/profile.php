@@ -101,7 +101,7 @@
 		<div class="user-header">
 		<h2><?php echo $user[1]; ?></h2>
 		<ul>
-			<li><strong>?</strong> Votes</li>
+<!-- 			<li><strong>?</strong> Votes</li> -->
 			<li><strong><?php echo $numOfPolls; ?></strong> Polls Created</li>
 		</ul>
 		</div>
@@ -113,8 +113,8 @@
 		<!-- Poll Info -->
 		<div class="info-container">
 			<ul class="nav nav-pills">
-				<li class="active"><a data-toggle="pill" href="#menu1">Polls</a></li>
-				<li><a data-toggle="pill" href="#menu2">Votes</a></li>
+				<li class="active"><a data-toggle="pill" href="#menu1">Public Polls</a></li>
+<!-- 				<li><a data-toggle="pill" href="#menu2">Votes</a></li> -->
 				<li><a data-toggle="pill" href="#menu3">Private Polls</a></li>
 			</ul>
 
@@ -128,7 +128,7 @@
 						<th>Votes</th>
 						<th>Created</th>
 						<th>Expiration Date</th>
-						<th>Status</th>
+<!-- 						<th>Status</th> -->
 						<th>Results</th>
 					  </tr>
 					</thead>
@@ -181,6 +181,7 @@
             <td><?php echo $totalVotes; ?></td>
             <td><?php echo $polls[$p][4]; ?></td>
             <td><?php echo $polls[$p][5]; ?></td>
+<!-- 
             <td>
               <?php
               $today = getdate();
@@ -195,6 +196,7 @@
 			  
               ?>
             </td>
+ -->
             <td><a href="profileresults.php?pol=<?php echo $polls[$p][0];?>".>View</a>
             <?php endfor; ?>
             </tr>
@@ -204,6 +206,7 @@
 				</div>
 
 
+<!-- 
 				<div id="menu2" class="tab-pane">
 
 					<table class="table table-hover">
@@ -233,6 +236,7 @@
 				  </table>
 
 				</div>
+ -->
 
 
 				<div id="menu3" class="tab-pane">
@@ -244,7 +248,7 @@
 						<th>Votes</th>
 						<th>Created</th>
 						<th>Expiration Date</th>
-						<th>Status</th>
+<!-- 						<th>Status</th> -->
 						<th>Results</th>
 						<th>Share Code</th>
 					  </tr>
@@ -288,6 +292,7 @@
                     <td><?php echo $totalVotes; ?></td>
                     <td><?php echo $polls[$p][4]; ?></td>
                     <td><?php echo $polls[$p][5]; ?></td>
+<!-- 
                     <td>
                     <?php
                     $today = getdate();
@@ -301,6 +306,7 @@
                     }
                     ?>
                 </td>
+ -->
                 <td><a href="profileresults.php?pol=<?php echo $polls[$p][0];?>">View</a>
                 <td><?php echo $polls[$p][3];  ?></td>
                 </tr>
