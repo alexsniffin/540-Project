@@ -118,7 +118,8 @@
 <!-- 				<li><a data-toggle="pill" href="#menu2">Votes</a></li> -->
 				<li><a data-toggle="pill" href="#menu3">Private Polls</a></li>
 			</ul>
-
+			
+			<!-- Public Poll Menu -->
 			<div class = "tab-content">
 				<div id="menu1" class="tab-pane active">
 
@@ -136,6 +137,7 @@
 					<tbody>
 
             <?php for($p = 0; $p < $numOfPolls; $p++): ?>
+             <?php if(empty($polls[$p][3])): ?>
             <tr>
             <?php
             $servername = "24.197.117.117";
@@ -199,6 +201,7 @@
             </td>
  -->
             <td><a href="profileresults.php?pol=<?php echo $polls[$p][0];?>".>View</a>
+            	<?php endif; ?>
             <?php endfor; ?>
             </tr>
 					</tbody>
@@ -239,7 +242,7 @@
 				</div>
  -->
 
-
+				<!-- Private Poll Menu -->
 				<div id="menu3" class="tab-pane">
 
 				  <table class="table table-hover">
