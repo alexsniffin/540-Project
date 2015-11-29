@@ -168,7 +168,6 @@ $user = $_SESSION['userProfile'];
 		
 		// Remove row function
 		$(document).on('click', '.minus-button', function(e){
-			console.log('fire');
 		
 			var target = e.target;
 			if(rowNum > 2)
@@ -176,6 +175,14 @@ $user = $_SESSION['userProfile'];
 				$(target).parents('.choice-row').remove();
 				rowNum--;
 				//window.location.href = "createPoll.php?w1=" + rowNum;
+			}
+		})
+		
+		// Tab key also creates new rows
+		$(document).on('keydown', function(e){
+			if(e.keyCode == 9 && $('#row' + rowNum).is(':focus'))
+			{
+				$('.plus-button').click();
 			}
 		}) 
 		
