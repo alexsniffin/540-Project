@@ -83,7 +83,7 @@ BEGIN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errMsg;
 	END IF;
 
-	IF days_to_close IS NULL THEN
+	IF days_to_close IS NULL OR DATE_ADD(NOW(), INTERVAL days_to_close DAY) < NOW() THEN
 		SET days_to_close = 30;
 	END IF;
 
