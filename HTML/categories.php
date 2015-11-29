@@ -5,7 +5,8 @@
 $user=$_SESSION['userProfile'];
 ?>
 	<head>
-		<title>Categories</title>
+		<title>Categories | Polling App</title>
+		<link rel="icon" type="image/png" href="imgs/favicon.png">
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">

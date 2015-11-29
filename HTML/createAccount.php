@@ -70,7 +70,8 @@ $conn->close();
 <html lang = "en">
 
 	<head>
-		<title>Polling App</title>
+		<title>Create Account | Polling App</title>
+		<link rel="icon" type="image/png" href="imgs/favicon.png">
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">

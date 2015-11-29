@@ -99,6 +99,7 @@
 
 	<head>
 		<title>Vote | Polling App</title>
+		<link rel="icon" type="image/png" href="imgs/favicon.png">
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		
