@@ -507,13 +507,13 @@ $_SESSION['userProfile'] = $profile;
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span> 
       		</button>
-      	<a class="navbar-brand" href="home.php"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
+      	<a class="navbar-brand" href="home.php" rel="external"><img src ="imgs/pollingApp_icon_2x.png"> <span>Polling App</span></a>
    		 </div>
     		<div class="collapse navbar-collapse" id="myNavbar">
      		    <ul class="nav navbar-nav">
-        			<li><a href="createPoll.php">Create</a></li>
-        			<li><a href="votepublic.php?cat">Vote</a></li>
-       			    <li><a href="privatepoll.php">Private Polls</a></li> 
+        			<li><a href="createPoll.php" rel="external">Create</a></li>
+        			<li><a href="votepublic.php?cat" rel="external">Vote</a></li>
+       			    <li><a href="privatepoll.php" rel="external">Private Polls</a></li> 
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
       				<li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li> 
@@ -539,9 +539,16 @@ $_SESSION['userProfile'] = $profile;
 		<div class="top">
 		<h2>You have created a new poll. <br/><br/>
 			<a href="profile.php" rel="external">Track </a> your results, <br/>
-			Share Key: <?php echo $key;?>
 			<a href="createpoll.php" rel="external">Create </a> another poll, or <br/>
 			<a href="votepublic.php?cat" rel="external">Cast some votes </a> of your own!</h2>
+			<?php 
+			
+				if(isset($_POST["pubOpriv"]))
+				{
+					echo "Share Code: " . $key;
+				}
+			
+			?>
 		</div>	
 		
 	</div>
