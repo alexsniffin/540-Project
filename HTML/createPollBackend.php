@@ -540,15 +540,16 @@ $_SESSION['userProfile'] = $profile;
 		<h2>You have created a new poll. <br/><br/>
 			<a href="profile.php" rel="external">Track </a> your results, <br/>
 			<a href="createpoll.php" rel="external">Create </a> another poll, or <br/>
-			<a href="votepublic.php?cat" rel="external">Cast some votes </a> of your own!</h2>
+			<a href="votepublic.php?cat" rel="external">Cast some votes </a> of your own!
 			<?php 
 			
 				if(isset($_POST["pubOpriv"]))
 				{
-					echo "Share Code: " . $key;
+					echo "</br>Share Code: " . $key;
 				}
 			
 			?>
+		</h2>	
 		</div>	
 		
 	</div>

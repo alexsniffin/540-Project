@@ -176,7 +176,6 @@ $_SESSION['userProfile'] = $profile;
 			
 		<!-- Question -->
 		<div class="question">
-			<div class="left-arrow inactive"></div>
 			<div class="question-text">
 				<?php
 				//Call question and print it out.
