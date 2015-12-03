@@ -58,13 +58,21 @@ $user = $_SESSION['userProfile'];
 	
 		<!-- Share code form -->
 		<div class="share-code-container">
-			<h2>Please enter your share code in order to vote:</h2>
+			<h2>
+		
+			Please enter your share code in order to vote:</h2>
 			
 			<form action="voteprivate.php" method="post">
   				<div class="form-group">
     				<input type="sharecode" required class="form-control" id="sharecode" name="sharecode">
   				</div>
 				<a href="voteprivate.php">
+				<?php
+					if(isset($_GET["code"]))
+					{
+						echo "<p><strong>Please try again. You've either voted in this poll before or entered in an expired or incorrect code.</strong></p>";
+					}
+				?>
   			<input type="submit" class="submit-button login">   
 			</form>
   			

@@ -25,7 +25,7 @@
 		<?php
 		if(isset($_GET["log"]))
 		{
-			echo "Login failed! Please enter in your appropriate Email and Password.";
+			echo "<strong>Login failed! Please enter in your appropriate Email and Password.</strong>";
 		}
 		else
 		{

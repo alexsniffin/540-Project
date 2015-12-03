@@ -166,7 +166,7 @@ $_SESSION['userProfile'] = $profile;
 	<!-- User Bar -->
 	<div class="userbar">
 		<ul>
-			<li><a href="profile.html"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
+			<li><a href="profile.php"><img src ="imgs/user_icon_2x.png"><?php echo $user[1]; ?></a></li>
 			<li><img src ="imgs/coin_icon_2x.png"><?php echo $user[2]; ?></li>
 		<ul>
 	</div>

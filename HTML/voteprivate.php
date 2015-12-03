@@ -50,10 +50,10 @@
 		$conn->close();
 	}
 	
-	//If there are no available polls, reload home page and inform user
+	//If sharecode is incorrect, notify user
 	if($privID[0] == '')
 	{
-		header('Location: home.php?pol=noPolls');
+		header('Location: privatepoll.php?code=invalid');
 	}
 	
 	//echo $privID[0];
