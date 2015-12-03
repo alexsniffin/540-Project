@@ -70,9 +70,18 @@ $user = $_SESSION['userProfile'];
 	
 	<!-- Start main content -->
 	<div class="main-content">
-	
+		
 		<!-- Top of page text -->
 		<div class="top">
+		
+		<!-- Error message if user is out of polls -->
+		<?php
+		if(isset($_GET["pol"]))
+		{
+			echo "</br><p><strong>Oops! You seem to be out of polls. Check back later for new polls,</br>or create your own while you're waiting!</strong></p>";
+		}
+		?>
+		
 		<h2>Ready to share your<br/>opinions with the world?</h2>
 		</div>
 	
