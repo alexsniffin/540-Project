@@ -3,6 +3,7 @@
 <html lang = "en">
 <?php
 //====================================BEGIN PHP CODE============================================//
+//Written by Julian
 	session_start();
 	//a single int representing the User ID in the database.
 	//used for calling procedures.
@@ -99,6 +100,7 @@
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	$answerArray = callAnswers($privID[0],$conn) or die("Query fail: " . mysqli_error());
 	
+	//Store answerArray in session variable
 	$_SESSION['arrReturn'] = $answerArray;
 	
 	

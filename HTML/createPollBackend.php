@@ -31,6 +31,9 @@
 
 
 <?php
+//Store polls, questions, sharekey, and metadata into the database
+//PHP by Julian
+
 
 //User ID passed in from session
 session_start();
@@ -43,7 +46,6 @@ $username = "darth";
 $password = "ineedhelp";
 $dbname = "pollApp";
 
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -52,22 +54,16 @@ if ($conn->connect_error)
 {
     die("Connection failed: " . $conn->connect_error);
 }
-// this statement can be removed later
-// echo "Connected successfully";
 
 //Variable that will hold string to send to SQL server for poll input
 $sqlInsert;
-
-//User ID initialized to 1 for debugging purposes
-
-
-// echo "<br>userID: ".$userID."<br>";
 
 //Vistigial incrementer for now
 $incr1 = 0;
 
 $isPrivate;
 
+//check if poll is public or private
 if(isset($_POST["pubOpriv"]))
 {
 	$isPrivate = "yes";
@@ -83,7 +79,7 @@ $winning = true;
 $categoryselection = $_POST["categoryselection"];
 $date = $_POST["datepicker"];
 
- //echo $date;
+//echo $date;
 
 //Loads in user input in order to create SQL call function string
 //Currently uses 2D Array 
@@ -117,8 +113,7 @@ function loadArray()
 }
 
 //Generate a pseudo-random 8 digit share key for unique id purposes
-//Needs to be optimized and strengthened, as well as adding
-//a check function to see if it exists already in the database.
+//Needs to be optimized and strengthened.
 function buildShareKey()
 {
 	$shareKey = '';
@@ -165,7 +160,10 @@ function printArray($tempArray)
 // Takes in user input and concatenates into a string to send to SQL for insertion
 function publicPoll($tempArray, $ID, $category, $dateIn)
 {
+	
 	$catSwitch = '';
+	
+	//prepare date to insert into sql string
 	$dateConver = $dateIn;
 	$date = strtotime($dateConver);
 	
@@ -174,7 +172,7 @@ function publicPoll($tempArray, $ID, $category, $dateIn)
 	
 // 	echo "<br> Calculated days: ".$days."<br>";
 	
-	
+	//prepare category to insert into sql string
 	switch($category)
 	{
 		
@@ -207,6 +205,7 @@ function publicPoll($tempArray, $ID, $category, $dateIn)
 			break;
 	}
 	
+	//check question for apostrophes and insert escape char if true
 	$charArray = str_split($tempArray[0][0]);
 	$wordLoad = '';
 	$quest = '';
@@ -223,16 +222,19 @@ function publicPoll($tempArray, $ID, $category, $dateIn)
 						
 		$quest .= $wordLoad;
 	
+	//begin building string
 	$builtString = "CALL create_poll(".$ID.","."'".$quest."',"."NULL,'". $catSwitch ."'," . $days .",";
 	
 	for ($i = 0; $i < count($tempArray); $i++)
 	{
 		for ($j = 1; $j < count($tempArray[$i]); $j++)
 		{
+				//add in answers
 				if($j < count($tempArray[$i]) - 1)
 				{
 					if($tempArray[$i][$j] != 'NULL')
 					{
+						//check for apostrophes
 						$charArray = str_split($tempArray[$i][$j]);
 						$wordLoad = '';
 						
@@ -255,6 +257,7 @@ function publicPoll($tempArray, $ID, $category, $dateIn)
 				{
 					if($tempArray[$i][$j] != 'NULL')
 					{
+						//check for apostrophes
 						$charArray = str_split($tempArray[$i][$j]);
 						$wordLoad = '';
 						
@@ -279,19 +282,16 @@ function publicPoll($tempArray, $ID, $category, $dateIn)
 		
 	}
 	
-
-	//$buildString .= "'" . $tempArray[0][12] . "');";
-	
 	return $builtString;
 }
 
 // Takes in user input and concatenates with a unique key into a string to send to SQL for insertion
+// Reference public poll comments to see the intricacies of this function
 function privatePoll($tempArray, $ID, $shareKey, $category, $dateIn)
 {
 	
 	$catSwitch = '';
 	
-	$catSwitch = '';
 	$dateConver = $dateIn;
 	$date = strtotime($dateConver);
 	
@@ -299,7 +299,6 @@ function privatePoll($tempArray, $ID, $shareKey, $category, $dateIn)
 	$days = floor($diff/(60*60*24)+2);
 	
 // 	echo $days;
-	
 	
 	switch($category)
 	{
@@ -404,8 +403,6 @@ function privatePoll($tempArray, $ID, $shareKey, $category, $dateIn)
 		
 	}
 	
-	//$buildString .= "'" . $tempArray[0][12] . "');";
-	
 	return $builtString;
 }
 
@@ -413,9 +410,9 @@ function privatePoll($tempArray, $ID, $shareKey, $category, $dateIn)
 
 $key = buildShareKey();
 
-
 $sqlInsert = loadArray();
 
+//Check if poll is public or private
 if(isset($_POST["pubOpriv"]))
 {
 	//build SQL string statement
@@ -464,10 +461,8 @@ while ($row = mysqli_fetch_array($getProfile))
 	}
 }
 
+//update user profile session variable
 $_SESSION['userProfile'] = $profile;
-
-
-// echo "<br>";
 
 // END PHP
 ?>

@@ -23,6 +23,8 @@
 		<!-- Top of page text -->
 		<div class="login-text">
 		<?php
+		
+		//Check to see if user has failed a login attempt
 		if(isset($_GET["log"]))
 		{
 			echo "<strong>Login failed! Please enter in your appropriate Email and Password.</strong>";

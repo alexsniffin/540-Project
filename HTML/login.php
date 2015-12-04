@@ -15,11 +15,6 @@ session_start();
  {
    die("Connection failed: " . $conn->conect_error);
  }
- //$ress = 1;
- //echo $ress;
-
- //echo $ress;
- //return $ress;
 
 $user = $_POST["user"];
 $pass = $_POST["pwrd"];
@@ -68,7 +63,7 @@ while ($row = mysqli_fetch_array($getProfile))
 	}
 }
  
- 
+//Add userID and profile to session variables
 $_SESSION['arrLogin'] = $userID;
 $_SESSION['userProfile'] = $profile;
 
@@ -80,11 +75,6 @@ if($userID==-1)
 }
 else
 {
-  // create cookies
-  //echo $res;
-  //$cookie_name = $user;
-  //$cookie_value = $res; //will be unique id of user
-  //setcookie($cookie_name, $cookie_value, time()+(86400), "/");
   header('Location: home.php');
 }
 

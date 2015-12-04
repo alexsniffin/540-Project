@@ -3,6 +3,7 @@
 <html lang = "en">
 <?php
 //====================================BEGIN PHP CODE============================================//
+//Written by Julian
 	session_start();
 
 	//Connect to database
@@ -83,6 +84,7 @@
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	$answerArray = callAnswers($randID[0],$conn) or die("Query fail: " . mysqli_error());
 	
+	//Store answers in session variable
 	$_SESSION['arrReturn'] = $answerArray;
 	$_SESSION['pollID'] = $randID[0];
 	

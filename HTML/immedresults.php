@@ -1,7 +1,8 @@
 <html>
 
 <?php
-
+//Returns the results of what the user voted on
+//PHP by Julian
 session_start();
 $userID=$_SESSION['arrLogin'];
 $user = $_SESSION['userProfile'];
